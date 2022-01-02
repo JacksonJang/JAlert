@@ -1,0 +1,22 @@
+{
+  "name": "JAlert",
+  "version": "0.1.0",
+  "summary": "A short description of JAlert.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/장효원/JAlert",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "장효원": "hyo961015@naver.com"
+  },
+  "source": {
+    "git": "https://github.com/장효원/JAlert.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "9.0"
+  },
+  "source_files": "JAlert/Classes/**/*"
+}

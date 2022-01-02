@@ -1,0 +1,16 @@
+PODS:
+  - JAlert (0.1.0)
+
+DEPENDENCIES:
+  - JAlert (from `../`)
+
+EXTERNAL SOURCES:
+  JAlert:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  JAlert: c55c9697a21cf0462bd20f68ca6ad951595df900
+
+PODFILE CHECKSUM: 91c78fdd0c63d926d720d8ae5fb9948751f837ab
+
+COCOAPODS: 1.11.2

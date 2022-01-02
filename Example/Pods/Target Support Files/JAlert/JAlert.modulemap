@@ -1,0 +1,6 @@
+framework module JAlert {
+  umbrella header "JAlert-umbrella.h"
+
+  export *
+  module * { export * }
+}
