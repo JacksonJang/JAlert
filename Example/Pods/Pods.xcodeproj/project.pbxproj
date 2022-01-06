@@ -14,8 +14,8 @@
 		A74210C6A0F27E1233EEE91F27B4DAE7 /* Pods-JAlert_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 07CFE91DA76B3E010DACB0568F00E905 /* Pods-JAlert_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D3E08CBB44957365AF7F202E7FB5A25A /* Pods-JAlert_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1904604318621384E2965FF42D9AC0 /* Pods-JAlert_Example-dummy.m */; };
 		E0516F6F0B2FAF245F0BAEAD0C1558E8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
-		E2BABDCD2781780E008E495F /* JAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BABDCC2781780E008E495F /* JAlert.swift */; };
-		E2BABDCF27817A52008E495F /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BABDCE27817A52008E495F /* Enums.swift */; };
+		E21D8BAE27871D1B0041DBCE /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21D8BAC27871D1B0041DBCE /* Enums.swift */; };
+		E21D8BAF27871D1B0041DBCE /* JAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21D8BAD27871D1B0041DBCE /* JAlert.swift */; };
 		E374520901AD70B7045A4DF54F5F0DDA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
 		E60CB03C5F8D32BCFD374BE367E12735 /* Pods-JAlert_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = EAEDF4FF634B9CAA8B2A14FAE6077156 /* Pods-JAlert_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
@@ -56,7 +56,7 @@
 		91C8D8D352DD52B12B9F8E295301E508 /* Pods-JAlert_Example-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-JAlert_Example-Info.plist"; sourceTree = "<group>"; };
 		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A06A00AD88DF2A47E3BA8A6F4A66A1F0 /* Pods-JAlert_Tests */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-JAlert_Tests"; path = Pods_JAlert_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A92DC3A1BFC90AF90F6BCC4539462155 /* JAlert */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = JAlert; path = JAlert.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A92DC3A1BFC90AF90F6BCC4539462155 /* JAlert.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JAlert.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE162EFD99D51093B7BC309EA21A0844 /* Pods-JAlert_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-JAlert_Tests.modulemap"; sourceTree = "<group>"; };
 		B2E5F72E01AED49995F9E3EAD5D64199 /* Pods-JAlert_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-JAlert_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
 		BA22607B25C5727816FBC2B04848C494 /* Pods-JAlert_Tests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-JAlert_Tests-Info.plist"; sourceTree = "<group>"; };
@@ -64,8 +64,8 @@
 		D8D4CC282DFAAF23D56B3CD20D1AEFC2 /* Pods-JAlert_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-JAlert_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		DA924DF2C6CE4BAA6C2AE58E28BB74BA /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		E0121E063B3D6472FA11962437834510 /* Pods-JAlert_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-JAlert_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
-		E2BABDCC2781780E008E495F /* JAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JAlert.swift; sourceTree = "<group>"; };
-		E2BABDCE27817A52008E495F /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
+		E21D8BAC27871D1B0041DBCE /* Enums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
+		E21D8BAD27871D1B0041DBCE /* JAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JAlert.swift; sourceTree = "<group>"; };
 		E605433FD475ADBF1D0E115E00A69325 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		EA1904604318621384E2965FF42D9AC0 /* Pods-JAlert_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-JAlert_Example-dummy.m"; sourceTree = "<group>"; };
 		EAEDF4FF634B9CAA8B2A14FAE6077156 /* Pods-JAlert_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-JAlert_Example-umbrella.h"; sourceTree = "<group>"; };
@@ -105,10 +105,9 @@
 		124491F766A13CDC2219C2096F23EEC9 /* JAlert */ = {
 			isa = PBXGroup;
 			children = (
-				E2BABDCC2781780E008E495F /* JAlert.swift */,
+				E21D8BB327871DF90041DBCE /* Sources */,
 				44B936AE7B32EF8098D154D76162FD52 /* Pod */,
 				D0C2213518180366A4AEC0E5514EA240 /* Support Files */,
-				E2BABDCE27817A52008E495F /* Enums.swift */,
 			);
 			name = JAlert;
 			path = ../..;
@@ -185,7 +184,7 @@
 		A7A012E51EB3FD357A387FE1E506A200 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A92DC3A1BFC90AF90F6BCC4539462155 /* JAlert */,
+				A92DC3A1BFC90AF90F6BCC4539462155 /* JAlert.framework */,
 				F2B221053CFAF57E684C3064692DE328 /* Pods-JAlert_Example */,
 				A06A00AD88DF2A47E3BA8A6F4A66A1F0 /* Pods-JAlert_Tests */,
 			);
@@ -224,6 +223,15 @@
 				578452D2E740E91742655AC8F1636D1F /* iOS */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E21D8BB327871DF90041DBCE /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				E21D8BAC27871D1B0041DBCE /* Enums.swift */,
+				E21D8BAD27871D1B0041DBCE /* JAlert.swift */,
+			);
+			path = Sources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -290,7 +298,7 @@
 			);
 			name = JAlert;
 			productName = JAlert;
-			productReference = A92DC3A1BFC90AF90F6BCC4539462155 /* JAlert */;
+			productReference = A92DC3A1BFC90AF90F6BCC4539462155 /* JAlert.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		E1075D98418585C055752C135CD6510C /* Pods-JAlert_Example */ = {
@@ -370,8 +378,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E2BABDCD2781780E008E495F /* JAlert.swift in Sources */,
-				E2BABDCF27817A52008E495F /* Enums.swift in Sources */,
+				E21D8BAF27871D1B0041DBCE /* JAlert.swift in Sources */,
+				E21D8BAE27871D1B0041DBCE /* Enums.swift in Sources */,
 				9B4C5AFFB1F29D1178D3E86AB512BB52 /* JAlert-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -564,7 +572,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -595,7 +603,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";

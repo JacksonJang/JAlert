@@ -75,7 +75,7 @@ public class JAlert: UIView {
         frame = CGRect(origin: .zero, size: UIScreen.main.bounds.size)
         
         view.addSubview(self)
-        view.bringSubview(toFront: self)
+        view.bringSubviewToFront(self)
     }
 }
 
