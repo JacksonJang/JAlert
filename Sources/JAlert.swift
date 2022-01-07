@@ -139,10 +139,6 @@ extension JAlert {
             backgroundView.alpha = 0.5
         }
         
-        alertView.frame = CGRect(x: (backgroundView.frame.size.width - viewWidth)/2, y: (backgroundView.frame.size.height - viewHeight)/2, width: viewWidth, height: viewHeight)
-        alertView.backgroundColor = alertViewBackgroundColor
-        alertView.layer.cornerRadius = CGFloat(cornerRadius)
-        
         if title != nil {
             titleLabel.frame = CGRect(x: 0, y: 0, width: viewWidth - titleSideMargin*2, height: 0)
             labelHeightToFit(titleLabel)
@@ -177,6 +173,7 @@ extension JAlert {
         }
         
         createButtonView()
+        updateAlertViewFrame()
     }
     
     func createButtonView() {
@@ -196,11 +193,26 @@ extension JAlert {
         }
     }
     
+    func updateAlertViewFrame() {
+        alertView.frame = CGRect(x: (backgroundView.frame.size.width - viewWidth)/2, y: (backgroundView.frame.size.height - viewHeight)/2, width: viewWidth, height: viewHeight)
+        alertView.backgroundColor = alertViewBackgroundColor
+        alertView.layer.cornerRadius = CGFloat(cornerRadius)
+    }
+    
     @objc private func buttonClicked(_ button: UIButton) {
         let buttonIndex = button.tag
         
         delegate?.alertView?(self, clickedButtonAtIndex: buttonIndex)
 
+        if onButtonClicked == nil {
+            UIView.animate(withDuration: 0.3, animations: {
+                self.alertView.alpha = 0
+            }){ _ in
+                self.removeFromSuperview()
+            }
+            return
+        }
+        
         onButtonClicked?(buttonIndex)
 
         if buttonIndex == cancelButtonIndex {
