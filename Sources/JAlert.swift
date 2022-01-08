@@ -74,6 +74,9 @@ public class JAlert: UIView {
     }
     
     private func show(in view: UIView) {
+        setupDefaultValue()
+        setupElements()
+        
         frame = CGRect(origin: .zero, size: UIScreen.main.bounds.size)
         
         view.addSubview(self)
@@ -89,9 +92,6 @@ extension JAlert {
         self.title = title
         self.message = message
         self.alertType = alertType
-
-        setupDefaultValue()
-        setupElements()
     }
     
     private func setupDefaultValue() {
@@ -136,9 +136,7 @@ extension JAlert {
     }
     
     private func setupElemetsFrame() {
-        customAnimationEvent(animations: {
-            self.isHiddenJAlert(status: true)
-        })
+        self.isHiddenJAlert(status: true)
         
         if title != nil {
             titleLabel.frame = CGRect(x: 0, y: 0, width: viewWidth - titleSideMargin*2, height: 0)
@@ -176,9 +174,12 @@ extension JAlert {
         createButtonView()
         updateAlertViewFrame()
         
-        customAnimationEvent(animations: {
-            self.isHiddenJAlert(status: false)
-        })
+        self.isHiddenJAlert(status: false)
+        
+        //Add animation Type
+        if isAnimation {
+            showAnimation()
+        }
     }
     
     private func createButtonView() {
@@ -204,11 +205,38 @@ extension JAlert {
         alertView.layer.cornerRadius = CGFloat(cornerRadius)
     }
     
+    private func showAnimation() {
+        switch appearType {
+        case .scale:
+            self.alertView.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+            
+            UIView.animate(withDuration: animationWithDuration, animations: {
+                self.alertView.transform = CGAffineTransform.identity
+            })
+        case .default:
+            print("default")
+        }
+    }
+    
+    private func closeAnimation(completion:@escaping () -> Void) {
+        switch disappearType {
+        case .scale:
+            self.alertView.transform = CGAffineTransform.identity
+            
+            UIView.animate(withDuration: animationWithDuration, animations: {
+                self.alertView.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+                self.isHiddenJAlert(status: true)
+            }, completion: { _ in
+                completion()
+            })
+        case .default:
+            print("default")
+        }
+    }
+    
     private func close(completion:@escaping () -> Void) {
         if self.isAnimation {
-            customAnimationEvent(animations: completion) {
-                self.removeFromSuperview()
-            }
+            closeAnimation { self.removeFromSuperview() }
         } else {
             self.removeFromSuperview()
         }
@@ -222,6 +250,8 @@ extension JAlert {
             if isUseBackgroundView {
                 backgroundView.backgroundColor = .black
                 backgroundView.alpha = 0.5
+            } else {
+                backgroundView.alpha = 0
             }
             self.alertView.alpha = 1
         }
