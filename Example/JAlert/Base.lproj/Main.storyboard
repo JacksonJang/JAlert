@@ -4,13 +4,13 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
         <scene sceneID="Xr6-Ch-BIs">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="6Bd-nY-vha" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController id="Zfk-HI-s2u" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="LtZ-99-gKJ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -20,13 +20,13 @@
                         <segue destination="vXZ-lx-hvc" kind="relationship" relationship="rootViewController" id="tNh-jQ-NRR"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6Bd-nY-vha" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-817" y="131"/>
         </scene>
         <!--JAlert Example-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
                 <viewController title="JAlert Example" id="vXZ-lx-hvc" customClass="ViewController" customModule="JAlert_Example" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
@@ -35,12 +35,59 @@
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="TLe-Sc-uAA">
+                                <rect key="frame" x="16" y="44" width="343" height="623"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ExampleListCell" id="tff-xU-kDE" customClass="ExampleListCell" customModule="JAlert_Example" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="44.5" width="343" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tff-xU-kDE" id="Km6-V9-8mx">
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y8l-dC-CPt">
+                                                    <rect key="frame" x="10" y="11.5" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Y8l-dC-CPt" firstAttribute="leading" secondItem="Km6-V9-8mx" secondAttribute="leading" constant="10" id="Ty3-qm-fO3"/>
+                                                <constraint firstItem="Y8l-dC-CPt" firstAttribute="centerY" secondItem="Km6-V9-8mx" secondAttribute="centerY" id="lpB-js-Gf5"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="titleLabel" destination="Y8l-dC-CPt" id="daN-D9-aW2"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="TLe-Sc-uAA" secondAttribute="trailing" id="Mzu-iZ-3CH"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="TLe-Sc-uAA" secondAttribute="bottom" id="aPP-R6-yw5"/>
+                            <constraint firstItem="TLe-Sc-uAA" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="o3H-Tn-N0F"/>
+                            <constraint firstItem="TLe-Sc-uAA" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="rOh-r9-y7p"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="6Pu-6J-PAt"/>
+                    <navigationItem key="navigationItem" title="JAlert Example" id="6Pu-6J-PAt"/>
+                    <connections>
+                        <outlet property="tableView" destination="TLe-Sc-uAA" id="IIB-ZB-CaZ"/>
+                    </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-26" y="131"/>
         </scene>
     </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>
