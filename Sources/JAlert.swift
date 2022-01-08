@@ -15,9 +15,13 @@ public class JAlert: UIView {
     public var cornerRadius: CGFloat = 8.0
     public var textAlignment: NSTextAlignment = .center
     public var alertViewBackgroundColor: UIColor = .white
-    public var isUseBackgroundView = true
-    public var isHideSeparator = false // to hide the separater color
     public var cancelButtonIndex = 0
+    public var animationWithDuration:CGFloat = 0.3
+  
+    public var isUseBackgroundView = true
+    public var isHideSeparator = false
+    public var isAnimation = true
+  
     
     // MARK: Margin
     public var titleSideMargin: CGFloat = 20.0
@@ -71,7 +75,7 @@ public class JAlert: UIView {
         }
     }
     
-    public func show(in view: UIView) {
+    private func show(in view: UIView) {
         frame = CGRect(origin: .zero, size: UIScreen.main.bounds.size)
         
         view.addSubview(self)
@@ -134,10 +138,9 @@ extension JAlert {
     }
     
     private func setupElemetsFrame() {
-        if isUseBackgroundView {
-            backgroundView.backgroundColor = .black
-            backgroundView.alpha = 0.5
-        }
+        customAnimationEvent(animations: {
+            self.isHiddenJAlert(status: true)
+        })
         
         if title != nil {
             titleLabel.frame = CGRect(x: 0, y: 0, width: viewWidth - titleSideMargin*2, height: 0)
@@ -174,9 +177,13 @@ extension JAlert {
         
         createButtonView()
         updateAlertViewFrame()
+        
+        customAnimationEvent(animations: {
+            self.isHiddenJAlert(status: false)
+        })
     }
     
-    func createButtonView() {
+    private func createButtonView() {
         let topPartHeight = titleTopMargin + titleLabel.frame.size.height + titleToMessageSpacing + messageLabel.frame.size.height + messageBottomMargin
         
         viewHeight = topPartHeight + buttonHeight * CGFloat(buttons.count)
@@ -193,10 +200,43 @@ extension JAlert {
         }
     }
     
-    func updateAlertViewFrame() {
+    private func updateAlertViewFrame() {
         alertView.frame = CGRect(x: (backgroundView.frame.size.width - viewWidth)/2, y: (backgroundView.frame.size.height - viewHeight)/2, width: viewWidth, height: viewHeight)
         alertView.backgroundColor = alertViewBackgroundColor
         alertView.layer.cornerRadius = CGFloat(cornerRadius)
+    }
+    
+    private func close(completion:@escaping () -> Void) {
+        if self.isAnimation {
+            customAnimationEvent(animations: completion) {
+                self.removeFromSuperview()
+            }
+        } else {
+            self.removeFromSuperview()
+        }
+    }
+    
+    private func isHiddenJAlert(status:Bool){
+        if status {
+            self.backgroundView.alpha = 0
+            self.alertView.alpha = 0
+        } else {
+            if isUseBackgroundView {
+                backgroundView.backgroundColor = .black
+                backgroundView.alpha = 0.5
+            }
+            self.alertView.alpha = 1
+        }
+    }
+    
+    private func customAnimationEvent(animations:@escaping () -> Void, completion:(() -> Void)? = nil ){
+        UIView.animate(withDuration: animationWithDuration, animations: {
+            animations()
+        }){ _ in
+            if completion != nil {
+                completion!()
+            }
+        }
     }
     
     @objc private func buttonClicked(_ button: UIButton) {
@@ -205,11 +245,10 @@ extension JAlert {
         delegate?.alertView?(self, clickedButtonAtIndex: buttonIndex)
 
         if onButtonClicked == nil {
-            UIView.animate(withDuration: 0.3, animations: {
-                self.alertView.alpha = 0
-            }){ _ in
-                self.removeFromSuperview()
+            close() {
+                self.isHiddenJAlert(status: true)
             }
+            
             return
         }
         

@@ -10,5 +10,4 @@ import UIKit
 public enum AlertType{
     case `default`
     case image
-    case nib
 }
