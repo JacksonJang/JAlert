@@ -9,9 +9,12 @@ import UIKit
 
 public class JAlert: UIView {
     
+    // MARK: Public Proerties
     public weak var delegate: JAlertDelegate? // delegate
     
-    // MARK: Can change Property
+    public var appearType: AppearType = .default
+    public var disappearType: DisappearType = .default
+    
     public var cornerRadius: CGFloat = 8.0
     public var textAlignment: NSTextAlignment = .center
     public var alertViewBackgroundColor: UIColor = .white
@@ -21,40 +24,35 @@ public class JAlert: UIView {
     public var isUseBackgroundView = true
     public var isHideSeparator = false
     public var isAnimation = true
-  
     
-    // MARK: Margin
     public var titleSideMargin: CGFloat = 20.0
     public var titleTopMargin: CGFloat = 20.0
     public var titleToMessageSpacing: CGFloat = 20.0
     public var messageSideMargin: CGFloat = 20.0
     public var messageBottomMargin: CGFloat = 20.0
     
-    // MARK: Closures
     public var onButtonClicked: ((_ buttonIndex: Int) -> Void)?
     public var onCancelClicked: (() -> Void)?
     public var onActionButtonClicked: ((_ buttonIndex: Int) -> (Void))?
     
-    // MARK: Elements
+    // MARK: Private Properties
+    private var alertType: AlertType = .default
+    
     private var backgroundView: UIView!
     private var alertView: UIView!
     private var titleLabel: UILabel!
     private var messageLabel: UILabel!
     
-    // MARK: Private Properties
-    private var alertType: AlertType = .default
     private var title: String?
     private var message: String?
     private var viewWidth: CGFloat = 0
     private var viewHeight: CGFloat = 0
     
-    // MARK: Button
     private var buttonTitle: String?
-    private var buttonTitles: [String] = ["확인"]
+    private var buttonTitles: [String] = ["OK"]
     private var buttons: [UIButton] = []
     private var buttonHeight: CGFloat = 44.0
     
-    // MARK: UI Default
     private let kDefaultWidth: CGFloat = 270.0
     private let kDefaultHeight: CGFloat = 144.0
     private let kDefaultCornerRadius: CGFloat = 8.0

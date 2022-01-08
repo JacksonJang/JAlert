@@ -9,5 +9,15 @@ import UIKit
 
 public enum AlertType{
     case `default`
-    case image
+    case confirm
+}
+
+public enum AppearType {
+    case `default`
+    case scale
+}
+
+public enum DisappearType {
+    case `default`
+    case scale
 }

@@ -12,7 +12,7 @@ import JAlert
 class ViewController: UIViewController {
     @IBOutlet var tableView: UITableView!
     
-    var data:[String] = ["Default"]
+    var data:[String] = ["Default", "Confirm"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,6 +50,11 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         switch index {
         case 0:
             let alert = JAlert(title: "Title", message: "Content", alertType: .default)
+            alert.appearType = .scale
+            alert.disappearType = .scale
+            alert.show()
+        case 1:
+            let alert = JAlert(title: "Title", message: "Content", alertType: .confirm)
             alert.show()
         default:
             print("the rest of index")
