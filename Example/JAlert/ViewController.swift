@@ -52,7 +52,6 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             let alert = JAlert(title: "Title", message: "Content", alertType: .default)
             alert.appearType = .scale
             alert.disappearType = .scale
-            alert.isUseBackgroundView = true
             alert.show()
         case 1:
             let alert = JAlert(title: "Title", message: "Content", alertType: .confirm)

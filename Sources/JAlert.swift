@@ -74,13 +74,17 @@ public class JAlert: UIView {
     }
     
     private func show(in view: UIView) {
-        setupDefaultValue()
-        setupElements()
+        setupElemetsFrame()
         
         frame = CGRect(origin: .zero, size: UIScreen.main.bounds.size)
         
         view.addSubview(self)
         view.bringSubviewToFront(self)
+        
+    }
+    
+    @objc private func deviceDidRotate(_ aNotifitation: NSNotification) -> Void {
+        show()
     }
 }
 
@@ -92,6 +96,11 @@ extension JAlert {
         self.title = title
         self.message = message
         self.alertType = alertType
+        
+        setupDefaultValue()
+        setupElements()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(deviceDidRotate(_:)), name: UIDevice.orientationDidChangeNotification, object: nil)
     }
     
     private func setupDefaultValue() {
@@ -107,10 +116,7 @@ extension JAlert {
         titleLabel = UILabel(frame: .zero)
         messageLabel = UILabel(frame: .zero)
         
-        if isUseBackgroundView {
-            addSubview(backgroundView)
-        }
-        
+        addSubview(backgroundView)
         addSubview(alertView)
         
         if title != nil {
@@ -132,7 +138,6 @@ extension JAlert {
             alertView.addSubview(button)
         }
         
-        setupElemetsFrame()
     }
     
     private func setupElemetsFrame() {
@@ -173,13 +178,7 @@ extension JAlert {
         
         createButtonView()
         updateAlertViewFrame()
-        
-        self.isHiddenJAlert(status: false)
-        
-        //Add animation Type
-        if isAnimation {
-            showAnimation()
-        }
+        setupAnimation()
     }
     
     private func createButtonView() {
@@ -205,7 +204,16 @@ extension JAlert {
         alertView.layer.cornerRadius = CGFloat(cornerRadius)
     }
     
-    private func showAnimation() {
+    private func setupAnimation(){
+        self.isHiddenJAlert(status: false)
+        
+        //Add animation Type
+        if isAnimation {
+            showAppearAnimation()
+        }
+    }
+    
+    private func showAppearAnimation() {
         switch appearType {
         case .scale:
             self.alertView.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
