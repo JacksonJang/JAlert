@@ -74,9 +74,10 @@ public class JAlert: UIView {
     }
     
     private func show(in view: UIView) {
-        setupElemetsFrame()
-        
         frame = CGRect(origin: .zero, size: UIScreen.main.bounds.size)
+        backgroundView.frame = CGRect(origin: .zero, size: UIScreen.main.bounds.size)
+        
+        setupElemetsFrame()
         
         view.addSubview(self)
         view.bringSubviewToFront(self)
