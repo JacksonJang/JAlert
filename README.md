@@ -1,6 +1,6 @@
 # JAlert
 
-[![CI Status](https://img.shields.io/travis/장효원/JAlert.svg?style=flat)](https://travis-ci.org/장효원/JAlert)
+[![CI Status](https://img.shields.io/travis/JacksonJang/JAlert.svg?style=flat)](https://travis-ci.org/JacksonJang/JAlert)
 [![Version](https://img.shields.io/cocoapods/v/JAlert.svg?style=flat)](https://cocoapods.org/pods/JAlert)
 [![License](https://img.shields.io/cocoapods/l/JAlert.svg?style=flat)](https://cocoapods.org/pods/JAlert)
 [![Platform](https://img.shields.io/cocoapods/p/JAlert.svg?style=flat)](https://cocoapods.org/pods/JAlert)
