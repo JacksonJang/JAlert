@@ -222,7 +222,11 @@ extension JAlert {
                 self.alertView.transform = CGAffineTransform.identity
             })
         case .default:
-            print("default")
+            self.isHiddenJAlert(status: true)
+            
+            UIView.animate(withDuration: animationWithDuration, animations: {
+                self.isHiddenJAlert(status: false)
+            })
         }
     }
     
@@ -238,15 +242,11 @@ extension JAlert {
                 completion()
             })
         case .default:
-            print("default")
-        }
-    }
-    
-    private func close(completion:@escaping () -> Void) {
-        if self.isAnimation {
-            closeAnimation { self.removeFromSuperview() }
-        } else {
-            self.removeFromSuperview()
+            UIView.animate(withDuration: animationWithDuration, animations: {
+                self.isHiddenJAlert(status: true)
+            }, completion: { _ in
+                completion()
+            })
         }
     }
     
@@ -294,6 +294,14 @@ extension JAlert {
             onCancelClicked?()
         } else {
             onActionButtonClicked?(buttonIndex)
+        }
+    }
+    
+    private func close(completion:@escaping () -> Void) {
+        if self.isAnimation {
+            closeAnimation { self.removeFromSuperview() }
+        } else {
+            self.removeFromSuperview()
         }
     }
 }

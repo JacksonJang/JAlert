@@ -12,7 +12,10 @@ import JAlert
 class ViewController: UIViewController {
     @IBOutlet var tableView: UITableView!
     
-    var data:[String] = ["Default", "Confirm"]
+    var data:[String] = [
+        "Type : default, animation : default",
+        "Type : default, animation : scale"
+    ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +30,12 @@ class ViewController: UIViewController {
     func registerDelegate() {
         tableView.delegate = self
         tableView.dataSource = self
+    }
+}
+
+extension ViewController:JAlertDelegate {
+    func alertView(_ alertView: JAlert, clickedButtonAtIndex buttonIndex: Int) {
+        print("buttonIndex : ", buttonIndex)
     }
 }
 
@@ -50,11 +59,13 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         switch index {
         case 0:
             let alert = JAlert(title: "Title", message: "Content", alertType: .default)
-            alert.appearType = .scale
-            alert.disappearType = .scale
+            alert.delegate = self
             alert.show()
         case 1:
             let alert = JAlert(title: "Title", message: "Content", alertType: .confirm)
+            alert.appearType = .scale
+            alert.disappearType = .scale
+            alert.delegate = self
             alert.show()
         default:
             print("the rest of index")
