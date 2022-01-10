@@ -67,12 +67,6 @@ public class JAlert: UIView {
         setup(title: title, message: message, alertType: alertType)
     }
     
-    public func show() {
-        if let window = UIApplication.shared.windows.first(where: { $0.isKeyWindow }) {
-            show(in: window)
-        }
-    }
-    
     private func show(in view: UIView) {
         frame = CGRect(origin: .zero, size: UIScreen.main.bounds.size)
         backgroundView.frame = CGRect(origin: .zero, size: UIScreen.main.bounds.size)
@@ -81,12 +75,19 @@ public class JAlert: UIView {
         
         view.addSubview(self)
         view.bringSubviewToFront(self)
-        
     }
     
-    @objc private func deviceDidRotate(_ aNotifitation: NSNotification) -> Void {
-        show()
+}
+
+//Public function
+extension JAlert {
+    
+    public func show() {
+        if let window = UIApplication.shared.windows.first(where: { $0.isKeyWindow }) {
+            show(in: window)
+        }
     }
+    
 }
 
 extension JAlert {
@@ -297,6 +298,18 @@ extension JAlert {
         }
     }
     
+    private func close(completion:@escaping () -> Void) {
+        if self.isAnimation {
+            closeAnimation { self.removeFromSuperview() }
+        } else {
+            self.removeFromSuperview()
+        }
+    }
+    
+    @objc private func deviceDidRotate(_ aNotifitation: NSNotification) -> Void {
+        show()
+    }
+    
     @objc private func buttonClicked(_ button: UIButton) {
         let buttonIndex = button.tag
         
@@ -316,14 +329,6 @@ extension JAlert {
             onCancelClicked?()
         } else {
             onActionButtonClicked?(buttonIndex)
-        }
-    }
-    
-    private func close(completion:@escaping () -> Void) {
-        if self.isAnimation {
-            closeAnimation { self.removeFromSuperview() }
-        } else {
-            self.removeFromSuperview()
         }
     }
 }
