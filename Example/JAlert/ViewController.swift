@@ -62,7 +62,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             alert.delegate = self
             alert.show()
         case 1:
-            let alert = JAlert(title: "Title", message: "Content", alertType: .confirm)
+            let alert = JAlert(title: "Title", message: "Content", alertType: .default)
             alert.appearType = .scale
             alert.disappearType = .scale
             alert.delegate = self

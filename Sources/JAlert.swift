@@ -49,7 +49,7 @@ public class JAlert: UIView {
     private var viewHeight: CGFloat = 0
     
     private var buttonTitle: String?
-    private var buttonTitles: [String] = ["OK"]
+    private var buttonTitles: [String] = ["OK", "Cancel"]
     private var buttons: [UIButton] = []
     private var buttonHeight: CGFloat = 44.0
     
@@ -183,18 +183,41 @@ extension JAlert {
     }
     
     private func createButtonView() {
-        let topPartHeight = titleTopMargin + titleLabel.frame.size.height + titleToMessageSpacing + messageLabel.frame.size.height + messageBottomMargin
-        
-        viewHeight = topPartHeight + buttonHeight * CGFloat(buttons.count)
-        var j = 1
-        
-        for button in buttons.reversed() {
-            button.frame = CGRect(x: 0, y: viewHeight-buttonHeight*CGFloat(j), width: viewWidth, height: buttonHeight)
-            j += 1
+        switch alertType {
+        case .default:
+            print("default")
+            let topPartHeight = titleTopMargin + titleLabel.frame.size.height + titleToMessageSpacing + messageLabel.frame.size.height + messageBottomMargin
+            
+            viewHeight = topPartHeight + buttonHeight * CGFloat(buttons.count)
+            var j = 1
+            
+            for button in buttons.reversed() {
+                button.frame = CGRect(x: 0, y: viewHeight-buttonHeight*CGFloat(j), width: viewWidth, height: buttonHeight)
+                j += 1
+                if !isHideSeparator {
+                    let lineView = UIView(frame: CGRect(x: 0, y: button.frame.origin.y, width: viewWidth, height: 0.5))
+                    lineView.backgroundColor = .black
+                    alertView.addSubview(lineView)
+                }
+            }
+        case .confirm:
+            print("default")
+            let topPartHeight = titleTopMargin + titleLabel.frame.size.height + titleToMessageSpacing + messageLabel.frame.size.height + messageBottomMargin
+            
+            viewHeight = topPartHeight + buttonHeight
+            let leftButton = buttons[0]
+            let rightButton = buttons[1]
+            leftButton.frame = CGRect(x: 0, y: viewHeight-buttonHeight, width: viewWidth/2, height: buttonHeight)
+            rightButton.frame = CGRect(x: viewWidth/2, y: viewHeight-buttonHeight, width: viewWidth/2, height: buttonHeight)
+
             if !isHideSeparator {
-                let lineView = UIView(frame: CGRect(x: 0, y: button.frame.origin.y, width: viewWidth, height: 0.5))
-                lineView.backgroundColor = .black
-                alertView.addSubview(lineView)
+                let horLine = UIView(frame: CGRect(x: 0, y: leftButton.frame.origin.y, width: viewWidth, height: 1))
+                horLine.backgroundColor = .black
+                self.alertView.addSubview(horLine)
+
+                let verLine = UIView(frame: CGRect(x: viewWidth/2, y: leftButton.frame.origin.y, width: 1, height: leftButton.frame.size.height))
+                verLine.backgroundColor = .black
+                self.alertView.addSubview(verLine)
             }
         }
     }
@@ -316,14 +339,12 @@ extension JAlert {
 extension JAlert {
     private func labelHeightToFit(_ label: UILabel) {
         let maxWidth = label.frame.size.width
-        let maxHeight : CGFloat = 10000
+        let maxHeight = CGFloat.greatestFiniteMagnitude
         let rect = label.attributedText?.boundingRect(
             with: CGSize(width: maxWidth, height: maxHeight),
             options: .usesLineFragmentOrigin,
             context: nil)
         
-        var frame = label.frame
-        frame.size.height = rect!.size.height
-        label.frame = frame
+        label.frame.size.height = rect!.size.height
     }
 }

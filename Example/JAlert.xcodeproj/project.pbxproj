@@ -478,6 +478,9 @@
 			baseConfigurationReference = 0DEC26E8381B087C3B7D70C8 /* Pods-JAlert_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				EXCLUDED_ARCHS = arm64;
+				EXCLUDED_SOURCE_FILE_NAMES = "";
+				INCLUDED_SOURCE_FILE_NAMES = "";
 				INFOPLIST_FILE = JAlert/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 1.0.0;
@@ -494,6 +497,9 @@
 			baseConfigurationReference = 82F0888FA5E28A7F8A02D736 /* Pods-JAlert_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				EXCLUDED_ARCHS = arm64;
+				EXCLUDED_SOURCE_FILE_NAMES = "";
+				INCLUDED_SOURCE_FILE_NAMES = "";
 				INFOPLIST_FILE = JAlert/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 1.0.0;
@@ -509,6 +515,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = EF1F9C23AF5907375F152FB6 /* Pods-JAlert_Tests.debug.xcconfig */;
 			buildSettings = {
+				EXCLUDED_ARCHS = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -531,6 +538,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2D4EB6512B543D7B50664B14 /* Pods-JAlert_Tests.release.xcconfig */;
 			buildSettings = {
+				EXCLUDED_ARCHS = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 					"$(inherited)",
