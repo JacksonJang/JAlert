@@ -14,7 +14,9 @@ class ViewController: UIViewController {
     
     var data:[String] = [
         "Type : default, animation : default",
-        "Type : default, animation : scale"
+        "Type : default, animation : scale",
+        "Type : confirm, animation : default",
+        "Type : confirm, animation : scale"
     ]
     
     override func viewDidLoad() {
@@ -63,6 +65,16 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             alert.show()
         case 1:
             let alert = JAlert(title: "Title", message: "Content", alertType: .default)
+            alert.appearType = .scale
+            alert.disappearType = .scale
+            alert.delegate = self
+            alert.show()
+        case 2:
+            let alert = JAlert(title: "Title", message: "Content", alertType: .confirm)
+            alert.delegate = self
+            alert.show()
+        case 3:
+            let alert = JAlert(title: "Title", message: "Content", alertType: .confirm)
             alert.appearType = .scale
             alert.disappearType = .scale
             alert.delegate = self

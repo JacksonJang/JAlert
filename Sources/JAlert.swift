@@ -185,7 +185,6 @@ extension JAlert {
     private func createButtonView() {
         switch alertType {
         case .default:
-            print("default")
             let topPartHeight = titleTopMargin + titleLabel.frame.size.height + titleToMessageSpacing + messageLabel.frame.size.height + messageBottomMargin
             
             viewHeight = topPartHeight + buttonHeight * CGFloat(buttons.count)
@@ -201,7 +200,6 @@ extension JAlert {
                 }
             }
         case .confirm:
-            print("default")
             let topPartHeight = titleTopMargin + titleLabel.frame.size.height + titleToMessageSpacing + messageLabel.frame.size.height + messageBottomMargin
             
             viewHeight = topPartHeight + buttonHeight
@@ -211,11 +209,11 @@ extension JAlert {
             rightButton.frame = CGRect(x: viewWidth/2, y: viewHeight-buttonHeight, width: viewWidth/2, height: buttonHeight)
 
             if !isHideSeparator {
-                let horLine = UIView(frame: CGRect(x: 0, y: leftButton.frame.origin.y, width: viewWidth, height: 1))
+                let horLine = UIView(frame: CGRect(x: 0, y: leftButton.frame.origin.y, width: viewWidth, height: 0.5))
                 horLine.backgroundColor = .black
                 self.alertView.addSubview(horLine)
 
-                let verLine = UIView(frame: CGRect(x: viewWidth/2, y: leftButton.frame.origin.y, width: 1, height: leftButton.frame.size.height))
+                let verLine = UIView(frame: CGRect(x: viewWidth/2, y: leftButton.frame.origin.y, width: 0.5, height: leftButton.frame.size.height))
                 verLine.backgroundColor = .black
                 self.alertView.addSubview(verLine)
             }
