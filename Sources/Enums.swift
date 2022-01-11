@@ -10,6 +10,12 @@ import UIKit
 public enum AlertType{
     case `default`
     case confirm
+    case multi
+}
+
+public enum ButtonType{
+    case cancel
+    case action
 }
 
 public enum AppearType {

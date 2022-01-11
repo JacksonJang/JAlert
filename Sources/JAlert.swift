@@ -9,7 +9,7 @@ import UIKit
 
 public class JAlert: UIView {
     
-    // MARK: Public Proerties
+    // MARK: Public Proerties (You can customize Alert View!)
     public weak var delegate: JAlertDelegate? // delegate
     
     public var appearType: AppearType = .default
@@ -18,11 +18,11 @@ public class JAlert: UIView {
     public var cornerRadius: CGFloat = 8.0
     public var textAlignment: NSTextAlignment = .center
     public var alertViewBackgroundColor: UIColor = .white
-    public var cancelButtonIndex = 0
+    public var actionButtonIndex = 0
     public var animationWithDuration:CGFloat = 0.3
   
     public var isUseBackgroundView = true
-    public var isHideSeparator = false
+    public var isUseSeparator = true
     public var isAnimation = true
     
     public var titleSideMargin: CGFloat = 20.0
@@ -81,6 +81,20 @@ public class JAlert: UIView {
 
 //Public function
 extension JAlert {
+    
+    //TODO: (comfirm) : ["OK", "Cancel"]가 기본값. 그러므로 setActionButtonName, setCancelButtonName 추가 필요
+    //TODO: (default) : ["OK"]가 기본값. setActionButtonName
+    public func setButtonName(actionName:String, cancelName:String? = nil) {
+        if cancelName != nil {
+            buttonTitles = [actionName, cancelName!]
+        } else {
+            buttonTitles = [actionName]
+        }
+    }
+
+    public func setMultiButton() {
+        
+    }
     
     public func show() {
         if let window = UIApplication.shared.windows.first(where: { $0.isKeyWindow }) {
@@ -169,7 +183,7 @@ extension JAlert {
             i += 1
             button.backgroundColor = .clear
             button.setTitleColor(.black, for: .normal)
-            if button.tag == cancelButtonIndex {
+            if button.tag == actionButtonIndex {
                 button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
             } else {
                 button.titleLabel?.font = UIFont.systemFont(ofSize: 17)
@@ -188,17 +202,15 @@ extension JAlert {
         case .default:
             let topPartHeight = titleTopMargin + titleLabel.frame.size.height + titleToMessageSpacing + messageLabel.frame.size.height + messageBottomMargin
             
-            viewHeight = topPartHeight + buttonHeight * CGFloat(buttons.count)
-            var j = 1
+            viewHeight = topPartHeight + buttonHeight
             
-            for button in buttons.reversed() {
-                button.frame = CGRect(x: 0, y: viewHeight-buttonHeight*CGFloat(j), width: viewWidth, height: buttonHeight)
-                j += 1
-                if !isHideSeparator {
-                    let lineView = UIView(frame: CGRect(x: 0, y: button.frame.origin.y, width: viewWidth, height: 0.5))
-                    lineView.backgroundColor = .black
-                    alertView.addSubview(lineView)
-                }
+            let button = buttons.first!
+            
+            button.frame = CGRect(x: 0, y: viewHeight-buttonHeight, width: viewWidth, height: buttonHeight)
+            if isUseSeparator {
+                let lineView = UIView(frame: CGRect(x: 0, y: button.frame.origin.y, width: viewWidth, height: 0.5))
+                lineView.backgroundColor = .black
+                alertView.addSubview(lineView)
             }
         case .confirm:
             let topPartHeight = titleTopMargin + titleLabel.frame.size.height + titleToMessageSpacing + messageLabel.frame.size.height + messageBottomMargin
@@ -209,7 +221,7 @@ extension JAlert {
             leftButton.frame = CGRect(x: 0, y: viewHeight-buttonHeight, width: viewWidth/2, height: buttonHeight)
             rightButton.frame = CGRect(x: viewWidth/2, y: viewHeight-buttonHeight, width: viewWidth/2, height: buttonHeight)
 
-            if !isHideSeparator {
+            if isUseSeparator {
                 let horLine = UIView(frame: CGRect(x: 0, y: leftButton.frame.origin.y, width: viewWidth, height: 0.5))
                 horLine.backgroundColor = .black
                 self.alertView.addSubview(horLine)
@@ -218,7 +230,23 @@ extension JAlert {
                 verLine.backgroundColor = .black
                 self.alertView.addSubview(verLine)
             }
+        case .multi:
+            let topPartHeight = titleTopMargin + titleLabel.frame.size.height + titleToMessageSpacing + messageLabel.frame.size.height + messageBottomMargin
+            
+            viewHeight = topPartHeight + buttonHeight * CGFloat(buttons.count)
+            var j = 1
+            
+            for button in buttons.reversed() {
+                button.frame = CGRect(x: 0, y: viewHeight-buttonHeight*CGFloat(j), width: viewWidth, height: buttonHeight)
+                j += 1
+                if isUseSeparator {
+                    let lineView = UIView(frame: CGRect(x: 0, y: button.frame.origin.y, width: viewWidth, height: 0.5))
+                    lineView.backgroundColor = .black
+                    alertView.addSubview(lineView)
+                }
+            }
         }
+        
     }
     
     private func updateAlertViewFrame() {
@@ -298,12 +326,14 @@ extension JAlert {
         }
     }
     
-    private func close(completion:@escaping () -> Void) {
+    private func close() {
         if self.isAnimation {
             closeAnimation { self.removeFromSuperview() }
         } else {
             self.removeFromSuperview()
         }
+        
+        self.isHiddenJAlert(status: true)
     }
     
     @objc private func deviceDidRotate(_ aNotifitation: NSNotification) -> Void {
@@ -311,24 +341,18 @@ extension JAlert {
     }
     
     @objc private func buttonClicked(_ button: UIButton) {
+        close()
+        
         let buttonIndex = button.tag
         
         delegate?.alertView?(self, clickedButtonAtIndex: buttonIndex)
-
-        if onButtonClicked == nil {
-            close() {
-                self.isHiddenJAlert(status: true)
-            }
-            
-            return
-        }
         
         onButtonClicked?(buttonIndex)
 
-        if buttonIndex == cancelButtonIndex {
-            onCancelClicked?()
-        } else {
+        if buttonIndex == actionButtonIndex {
             onActionButtonClicked?(buttonIndex)
+        } else {
+            onCancelClicked?()
         }
     }
 }
