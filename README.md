@@ -44,6 +44,7 @@ alert.setButton(actionName: "OK", onActionClicked: {
 
 alert.show()
 ```
+---
 
 | confirm |
 |---|
@@ -59,6 +60,7 @@ alert.setButton(actionName: "OK", cancelName: "Cancel", onActionClicked: {
 
 alert.show()
 ```
+---
 
 | multi |
 |---|
