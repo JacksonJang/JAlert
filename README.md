@@ -34,7 +34,7 @@ import JAlert
 
 | default |
 |---|
-|<img src = "https://gist.githubusercontent.com/JacksonJang/050927a21f291ad4d65cac0e2df4b4c9/raw/32906abb85159b13efe61e4ec4f1ca1f346168aa/JAlert1.png" width="200px" height="200px"> |
+|<img src = "https://gist.githubusercontent.com/JacksonJang/050927a21f291ad4d65cac0e2df4b4c9/raw/32906abb85159b13efe61e4ec4f1ca1f346168aa/JAlert1.png" width="293px" height="633px"> |
 ```swift
 let alert = JAlert(title: "Title", message: "Content", alertType: .default)
   
