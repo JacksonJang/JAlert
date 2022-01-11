@@ -59,9 +59,10 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             let alert = JAlert(title: "Title", message: "Content", alertType: .default)
             alert.delegate = self
             
-            alert.onActionButtonClicked = {
-                print("onActionButtonClicked")
-            }
+            alert.setButton(actionName: "OK-TEST", onActionClicked: {
+                print("onActionClicked")
+            })
+            
             alert.show()
         case 1:
             let alert = JAlert(title: "Title", message: "Content", alertType: .default)
@@ -70,26 +71,20 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             alert.appearType = .scale
             alert.disappearType = .scale
             
-            alert.onActionButtonClicked = {
-                print("onActionButtonClicked")
-            }
-            
-            alert.onCancelClicked = {
-                print("onCancelClicked")
-            }
+            alert.setButton(actionName: "OK-TEST", onActionClicked: {
+                print("onActionClicked")
+            })
             
             alert.show()
         case 2:
             let alert = JAlert(title: "Title", message: "Content", alertType: .confirm)
             alert.delegate = self
             
-            alert.onActionButtonClicked = {
-                print("onActionButtonClicked")
-            }
-            
-            alert.onCancelClicked = {
+            alert.setButton(actionName: "OK", cancelName: "Cancel", onActionClicked: {
+                print("onActionClicked")
+            }, onCancelClicked: {
                 print("onCancelClicked")
-            }
+            })
             
             alert.show()
         case 3:
@@ -99,13 +94,11 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             alert.appearType = .scale
             alert.disappearType = .scale
             
-            alert.onActionButtonClicked = {
-                print("onActionButtonClicked")
-            }
-            
-            alert.onCancelClicked = {
+            alert.setButton(actionName: "OK", cancelName: "Cancel", onActionClicked: {
+                print("onActionClicked")
+            }, onCancelClicked: {
                 print("onCancelClicked")
-            }
+            })
             
             alert.show()
         case 4:

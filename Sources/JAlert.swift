@@ -31,9 +31,6 @@ public class JAlert: UIView {
     public var messageSideMargin: CGFloat = 20.0
     public var messageBottomMargin: CGFloat = 20.0
     
-    public var onActionButtonClicked: (() -> Void)?
-    public var onCancelClicked: (() -> Void)?
-    
     // MARK: Private Properties
     private var alertType: AlertType = .default
     
@@ -51,6 +48,9 @@ public class JAlert: UIView {
     private var buttonTitles: [String] = ["OK", "Cancel"]
     private var buttons: [UIButton] = []
     private var buttonHeight: CGFloat = 44.0
+    
+    private var onActionClicked: (() -> Void)?
+    private var onCancelClicked: (() -> Void)?
     
     private let kDefaultWidth: CGFloat = 270.0
     private let kDefaultHeight: CGFloat = 144.0
@@ -84,12 +84,15 @@ extension JAlert {
     
     //TODO: (comfirm) : ["OK", "Cancel"]가 기본값. 그러므로 setActionButtonName, setCancelButtonName 추가 필요
     //TODO: (default) : ["OK"]가 기본값. setActionButtonName
-    public func setButtonName(actionName:String, cancelName:String? = nil) {
+    public func setButton(actionName:String, cancelName:String? = nil, onActionClicked: (() -> Void)? = nil, onCancelClicked: (() -> Void)? = nil) {
         if cancelName != nil {
             buttonTitles = [actionName, cancelName!]
         } else {
             buttonTitles = [actionName]
         }
+        
+        self.onActionClicked = onActionClicked
+        self.onCancelClicked = onCancelClicked
     }
 
     public func setMultiButton(titles:[String]) {
@@ -353,7 +356,7 @@ extension JAlert {
         delegate?.alertView?(self, clickedButtonAtIndex: buttonIndex)
 
         if buttonIndex == actionButtonIndex {
-            onActionButtonClicked?()
+            onActionClicked?()
         } else {
             onCancelClicked?()
         }
