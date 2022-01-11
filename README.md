@@ -45,7 +45,9 @@ alert.setButton(actionName: "OK", onActionClicked: {
 alert.show()
 ```
 
-* confirm
+| confirm |
+|---|
+|<img src = "https://gist.githubusercontent.com/JacksonJang/050927a21f291ad4d65cac0e2df4b4c9/raw/32906abb85159b13efe61e4ec4f1ca1f346168aa/JAlert2.png" width="293px" height="633px"> |
 ```swift
 let alert = JAlert(title: "Title", message: "Content", alertType: .default)
   
@@ -58,7 +60,9 @@ alert.setButton(actionName: "OK", cancelName: "Cancel", onActionClicked: {
 alert.show()
 ```
 
-* multi
+| multi |
+|---|
+|<img src = "https://gist.githubusercontent.com/JacksonJang/050927a21f291ad4d65cac0e2df4b4c9/raw/32906abb85159b13efe61e4ec4f1ca1f346168aa/JAlert3.png" width="293px" height="633px"> |
 ```swift
 let alert = JAlert(title: "Title", message: "Content", alertType: .default)
   
