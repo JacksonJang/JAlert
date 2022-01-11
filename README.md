@@ -50,7 +50,7 @@ alert.show()
 |---|
 |<img src = "https://gist.githubusercontent.com/JacksonJang/050927a21f291ad4d65cac0e2df4b4c9/raw/32906abb85159b13efe61e4ec4f1ca1f346168aa/JAlert2.png" width="293px" height="633px"> |
 ```swift
-let alert = JAlert(title: "Title", message: "Content", alertType: .default)
+let alert = JAlert(title: "Title", message: "Content", alertType: .confirm)
   
 alert.setButton(actionName: "OK", cancelName: "Cancel", onActionClicked: {
   print("onActionClicked")
@@ -66,7 +66,7 @@ alert.show()
 |---|
 |<img src = "https://gist.githubusercontent.com/JacksonJang/050927a21f291ad4d65cac0e2df4b4c9/raw/32906abb85159b13efe61e4ec4f1ca1f346168aa/JAlert3.png" width="293px" height="633px"> |
 ```swift
-let alert = JAlert(title: "Title", message: "Content", alertType: .default)
+let alert = JAlert(title: "Title", message: "Content", alertType: .multi)
   
 alert.setMultiButton(titles: ["OK", "Cancel", "Something"])
 
@@ -76,7 +76,7 @@ alert.show()
 if you want to use button event when you choose multi Type, you have to add JAlertDelegate.
 
 ```swift
-let alert = JAlert(title: "Title", message: "Content", alertType: .default)
+let alert = JAlert(title: "Title", message: "Content", alertType: .mulit)
   
 alert.setMultiButton(titles: ["OK", "Cancel", "Something"])
 alert.delegate = self
