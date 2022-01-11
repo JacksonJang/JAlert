@@ -37,12 +37,6 @@ class ViewController: UIViewController {
     }
 }
 
-extension ViewController:JAlertDelegate {
-    func alertView(_ alertView: JAlert, clickedButtonAtIndex buttonIndex: Int) {
-        print("buttonIndex : ", buttonIndex)
-    }
-}
-
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data.count
@@ -64,37 +58,80 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         case 0:
             let alert = JAlert(title: "Title", message: "Content", alertType: .default)
             alert.delegate = self
+            
+            alert.onActionButtonClicked = {
+                print("onActionButtonClicked")
+            }
             alert.show()
         case 1:
             let alert = JAlert(title: "Title", message: "Content", alertType: .default)
+            alert.delegate = self
+            
             alert.appearType = .scale
             alert.disappearType = .scale
-            alert.delegate = self
+            
+            alert.onActionButtonClicked = {
+                print("onActionButtonClicked")
+            }
+            
+            alert.onCancelClicked = {
+                print("onCancelClicked")
+            }
+            
             alert.show()
         case 2:
             let alert = JAlert(title: "Title", message: "Content", alertType: .confirm)
             alert.delegate = self
+            
+            alert.onActionButtonClicked = {
+                print("onActionButtonClicked")
+            }
+            
+            alert.onCancelClicked = {
+                print("onCancelClicked")
+            }
+            
             alert.show()
         case 3:
             let alert = JAlert(title: "Title", message: "Content", alertType: .confirm)
+            alert.delegate = self
+            
             alert.appearType = .scale
             alert.disappearType = .scale
-            alert.delegate = self
+            
+            alert.onActionButtonClicked = {
+                print("onActionButtonClicked")
+            }
+            
+            alert.onCancelClicked = {
+                print("onCancelClicked")
+            }
+            
             alert.show()
         case 4:
             let alert = JAlert(title: "Title", message: "Content", alertType: .multi)
             alert.delegate = self
             alert.setMultiButton(titles: ["OK", "Cancel", "TEST"])
+            
             alert.show()
         case 5:
             let alert = JAlert(title: "Title", message: "Content", alertType: .multi)
+            alert.delegate = self
+            
+            alert.setMultiButton(titles: ["OK", "Cancel", "TEST"])
             alert.appearType = .scale
             alert.disappearType = .scale
-            alert.delegate = self
+            
             alert.show()
         default:
             print("the rest of index")
         }
+    }
+}
+
+extension ViewController:JAlertDelegate {
+    func alertView(_ alertView: JAlert, clickedButtonAtIndex buttonIndex: Int) {
+        print("buttonIndex : ", buttonIndex)
     }
 }
 

@@ -31,9 +31,8 @@ public class JAlert: UIView {
     public var messageSideMargin: CGFloat = 20.0
     public var messageBottomMargin: CGFloat = 20.0
     
-    public var onButtonClicked: ((_ buttonIndex: Int) -> Void)?
+    public var onActionButtonClicked: (() -> Void)?
     public var onCancelClicked: (() -> Void)?
-    public var onActionButtonClicked: ((_ buttonIndex: Int) -> (Void))?
     
     // MARK: Private Properties
     private var alertType: AlertType = .default
@@ -352,11 +351,9 @@ extension JAlert {
         let buttonIndex = button.tag
         
         delegate?.alertView?(self, clickedButtonAtIndex: buttonIndex)
-        
-        onButtonClicked?(buttonIndex)
 
         if buttonIndex == actionButtonIndex {
-            onActionButtonClicked?(buttonIndex)
+            onActionButtonClicked?()
         } else {
             onCancelClicked?()
         }
