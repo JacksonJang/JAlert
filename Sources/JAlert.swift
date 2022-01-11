@@ -71,6 +71,7 @@ public class JAlert: UIView {
         frame = CGRect(origin: .zero, size: UIScreen.main.bounds.size)
         backgroundView.frame = CGRect(origin: .zero, size: UIScreen.main.bounds.size)
         
+        addButtonToAlertView()
         setupElemetsFrame()
         
         view.addSubview(self)
@@ -92,8 +93,8 @@ extension JAlert {
         }
     }
 
-    public func setMultiButton() {
-        
+    public func setMultiButton(titles:[String]) {
+        buttonTitles = titles
     }
     
     public func show() {
@@ -147,13 +148,15 @@ extension JAlert {
             alertView.addSubview(messageLabel)
         }
         
+    }
+    
+    private func addButtonToAlertView() {
         for buttonTitle in buttonTitles {
             let button = UIButton(type: .custom)
             button.setTitle(buttonTitle, for: .normal)
             buttons.append(button)
             alertView.addSubview(button)
         }
-        
     }
     
     private func setupElemetsFrame() {
@@ -183,21 +186,24 @@ extension JAlert {
             i += 1
             button.backgroundColor = .clear
             button.setTitleColor(.black, for: .normal)
-            if button.tag == actionButtonIndex {
-                button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
-            } else {
-                button.titleLabel?.font = UIFont.systemFont(ofSize: 17)
+            
+            if alertType == .default || alertType == .confirm {
+                if button.tag == actionButtonIndex {
+                    button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
+                } else {
+                    button.titleLabel?.font = UIFont.systemFont(ofSize: 17)
+                }
             }
             
             button.addTarget(self, action: #selector(buttonClicked(_:)), for: .touchUpInside)
         }
         
-        createButtonView()
+        setupButtonView()
         updateAlertViewFrame()
         setupAnimation()
     }
     
-    private func createButtonView() {
+    private func setupButtonView() {
         switch alertType {
         case .default:
             let topPartHeight = titleTopMargin + titleLabel.frame.size.height + titleToMessageSpacing + messageLabel.frame.size.height + messageBottomMargin

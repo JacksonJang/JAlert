@@ -16,7 +16,9 @@ class ViewController: UIViewController {
         "Type : default, animation : default",
         "Type : default, animation : scale",
         "Type : confirm, animation : default",
-        "Type : confirm, animation : scale"
+        "Type : confirm, animation : scale",
+        "Type : multi, animation : default",
+        "Type : multi, animation : scale"
     ]
     
     override func viewDidLoad() {
@@ -75,6 +77,17 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             alert.show()
         case 3:
             let alert = JAlert(title: "Title", message: "Content", alertType: .confirm)
+            alert.appearType = .scale
+            alert.disappearType = .scale
+            alert.delegate = self
+            alert.show()
+        case 4:
+            let alert = JAlert(title: "Title", message: "Content", alertType: .multi)
+            alert.delegate = self
+            alert.setMultiButton(titles: ["OK", "Cancel", "TEST"])
+            alert.show()
+        case 5:
+            let alert = JAlert(title: "Title", message: "Content", alertType: .multi)
             alert.appearType = .scale
             alert.disappearType = .scale
             alert.delegate = self
