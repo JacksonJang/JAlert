@@ -32,7 +32,9 @@ import JAlert
 
 ### AlertType Usage
 
-* default
+| default |
+|---|
+|![9](https://gist.githubusercontent.com/JacksonJang/050927a21f291ad4d65cac0e2df4b4c9/raw/32906abb85159b13efe61e4ec4f1ca1f346168aa/JAlert1.png) |
 ```swift
 let alert = JAlert(title: "Title", message: "Content", alertType: .default)
   
