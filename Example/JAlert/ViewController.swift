@@ -16,9 +16,7 @@ class ViewController: UIViewController {
         "Type : default, animation : default",
         "Type : default, animation : scale",
         "Type : confirm, animation : default",
-        "Type : confirm, animation : scale",
-        "Type : multi, animation : default",
-        "Type : multi, animation : scale"
+        "Type : confirm, animation : scale"
     ]
     
     override func viewDidLoad() {
@@ -59,7 +57,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             let alert = JAlert(title: "Title", message: "Content", alertType: .default)
             alert.delegate = self
             
-            alert.setButton(actionName: "OK-TEST", onActionClicked: {
+            alert.setButton(actionName: "OK", onActionClicked: {
                 print("onActionClicked")
             })
             
@@ -71,7 +69,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             alert.appearType = .scale
             alert.disappearType = .scale
             
-            alert.setButton(actionName: "OK-TEST", onActionClicked: {
+            alert.setButton(actionName: "OK", onActionClicked: {
                 print("onActionClicked")
             })
             
@@ -99,21 +97,6 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             }, onCancelClicked: {
                 print("onCancelClicked")
             })
-            
-            alert.show()
-        case 4:
-            let alert = JAlert(title: "Title", message: "Content", alertType: .multi)
-            alert.delegate = self
-            alert.setMultiButton(titles: ["OK", "Cancel", "TEST"])
-            
-            alert.show()
-        case 5:
-            let alert = JAlert(title: "Title", message: "Content", alertType: .multi)
-            alert.delegate = self
-            
-            alert.setMultiButton(titles: ["OK", "Cancel", "TEST"])
-            alert.appearType = .scale
-            alert.disappearType = .scale
             
             alert.show()
         default:

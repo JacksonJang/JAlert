@@ -17,9 +17,13 @@ public class JAlert: UIView {
     
     public var cornerRadius: CGFloat = 8.0
     public var textAlignment: NSTextAlignment = .center
-    public var alertViewBackgroundColor: UIColor = .white
-    public var actionButtonIndex = 0
+    public var alertBackgroundColor: UIColor = .white
     public var animationWithDuration:CGFloat = 0.3
+    
+    public var titleColor:UIColor = UIColor(red: 5.0/255.0, green: 0, blue: 153.0/255.0, alpha: 1.0)
+    public var messageColor:UIColor = UIColor(red: 5.0/255.0, green: 0, blue: 153.0/255.0, alpha: 1.0)
+    public var actionButtonColor:UIColor = UIColor.black
+    public var cancelButtonColor:UIColor = UIColor.black
   
     public var isUseBackgroundView = true
     public var isUseSeparator = true
@@ -48,6 +52,7 @@ public class JAlert: UIView {
     private var buttonTitles: [String] = ["OK", "Cancel"]
     private var buttons: [UIButton] = []
     private var buttonHeight: CGFloat = 44.0
+    private var actionButtonIndex = 0
     
     private var onActionClicked: (() -> Void)?
     private var onCancelClicked: (() -> Void)?
@@ -92,10 +97,7 @@ extension JAlert {
         self.onActionClicked = onActionClicked
         self.onCancelClicked = onCancelClicked
     }
-
-    public func setMultiButton(titles:[String]) {
-        buttonTitles = titles
-    }
+    
     /* TODO: new function is waiting
     public func setActionButtonFont(font:UIFont) {
         
@@ -108,19 +110,7 @@ extension JAlert {
     public func setALLButtonFont(font:UIFont, containActionAndCancel:Bool = true) {
         
     }
-    
-    public func setActionButtonColor(font:UIFont) {
-        
-    }
-    
-    public func setCancelButtonColor(font:UIFont) {
-        
-    }
-    
-    public func setALLButtonColor(font:UIFont, containActionAndCancel:Bool = true) {
-        
-    }
-    */
+     */
     
     public func show() {
         if let window = UIApplication.shared.windows.first(where: { $0.isKeyWindow }) {
@@ -164,12 +154,14 @@ extension JAlert {
         if title != nil {
             titleLabel.text = title
             titleLabel.textAlignment = textAlignment
+            titleLabel.textColor = titleColor
             alertView.addSubview(titleLabel)
         }
         
         if message != nil {
             messageLabel.text = message
             messageLabel.textAlignment = textAlignment
+            messageLabel.textColor = messageColor
             alertView.addSubview(messageLabel)
         }
         
@@ -181,6 +173,31 @@ extension JAlert {
             button.setTitle(buttonTitle, for: .normal)
             buttons.append(button)
             alertView.addSubview(button)
+        }
+        
+        setButtonProperties()
+    }
+    
+    private func setButtonProperties() {
+        var i = 0
+        for button in buttons {
+            button.tag = i
+            button.backgroundColor = .clear
+            button.setTitleColor(.black, for: .normal)
+            
+            if alertType == .default || alertType == .confirm {
+                if button.tag == actionButtonIndex {
+                    button.setTitleColor(actionButtonColor, for: .normal)
+                    button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
+                } else {
+                    button.setTitleColor(cancelButtonColor, for: .normal)
+                    button.titleLabel?.font = UIFont.systemFont(ofSize: 17)
+                }
+            }
+            
+            button.addTarget(self, action: #selector(buttonClicked(_:)), for: .touchUpInside)
+            
+            i += 1
         }
     }
     
@@ -203,24 +220,6 @@ extension JAlert {
         
         if message != nil {
             messageLabel.center = CGPoint(x: viewWidth/2, y: titleTopMargin + titleLabel.frame.size.height + titleToMessageSpacing + messageLabel.frame.size.height/2)
-        }
-        
-        var i = 0
-        for button in buttons {
-            button.tag = i
-            i += 1
-            button.backgroundColor = .clear
-            button.setTitleColor(.black, for: .normal)
-            
-            if alertType == .default || alertType == .confirm {
-                if button.tag == actionButtonIndex {
-                    button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
-                } else {
-                    button.titleLabel?.font = UIFont.systemFont(ofSize: 17)
-                }
-            }
-            
-            button.addTarget(self, action: #selector(buttonClicked(_:)), for: .touchUpInside)
         }
         
         setupButtonView()
@@ -261,28 +260,13 @@ extension JAlert {
                 verLine.backgroundColor = .black
                 self.alertView.addSubview(verLine)
             }
-        case .multi:
-            let topPartHeight = titleTopMargin + titleLabel.frame.size.height + titleToMessageSpacing + messageLabel.frame.size.height + messageBottomMargin
-            
-            viewHeight = topPartHeight + buttonHeight * CGFloat(buttons.count)
-            var j = 1
-            
-            for button in buttons.reversed() {
-                button.frame = CGRect(x: 0, y: viewHeight-buttonHeight*CGFloat(j), width: viewWidth, height: buttonHeight)
-                j += 1
-                if isUseSeparator {
-                    let lineView = UIView(frame: CGRect(x: 0, y: button.frame.origin.y, width: viewWidth, height: 0.5))
-                    lineView.backgroundColor = .black
-                    alertView.addSubview(lineView)
-                }
-            }
         }
         
     }
     
     private func updateAlertViewFrame() {
         alertView.frame = CGRect(x: (backgroundView.frame.size.width - viewWidth)/2, y: (backgroundView.frame.size.height - viewHeight)/2, width: viewWidth, height: viewHeight)
-        alertView.backgroundColor = alertViewBackgroundColor
+        alertView.backgroundColor = alertBackgroundColor
         alertView.layer.cornerRadius = CGFloat(cornerRadius)
     }
     
@@ -347,16 +331,6 @@ extension JAlert {
         }
     }
     
-    private func customAnimationEvent(animations:@escaping () -> Void, completion:(() -> Void)? = nil ){
-        UIView.animate(withDuration: animationWithDuration, animations: {
-            animations()
-        }){ _ in
-            if completion != nil {
-                completion!()
-            }
-        }
-    }
-    
     private func close() {
         if self.isAnimation {
             closeAnimation { self.removeFromSuperview() }
@@ -366,7 +340,10 @@ extension JAlert {
         
         self.isHiddenJAlert(status: true)
     }
-    
+}
+
+// @objc
+extension JAlert {
     @objc private func deviceDidRotate(_ aNotifitation: NSNotification) -> Void {
         show()
     }
@@ -385,7 +362,6 @@ extension JAlert {
         }
     }
 }
-
 
 @objc public protocol JAlertDelegate : NSObjectProtocol {
     @objc optional func alertView(_ alertView: JAlert, clickedButtonAtIndex buttonIndex: Int)
