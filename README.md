@@ -34,7 +34,7 @@ import JAlert
 
 | default |
 |---|
-|<img src = "https://gist.githubusercontent.com/JacksonJang/050927a21f291ad4d65cac0e2df4b4c9/raw/32906abb85159b13efe61e4ec4f1ca1f346168aa/JAlert1.png" width="293px" height="633px"> |
+|<img src = "https://gist.githubusercontent.com/JacksonJang/050927a21f291ad4d65cac0e2df4b4c9/raw/5409f65310b019fc36eed8dd2b2fcafa92e42368/JAlert1.png" width="293px" height="633px"> |
 ```swift
 let alert = JAlert(title: "Title", message: "Content", alertType: .default)
   
@@ -48,7 +48,7 @@ alert.show()
 
 | confirm |
 |---|
-|<img src = "https://gist.githubusercontent.com/JacksonJang/050927a21f291ad4d65cac0e2df4b4c9/raw/32906abb85159b13efe61e4ec4f1ca1f346168aa/JAlert2.png" width="293px" height="633px"> |
+|<img src = "https://gist.githubusercontent.com/JacksonJang/050927a21f291ad4d65cac0e2df4b4c9/raw/5409f65310b019fc36eed8dd2b2fcafa92e42368/JAlert2.png" width="293px" height="633px"> |
 ```swift
 let alert = JAlert(title: "Title", message: "Content", alertType: .confirm)
   
@@ -60,25 +60,13 @@ alert.setButton(actionName: "OK", cancelName: "Cancel", onActionClicked: {
 
 alert.show()
 ```
----
 
-| multi |
-|---|
-|<img src = "https://gist.githubusercontent.com/JacksonJang/050927a21f291ad4d65cac0e2df4b4c9/raw/32906abb85159b13efe61e4ec4f1ca1f346168aa/JAlert3.png" width="293px" height="633px"> |
-```swift
-let alert = JAlert(title: "Title", message: "Content", alertType: .multi)
-  
-alert.setMultiButton(titles: ["OK", "Cancel", "Something"])
-
-alert.show()
-```
-
-if you want to use button event when you choose multi Type, you have to add JAlertDelegate.
+if you want to use button event when managing as a delegate, you can add JAlertDelegate.
 
 ```swift
-let alert = JAlert(title: "Title", message: "Content", alertType: .mulit)
-  
-alert.setMultiButton(titles: ["OK", "Cancel", "Something"])
+let alert = JAlert(title: "Title", message: "Content", alertType: .default)
+
+alert.setButton(actionName: "OK")
 alert.delegate = self
 
 alert.show()
@@ -100,9 +88,13 @@ public var disappearType: DisappearType = .default
     
 public var cornerRadius: CGFloat = 8.0
 public var textAlignment: NSTextAlignment = .center
-public var alertViewBackgroundColor: UIColor = .white
-public var actionButtonIndex = 0
+public var alertBackgroundColor: UIColor = .white
 public var animationWithDuration:CGFloat = 0.3
+    
+public var titleColor:UIColor = UIColor(red: 5.0/255.0, green: 0, blue: 153.0/255.0, alpha: 1.0)
+public var messageColor:UIColor = UIColor(red: 5.0/255.0, green: 0, blue: 153.0/255.0, alpha: 1.0)
+public var actionButtonColor:UIColor = UIColor.black
+public var cancelButtonColor:UIColor = UIColor.black
   
 public var isUseBackgroundView = true
 public var isUseSeparator = true
