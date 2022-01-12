@@ -78,6 +78,22 @@ extension SomethingController:JAlertDelegate {
     }
 }
 ```
+---
+
+| submit |
+|---|
+|<img src = "https://gist.githubusercontent.com/JacksonJang/050927a21f291ad4d65cac0e2df4b4c9/raw/e7f4219aabf8b828de2cff756f81b96921c7f19d/JAlert3.png" width="293px" height="633px"> |
+```swift
+let alert = JAlert(title: "Title", message: "Content", alertType: .submit)
+  
+alert.setButton(actionName: "OK", cancelName: "Cancel", onActionClicked: {
+  print("onActionClicked")
+}, onCancelClicked: {
+  print("onCancelClicked")
+})
+
+alert.show()
+```
 
 ### Public Proerties (You can customize Alert View!)
 ```swift
