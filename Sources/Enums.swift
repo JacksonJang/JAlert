@@ -14,6 +14,7 @@ public enum AlertType{
 }
 
 public enum ButtonType{
+    case all
     case cancel
     case action
 }

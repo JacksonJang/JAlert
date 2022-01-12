@@ -82,8 +82,6 @@ public class JAlert: UIView {
 //Public function
 extension JAlert {
     
-    //TODO: (comfirm) : ["OK", "Cancel"]가 기본값. 그러므로 setActionButtonName, setCancelButtonName 추가 필요
-    //TODO: (default) : ["OK"]가 기본값. setActionButtonName
     public func setButton(actionName:String, cancelName:String? = nil, onActionClicked: (() -> Void)? = nil, onCancelClicked: (() -> Void)? = nil) {
         if cancelName != nil {
             buttonTitles = [actionName, cancelName!]
@@ -98,6 +96,31 @@ extension JAlert {
     public func setMultiButton(titles:[String]) {
         buttonTitles = titles
     }
+    /* TODO: new function is waiting
+    public func setActionButtonFont(font:UIFont) {
+        
+    }
+    
+    public func setCancelButtonFont(font:UIFont) {
+        
+    }
+    
+    public func setALLButtonFont(font:UIFont, containActionAndCancel:Bool = true) {
+        
+    }
+    
+    public func setActionButtonColor(font:UIFont) {
+        
+    }
+    
+    public func setCancelButtonColor(font:UIFont) {
+        
+    }
+    
+    public func setALLButtonColor(font:UIFont, containActionAndCancel:Bool = true) {
+        
+    }
+    */
     
     public func show() {
         if let window = UIApplication.shared.windows.first(where: { $0.isKeyWindow }) {
