@@ -42,6 +42,7 @@ public class JAlert: UIView {
     private var alertView: UIView!
     private var titleLabel: UILabel!
     private var messageLabel: UILabel!
+    private var textView: UITextView!
     
     private var title: String?
     private var message: String?
@@ -147,9 +148,11 @@ extension JAlert {
         alertView = UIView(frame: .zero)
         titleLabel = UILabel(frame: .zero)
         messageLabel = UILabel(frame: .zero)
+        textView = UITextView(frame: .zero)
         
         addSubview(backgroundView)
         addSubview(alertView)
+        addSubview(textView)
         
         if title != nil {
             titleLabel.text = title
@@ -158,13 +161,18 @@ extension JAlert {
             alertView.addSubview(titleLabel)
         }
         
-        if message != nil {
+        if message != nil && alertType != .submit {
             messageLabel.text = message
             messageLabel.textAlignment = textAlignment
             messageLabel.textColor = messageColor
             alertView.addSubview(messageLabel)
         }
         
+        if alertType == .submit {
+            textView.layer.borderColor = UIColor.black.cgColor
+            textView.layer.borderWidth = 0.5
+            alertView.addSubview(textView)
+        }
     }
     
     private func addButtonToAlertView() {
@@ -185,14 +193,12 @@ extension JAlert {
             button.backgroundColor = .clear
             button.setTitleColor(.black, for: .normal)
             
-            if alertType == .default || alertType == .confirm {
-                if button.tag == actionButtonIndex {
-                    button.setTitleColor(actionButtonColor, for: .normal)
-                    button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
-                } else {
-                    button.setTitleColor(cancelButtonColor, for: .normal)
-                    button.titleLabel?.font = UIFont.systemFont(ofSize: 17)
-                }
+            if button.tag == actionButtonIndex {
+                button.setTitleColor(actionButtonColor, for: .normal)
+                button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
+            } else {
+                button.setTitleColor(cancelButtonColor, for: .normal)
+                button.titleLabel?.font = UIFont.systemFont(ofSize: 17)
             }
             
             button.addTarget(self, action: #selector(buttonClicked(_:)), for: .touchUpInside)
@@ -207,19 +213,18 @@ extension JAlert {
         if title != nil {
             titleLabel.frame = CGRect(x: 0, y: 0, width: viewWidth - titleSideMargin*2, height: 0)
             labelHeightToFit(titleLabel)
-        }
-        
-        if message != nil {
-            messageLabel.frame = CGRect(x: 0, y: 0, width: viewWidth - messageSideMargin*2, height: 0)
-            labelHeightToFit(messageLabel)
-        }
-        
-        if title != nil {
             titleLabel.center = CGPoint(x: viewWidth/2, y: titleTopMargin + titleLabel.frame.size.height/2)
         }
         
-        if message != nil {
+        if message != nil && alertType != .submit {
+            messageLabel.frame = CGRect(x: 0, y: 0, width: viewWidth - messageSideMargin*2, height: 0)
+            labelHeightToFit(messageLabel)
             messageLabel.center = CGPoint(x: viewWidth/2, y: titleTopMargin + titleLabel.frame.size.height + titleToMessageSpacing + messageLabel.frame.size.height/2)
+        }
+        
+        if alertType == .submit {
+            textView.frame = CGRect(x: 0, y: 0, width: viewWidth - messageSideMargin*2 - 10, height: 150)
+            textView.center = CGPoint(x: viewWidth/2, y: titleTopMargin + titleLabel.frame.size.height + titleToMessageSpacing + textView.frame.size.height/2)
         }
         
         setupButtonView()
@@ -244,6 +249,24 @@ extension JAlert {
             }
         case .confirm:
             let topPartHeight = titleTopMargin + titleLabel.frame.size.height + titleToMessageSpacing + messageLabel.frame.size.height + messageBottomMargin
+            
+            viewHeight = topPartHeight + buttonHeight
+            let leftButton = buttons[0]
+            let rightButton = buttons[1]
+            leftButton.frame = CGRect(x: 0, y: viewHeight-buttonHeight, width: viewWidth/2, height: buttonHeight)
+            rightButton.frame = CGRect(x: viewWidth/2, y: viewHeight-buttonHeight, width: viewWidth/2, height: buttonHeight)
+
+            if isUseSeparator {
+                let horLine = UIView(frame: CGRect(x: 0, y: leftButton.frame.origin.y, width: viewWidth, height: 0.5))
+                horLine.backgroundColor = .black
+                self.alertView.addSubview(horLine)
+
+                let verLine = UIView(frame: CGRect(x: viewWidth/2, y: leftButton.frame.origin.y, width: 0.5, height: leftButton.frame.size.height))
+                verLine.backgroundColor = .black
+                self.alertView.addSubview(verLine)
+            }
+        case .submit:
+            let topPartHeight = titleTopMargin + titleLabel.frame.size.height + titleToMessageSpacing + textView.frame.size.height + messageBottomMargin
             
             viewHeight = topPartHeight + buttonHeight
             let leftButton = buttons[0]

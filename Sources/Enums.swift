@@ -10,6 +10,7 @@ import UIKit
 public enum AlertType{
     case `default`
     case confirm
+    case submit
 }
 
 public enum AppearType {
