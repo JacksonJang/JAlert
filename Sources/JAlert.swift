@@ -99,20 +99,6 @@ extension JAlert {
         self.onCancelClicked = onCancelClicked
     }
     
-    /* TODO: new function is waiting
-    public func setActionButtonFont(font:UIFont) {
-        
-    }
-    
-    public func setCancelButtonFont(font:UIFont) {
-        
-    }
-    
-    public func setALLButtonFont(font:UIFont, containActionAndCancel:Bool = true) {
-        
-    }
-     */
-    
     public func getSubmitText() -> String {
         if textView != nil {
             return textView.text!
