@@ -87,12 +87,25 @@ extension SomethingController:JAlertDelegate {
 let alert = JAlert(title: "Title", message: "Content", alertType: .submit)
   
 alert.setButton(actionName: "OK", cancelName: "Cancel", onActionClicked: {
+  print("text : \(alert.getSubmitText())")
   print("onActionClicked")
 }, onCancelClicked: {
   print("onCancelClicked")
 })
 
 alert.show()
+```
+
+### Public Function
+```swift
+public func setButton(
+    actionName:String, 
+    cancelName:String? = nil, 
+    onActionClicked: (() -> Void)? = nil, 
+    onCancelClicked: (() -> Void)? = nil
+)
+public func getSubmitText() -> String
+public func show()
 ```
 
 ### Public Proerties (You can customize Alert View!)
