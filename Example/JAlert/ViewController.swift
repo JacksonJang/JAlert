@@ -16,7 +16,8 @@ class ViewController: UIViewController {
         "Type : default, animation : default",
         "Type : confirm, animation : default",
         "Type : submit, animation : default",
-        "Type : default, animation : scale"
+        "Type : date",
+        "Animation : scale"
     ]
     
     override func viewDidLoad() {
@@ -54,14 +55,14 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         
         switch index {
         case 0:
-            let alert = JAlert(title: "Title", message: "Content", alertType: .default)
+            let alert = JAlert(title: "title", message: "message", alertType: .default)
             alert.delegate = self
             
             alert.setButton(actionName: "OK")
             
             alert.show()
         case 1:
-            let alert = JAlert(title: "Title", message: "Content", alertType: .confirm)
+            let alert = JAlert(title: "title", message: "message", alertType: .confirm)
             alert.delegate = self
             
             alert.setButton(actionName: "OK", cancelName: "Cancel", onActionClicked: {
@@ -72,7 +73,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             
             alert.show()
         case 2:
-            let alert = JAlert(title: "Title", message: "Content", alertType: .submit)
+            let alert = JAlert(title: "title", message: "message", alertType: .submit)
             alert.delegate = self
             
             alert.setButton(actionName: "OK", cancelName: "Cancel", onActionClicked: {
@@ -84,7 +85,20 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             
             alert.show()
         case 3:
-            let alert = JAlert(title: "Title", message: "Content", alertType: .default)
+            let alert = JAlert(title: "title", message: "message", alertType: .date)
+            alert.delegate = self
+            
+            alert.appearType = .scale
+            alert.disappearType = .scale
+            
+            alert.setButton(actionName: "OK", cancelName: "Cancel", onActionClicked: {
+                print("date : \(alert.getDate())")
+                print("onActionClicked")
+            })
+            
+            alert.show()
+        case 4:
+            let alert = JAlert(title: "title", message: "message", alertType: .default)
             alert.delegate = self
             
             alert.appearType = .scale

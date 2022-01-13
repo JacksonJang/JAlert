@@ -43,6 +43,7 @@ public class JAlert: UIView {
     private var titleLabel: UILabel!
     private var messageLabel: UILabel!
     private var textView: UITextView!
+    private var datePickerView: UIDatePicker!
     
     private var title: String?
     private var message: String?
@@ -58,7 +59,7 @@ public class JAlert: UIView {
     private var onActionClicked: (() -> Void)?
     private var onCancelClicked: (() -> Void)?
     
-    private let kDefaultWidth: CGFloat = 270.0
+    private let kDefaultWidth: CGFloat = 300.0
     private let kDefaultHeight: CGFloat = 144.0
     private let kDefaultCornerRadius: CGFloat = 8.0
     
@@ -107,6 +108,19 @@ extension JAlert {
         }
     }
     
+    public func getDate() -> String {
+        if datePickerView != nil {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+
+            let dateString:String = dateFormatter.string(from: datePickerView.date)
+            
+            return dateString
+        } else {
+            return ""
+        }
+    }
+    
     public func show() {
         if let window = UIApplication.shared.windows.first(where: { $0.isKeyWindow }) {
             show(in: window)
@@ -143,10 +157,12 @@ extension JAlert {
         titleLabel = UILabel(frame: .zero)
         messageLabel = UILabel(frame: .zero)
         textView = UITextView(frame: .zero)
+        datePickerView = UIDatePicker(frame: .zero)
         
         addSubview(backgroundView)
         addSubview(alertView)
         addSubview(textView)
+        addSubview(datePickerView)
         
         if title != nil {
             titleLabel.text = title
@@ -167,17 +183,42 @@ extension JAlert {
             textView.layer.borderWidth = 0.5
             alertView.addSubview(textView)
         }
+        
+        if alertType == .date {
+            datePickerView.datePickerMode = .dateAndTime
+            if #available(iOS 13.4, *) {
+                datePickerView.preferredDatePickerStyle = .wheels
+            }
+            datePickerView.locale = Locale(identifier: "ko_KR")
+            alertView.addSubview(datePickerView)
+        }
     }
     
     private func addButtonToAlertView() {
         for buttonTitle in buttonTitles {
-            let button = UIButton(type: .custom)
-            button.setTitle(buttonTitle, for: .normal)
-            buttons.append(button)
-            alertView.addSubview(button)
+            createButton(name: buttonTitle)
         }
         
+        checkButtonCountAndAppend()
         setButtonProperties()
+    }
+    
+    private func createButton(name:String) {
+        let button = UIButton(type: .custom)
+        button.setTitle(name, for: .normal)
+        buttons.append(button)
+        alertView.addSubview(button)
+    }
+    
+    private func checkButtonCountAndAppend() {
+        if alertType != .default {
+            if buttons.count == 0 {
+                createButton(name: "Cancel")
+            } else if buttons.count == 1 {
+                createButton(name: "OK")
+                createButton(name: "Cancel")
+            }
+        }
     }
     
     private func setButtonProperties() {
@@ -210,7 +251,7 @@ extension JAlert {
             titleLabel.center = CGPoint(x: viewWidth/2, y: titleTopMargin + titleLabel.frame.size.height/2)
         }
         
-        if message != nil && alertType != .submit {
+        if message != nil && alertType != .submit && alertType != .date {
             messageLabel.frame = CGRect(x: 0, y: 0, width: viewWidth - messageSideMargin*2, height: 0)
             labelHeightToFit(messageLabel)
             messageLabel.center = CGPoint(x: viewWidth/2, y: titleTopMargin + titleLabel.frame.size.height + titleToMessageSpacing + messageLabel.frame.size.height/2)
@@ -219,6 +260,11 @@ extension JAlert {
         if alertType == .submit {
             textView.frame = CGRect(x: 0, y: 0, width: viewWidth - messageSideMargin*2 - 10, height: 150)
             textView.center = CGPoint(x: viewWidth/2, y: titleTopMargin + titleLabel.frame.size.height + titleToMessageSpacing + textView.frame.size.height/2)
+        }
+        
+        if alertType == .date {
+            datePickerView.frame = CGRect(x: 0, y: 0, width: viewWidth - messageSideMargin*2 - 10, height: 250)
+            datePickerView.center = CGPoint(x: viewWidth/2, y: titleTopMargin + titleLabel.frame.size.height + titleToMessageSpacing + datePickerView.frame.size.height/2)
         }
         
         setupButtonView()
@@ -263,6 +309,25 @@ extension JAlert {
             let topPartHeight = titleTopMargin + titleLabel.frame.size.height + titleToMessageSpacing + textView.frame.size.height + messageBottomMargin
             
             viewHeight = topPartHeight + buttonHeight
+            let leftButton = buttons[0]
+            let rightButton = buttons[1]
+            leftButton.frame = CGRect(x: 0, y: viewHeight-buttonHeight, width: viewWidth/2, height: buttonHeight)
+            rightButton.frame = CGRect(x: viewWidth/2, y: viewHeight-buttonHeight, width: viewWidth/2, height: buttonHeight)
+
+            if isUseSeparator {
+                let horLine = UIView(frame: CGRect(x: 0, y: leftButton.frame.origin.y, width: viewWidth, height: 0.5))
+                horLine.backgroundColor = .black
+                self.alertView.addSubview(horLine)
+
+                let verLine = UIView(frame: CGRect(x: viewWidth/2, y: leftButton.frame.origin.y, width: 0.5, height: leftButton.frame.size.height))
+                verLine.backgroundColor = .black
+                self.alertView.addSubview(verLine)
+            }
+        case .date:
+            let topPartHeight = titleTopMargin + titleLabel.frame.size.height + titleToMessageSpacing + datePickerView.frame.size.height + messageBottomMargin
+            
+            viewHeight = topPartHeight + buttonHeight
+            
             let leftButton = buttons[0]
             let rightButton = buttons[1]
             leftButton.frame = CGRect(x: 0, y: viewHeight-buttonHeight, width: viewWidth/2, height: buttonHeight)

@@ -11,6 +11,7 @@ public enum AlertType{
     case `default`
     case confirm
     case submit
+    case date
 }
 
 public enum AppearType {
