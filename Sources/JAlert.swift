@@ -113,6 +113,14 @@ extension JAlert {
     }
      */
     
+    public func getSubmitText() -> String {
+        if textView != nil {
+            return textView.text!
+        } else {
+            return ""
+        }
+    }
+    
     public func show() {
         if let window = UIApplication.shared.windows.first(where: { $0.isKeyWindow }) {
             show(in: window)

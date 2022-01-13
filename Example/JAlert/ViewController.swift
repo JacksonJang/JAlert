@@ -76,6 +76,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             alert.delegate = self
             
             alert.setButton(actionName: "OK", cancelName: "Cancel", onActionClicked: {
+                print("text : \(alert.getSubmitText())")
                 print("onActionClicked")
             }, onCancelClicked: {
                 print("onCancelClicked")
