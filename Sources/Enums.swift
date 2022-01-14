@@ -14,6 +14,28 @@ public enum AlertType{
     case date
 }
 
+//MARK: - Language
+public enum Language:String{
+    case ko_KR = "ko_KR"
+    case ja_JP = "ja_JP"
+    case en_US = "en_US"
+    case fr_FR = "fr_FR"
+    case en_GB = "en_GB"
+    case de_DE = "de_DE"
+    case it_IT = "it_IT"
+    case nl_NL = "nl_NL"
+    case nl_BE = "nl_BE"
+    case sv_SE = "sv_SE"
+    case es_ES = "es_ES"
+    case fr_CH = "fr_CH"
+    case de_CH = "de_CH"
+    case en_AU = "en_AU"
+    case zh_CN = "zh_CN"
+    case zh_TW = "zh_TW"
+}
+
+
+//MARK: - Animation
 public enum AppearType {
     case `default`
     case scale

@@ -19,6 +19,7 @@ public class JAlert: UIView {
     public var textAlignment: NSTextAlignment = .center
     public var alertBackgroundColor: UIColor = .white
     public var animationWithDuration:CGFloat = 0.3
+    public var language:Language = .ko_KR
     
     public var titleColor:UIColor = UIColor(red: 5.0/255.0, green: 0, blue: 153.0/255.0, alpha: 1.0)
     public var messageColor:UIColor = UIColor(red: 5.0/255.0, green: 0, blue: 153.0/255.0, alpha: 1.0)
@@ -189,7 +190,7 @@ extension JAlert {
             if #available(iOS 13.4, *) {
                 datePickerView.preferredDatePickerStyle = .wheels
             }
-            datePickerView.locale = Locale(identifier: "ko_KR")
+            datePickerView.locale = Locale(identifier: language.rawValue)
             alertView.addSubview(datePickerView)
         }
     }
