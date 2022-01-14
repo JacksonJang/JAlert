@@ -135,9 +135,9 @@ public var titleToMessageSpacing: CGFloat = 20.0
 public var messageSideMargin: CGFloat = 20.0
 public var messageBottomMargin: CGFloat = 20.0
 ```
-## Author
+## Contribution
 
-JacksonJang, hyo961015@naver.com
+Discussion and pull requests are welcomed !
 
 ## License
 
