@@ -21,10 +21,19 @@ public class JAlert: UIView {
     public var animationWithDuration:CGFloat = 0.3
     public var language:Language = .ko_KR
     
-    public var titleColor:UIColor = UIColor(red: 5.0/255.0, green: 0, blue: 153.0/255.0, alpha: 1.0)
-    public var messageColor:UIColor = UIColor(red: 5.0/255.0, green: 0, blue: 153.0/255.0, alpha: 1.0)
+    //Color
+    public var titleColor:UIColor = UIColor.black
+    public var messageColor:UIColor = UIColor.black
     public var actionButtonColor:UIColor = UIColor.black
     public var cancelButtonColor:UIColor = UIColor.black
+    public var submitColor:UIColor = UIColor.black
+    
+    //Font
+    public var titleFont:UIFont = UIFont.systemFont(ofSize: 17)
+    public var messageFont:UIFont = UIFont.systemFont(ofSize: 17)
+    public var actionButtonFont:UIFont = UIFont.systemFont(ofSize: 17, weight: .bold)
+    public var cancelButtonFont:UIFont = UIFont.systemFont(ofSize: 17)
+    public var submitFont:UIFont = UIFont.systemFont(ofSize: 17)
   
     public var isUseBackgroundView = true
     public var isUseSeparator = true
@@ -169,6 +178,7 @@ extension JAlert {
             titleLabel.text = title
             titleLabel.textAlignment = textAlignment
             titleLabel.textColor = titleColor
+            titleLabel.font = titleFont
             alertView.addSubview(titleLabel)
         }
         
@@ -176,12 +186,15 @@ extension JAlert {
             messageLabel.text = message
             messageLabel.textAlignment = textAlignment
             messageLabel.textColor = messageColor
+            messageLabel.font = messageFont
             alertView.addSubview(messageLabel)
         }
         
         if alertType == .submit {
             textView.layer.borderColor = UIColor.black.cgColor
             textView.layer.borderWidth = 0.5
+            textView.textColor = submitColor
+            textView.font = submitFont
             alertView.addSubview(textView)
         }
         
@@ -226,20 +239,24 @@ extension JAlert {
         var i = 0
         for button in buttons {
             button.tag = i
-            button.backgroundColor = .clear
-            button.setTitleColor(.black, for: .normal)
             
-            if button.tag == actionButtonIndex {
-                button.setTitleColor(actionButtonColor, for: .normal)
-                button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
-            } else {
-                button.setTitleColor(cancelButtonColor, for: .normal)
-                button.titleLabel?.font = UIFont.systemFont(ofSize: 17)
-            }
+            setButtonCustomUI(button: button)
             
             button.addTarget(self, action: #selector(buttonClicked(_:)), for: .touchUpInside)
             
             i += 1
+        }
+    }
+    
+    private func setButtonCustomUI(button:UIButton) {
+        button.backgroundColor = .clear
+        
+        if button.tag == actionButtonIndex {
+            button.setTitleColor(actionButtonColor, for: .normal)
+            button.titleLabel?.font = actionButtonFont
+        } else {
+            button.setTitleColor(cancelButtonColor, for: .normal)
+            button.titleLabel?.font = cancelButtonFont
         }
     }
     
