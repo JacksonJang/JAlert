@@ -19,6 +19,7 @@ public class JAlert: UIView {
     public var textAlignment: NSTextAlignment = .center
     public var alertBackgroundColor: UIColor = .white
     public var animationWithDuration:CGFloat = 0.3
+    public var dateFormat = "yyyy-MM-dd HH:mm:ss"
     public var language:Language = .ko_KR
     
     //Color
@@ -121,7 +122,7 @@ extension JAlert {
     public func getDate() -> String {
         if datePickerView != nil {
             let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+            dateFormatter.dateFormat = dateFormat
 
             let dateString:String = dateFormatter.string(from: datePickerView.date)
             
