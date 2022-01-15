@@ -21,6 +21,8 @@ public class JAlert: UIView {
     public var animationWithDuration:CGFloat = 0.3
     public var dateFormat = "yyyy-MM-dd HH:mm:ss"
     public var language:Language = .ko_KR
+    public var urlString:String = ""
+    public var imageHeight:CGFloat = 500
     
     //Color
     public var titleColor:UIColor = UIColor.black
@@ -55,6 +57,7 @@ public class JAlert: UIView {
     private var messageLabel: UILabel!
     private var textView: UITextView!
     private var datePickerView: UIDatePicker!
+    private var imageView:UIImageView!
     
     private var title: String?
     private var message: String?
@@ -66,6 +69,8 @@ public class JAlert: UIView {
     private var buttons: [UIButton] = []
     private var buttonHeight: CGFloat = 44.0
     private var actionButtonIndex = 0
+    
+    private var isUseButton:Bool = false
     
     private var onActionClicked: (() -> Void)?
     private var onCancelClicked: (() -> Void)?
@@ -85,6 +90,9 @@ public class JAlert: UIView {
     }
     
     private func show(in view: UIView) {
+        setupDefaultValue()
+        setupElements()
+        
         frame = CGRect(origin: .zero, size: UIScreen.main.bounds.size)
         backgroundView.frame = CGRect(origin: .zero, size: UIScreen.main.bounds.size)
         
@@ -102,8 +110,10 @@ extension JAlert {
     
     public func setButton(actionName:String, cancelName:String? = nil, onActionClicked: (() -> Void)? = nil, onCancelClicked: (() -> Void)? = nil) {
         if cancelName != nil {
+            isUseButton = true
             buttonTitles = [actionName, cancelName!]
         } else {
+            isUseButton = true
             buttonTitles = [actionName]
         }
         
@@ -149,8 +159,7 @@ extension JAlert {
         self.message = message
         self.alertType = alertType
         
-        setupDefaultValue()
-        setupElements()
+        
         
         NotificationCenter.default.addObserver(self, selector: #selector(deviceDidRotate(_:)), name: UIDevice.orientationDidChangeNotification, object: nil)
     }
@@ -169,11 +178,10 @@ extension JAlert {
         messageLabel = UILabel(frame: .zero)
         textView = UITextView(frame: .zero)
         datePickerView = UIDatePicker(frame: .zero)
+        imageView = createImageView(urlString: urlString)
         
         addSubview(backgroundView)
         addSubview(alertView)
-        addSubview(textView)
-        addSubview(datePickerView)
         
         if title != nil {
             titleLabel.text = title
@@ -207,6 +215,27 @@ extension JAlert {
             datePickerView.locale = Locale(identifier: language.rawValue)
             alertView.addSubview(datePickerView)
         }
+        
+        if alertType == .image {
+            alertView.addSubview(imageView)
+        }
+    }
+    
+    func createImageView(urlString:String) -> UIImageView{
+        guard let url = URL(string: urlString) else { return UIImageView(frame: CGRect.zero) }
+        
+        do {
+            let data = try Data(contentsOf: url)
+            imageView = UIImageView(image: UIImage(data: data))
+        } catch {
+            print("createImageView error")
+        }
+        
+        if urlString == "" {
+            imageView = UIImageView(frame: CGRect.zero)
+        }
+        
+        return imageView
     }
     
     private func addButtonToAlertView() {
@@ -227,11 +256,13 @@ extension JAlert {
     
     private func checkButtonCountAndAppend() {
         if alertType != .default {
-            if buttons.count == 0 {
-                createButton(name: "Cancel")
-            } else if buttons.count == 1 {
-                createButton(name: "OK")
-                createButton(name: "Cancel")
+            if !isUseButton {
+                if buttons.count == 0 {
+                    createButton(name: "Cancel")
+                } else if buttons.count == 1 {
+                    createButton(name: "OK")
+                    createButton(name: "Cancel")
+                }
             }
         }
     }
@@ -284,6 +315,11 @@ extension JAlert {
         if alertType == .date {
             datePickerView.frame = CGRect(x: 0, y: 0, width: viewWidth - messageSideMargin*2 - 10, height: 250)
             datePickerView.center = CGPoint(x: viewWidth/2, y: titleTopMargin + titleLabel.frame.size.height + titleToMessageSpacing + datePickerView.frame.size.height/2)
+        }
+
+        if alertType == .image {
+            imageView.frame = CGRect(x: 0, y: 0, width: viewWidth - messageSideMargin*2 - 10, height: imageHeight)
+            imageView.center = CGPoint(x: viewWidth/2, y: titleTopMargin + titleLabel.frame.size.height + titleToMessageSpacing + imageView.frame.size.height/2)
         }
         
         setupButtonView()
@@ -360,6 +396,36 @@ extension JAlert {
                 let verLine = UIView(frame: CGRect(x: viewWidth/2, y: leftButton.frame.origin.y, width: 0.5, height: leftButton.frame.size.height))
                 verLine.backgroundColor = .black
                 self.alertView.addSubview(verLine)
+            }
+        case .image:
+            let topPartHeight = titleTopMargin + titleLabel.frame.size.height + titleToMessageSpacing + imageView.frame.size.height + messageBottomMargin
+            
+            viewHeight = topPartHeight + buttonHeight
+            
+            if buttons.count >= 2 {
+                let leftButton = buttons[0]
+                let rightButton = buttons[1]
+                leftButton.frame = CGRect(x: 0, y: viewHeight-buttonHeight, width: viewWidth/2, height: buttonHeight)
+                rightButton.frame = CGRect(x: viewWidth/2, y: viewHeight-buttonHeight, width: viewWidth/2, height: buttonHeight)
+
+                if isUseSeparator {
+                    let horLine = UIView(frame: CGRect(x: 0, y: leftButton.frame.origin.y, width: viewWidth, height: 0.5))
+                    horLine.backgroundColor = .black
+                    self.alertView.addSubview(horLine)
+
+                    let verLine = UIView(frame: CGRect(x: viewWidth/2, y: leftButton.frame.origin.y, width: 0.5, height: leftButton.frame.size.height))
+                    verLine.backgroundColor = .black
+                    self.alertView.addSubview(verLine)
+                }
+            } else {
+                let button = buttons.first!
+                
+                button.frame = CGRect(x: 0, y: viewHeight-buttonHeight, width: viewWidth, height: buttonHeight)
+                if isUseSeparator {
+                    let lineView = UIView(frame: CGRect(x: 0, y: button.frame.origin.y, width: viewWidth, height: 0.5))
+                    lineView.backgroundColor = .black
+                    alertView.addSubview(lineView)
+                }
             }
         }
         

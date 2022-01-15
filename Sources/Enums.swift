@@ -12,6 +12,7 @@ public enum AlertType{
     case confirm
     case submit
     case date
+    case image
 }
 
 //MARK: - Language

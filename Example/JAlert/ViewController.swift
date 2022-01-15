@@ -17,6 +17,7 @@ class ViewController: UIViewController {
         "Type : confirm, animation : default",
         "Type : submit, animation : default",
         "Type : date",
+        "Type : image",
         "Animation : scale"
     ]
     
@@ -98,6 +99,19 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             
             alert.show()
         case 4:
+            let alert = JAlert(title: "title", message: "message", alertType: .image)
+            alert.delegate = self
+            
+            alert.urlString = "https://cdn.pixabay.com/photo/2022/01/02/04/37/animal-6909429_1280.jpg"
+            alert.appearType = .scale
+            alert.disappearType = .scale
+            
+            alert.setButton(actionName: "OK", onActionClicked: {
+                print("onActionClicked")
+            })
+            
+            alert.show()
+        case 5:
             let alert = JAlert(title: "title", message: "message", alertType: .default)
             alert.delegate = self
             
