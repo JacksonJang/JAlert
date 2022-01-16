@@ -20,7 +20,7 @@ public class JAlert: UIView {
     public var alertBackgroundColor: UIColor = .white
     public var animationWithDuration:CGFloat = 0.3
     public var dateFormat = "yyyy-MM-dd HH:mm:ss"
-    public var language:Language = .ko_KR
+    public var language:Language = .en_US
     public var urlString:String = ""
     public var imageHeight:CGFloat = 500
     
@@ -178,7 +178,8 @@ extension JAlert {
         messageLabel = UILabel(frame: .zero)
         textView = UITextView(frame: .zero)
         datePickerView = UIDatePicker(frame: .zero)
-        imageView = createImageView(urlString: urlString)
+
+        imageView = createImageView(urlString: encodingUrlString())
         
         addSubview(backgroundView)
         addSubview(alertView)
@@ -495,6 +496,15 @@ extension JAlert {
                 backgroundView.alpha = 0
             }
             self.alertView.alpha = 1
+        }
+    }
+    
+    private func encodingUrlString() -> String {
+        let urlString = self.urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+        if urlString == nil {
+            return self.urlString
+        } else {
+            return urlString!
         }
     }
     
