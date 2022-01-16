@@ -18,7 +18,8 @@ class ViewController: UIViewController {
         "Type : submit, animation : default",
         "Type : date",
         "Type : image",
-        "Animation : scale"
+        "Animation : scale",
+        "Use JAlertDelegate"
     ]
     
     override func viewDidLoad() {
@@ -57,71 +58,53 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         switch index {
         case 0:
             let alert = JAlert(title: "title", message: "message", alertType: .default)
-            alert.delegate = self
-            
             alert.setButton(actionName: "OK")
-            
             alert.show()
         case 1:
             let alert = JAlert(title: "title", message: "message", alertType: .confirm)
-            alert.delegate = self
-            
             alert.setButton(actionName: "OK", cancelName: "Cancel", onActionClicked: {
                 print("onActionClicked")
             }, onCancelClicked: {
                 print("onCancelClicked")
             })
-            
             alert.show()
         case 2:
             let alert = JAlert(title: "title", message: "message", alertType: .submit)
-            alert.delegate = self
-            
             alert.setButton(actionName: "OK", cancelName: "Cancel", onActionClicked: {
                 print("text : \(alert.getSubmitText())")
                 print("onActionClicked")
             }, onCancelClicked: {
                 print("onCancelClicked")
             })
-            
             alert.show()
         case 3:
             let alert = JAlert(title: "title", message: "message", alertType: .date)
-            alert.delegate = self
-            
-            alert.appearType = .scale
-            alert.disappearType = .scale
-            
             alert.setButton(actionName: "OK", cancelName: "Cancel", onActionClicked: {
                 print("date : \(alert.getDate())")
                 print("onActionClicked")
             })
-            
             alert.show()
         case 4:
             let alert = JAlert(title: "title", message: "message", alertType: .image)
-            alert.delegate = self
-            
             alert.urlString = "https://cdn.pixabay.com/photo/2022/01/02/04/37/animal-6909429_1280.jpg"
-            alert.appearType = .scale
-            alert.disappearType = .scale
-            
             alert.setButton(actionName: "OK", onActionClicked: {
                 print("onActionClicked")
             })
-            
             alert.show()
         case 5:
             let alert = JAlert(title: "title", message: "message", alertType: .default)
-            alert.delegate = self
-            
             alert.appearType = .scale
             alert.disappearType = .scale
-            
             alert.setButton(actionName: "OK", onActionClicked: {
                 print("onActionClicked")
             })
-            
+            alert.show()
+        case 6:
+            let alert = JAlert(title: "title", message: "message", alertType: .default)
+            alert.delegate = self
+            alert.setButton(actionName: "OK", onActionClicked: {
+                print("onActionClicked")
+            })
             alert.show()
         default:
             print("the rest of index")
