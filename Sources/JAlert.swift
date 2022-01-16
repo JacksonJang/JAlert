@@ -159,8 +159,6 @@ extension JAlert {
         self.message = message
         self.alertType = alertType
         
-        
-        
         NotificationCenter.default.addObserver(self, selector: #selector(deviceDidRotate(_:)), name: UIDevice.orientationDidChangeNotification, object: nil)
     }
     
@@ -227,7 +225,9 @@ extension JAlert {
         
         do {
             let data = try Data(contentsOf: url)
-            imageView = UIImageView(image: UIImage(data: data))
+            let image = UIImage(data: data)!
+            imageHeight = viewWidth * image.size.height / image.size.width
+            imageView = UIImageView(image: image)
         } catch {
             print("createImageView error")
         }
@@ -320,6 +320,7 @@ extension JAlert {
 
         if alertType == .image {
             imageView.frame = CGRect(x: 0, y: 0, width: viewWidth - messageSideMargin*2 - 10, height: imageHeight)
+            
             imageView.center = CGPoint(x: viewWidth/2, y: titleTopMargin + titleLabel.frame.size.height + titleToMessageSpacing + imageView.frame.size.height/2)
         }
         
