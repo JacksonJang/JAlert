@@ -170,17 +170,7 @@ extension JAlert {
     }
     
     private func setupElements() {
-        backgroundView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
-        alertView = UIView(frame: .zero)
-        titleLabel = UILabel(frame: .zero)
-        messageLabel = UILabel(frame: .zero)
-        textView = UITextView(frame: .zero)
-        datePickerView = UIDatePicker(frame: .zero)
-
-        imageView = createImageView(urlString: encodingUrlString())
-        
-        addSubview(backgroundView)
-        addSubview(alertView)
+        initializeDefaultView()
         
         if title != nil {
             titleLabel.text = title
@@ -220,7 +210,20 @@ extension JAlert {
         }
     }
     
-    func createImageView(urlString:String) -> UIImageView{
+    private func initializeDefaultView() {
+        backgroundView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
+        alertView = UIView(frame: .zero)
+        titleLabel = UILabel(frame: .zero)
+        messageLabel = UILabel(frame: .zero)
+        textView = UITextView(frame: .zero)
+        datePickerView = UIDatePicker(frame: .zero)
+        imageView = createImageView(urlString: encodingUrlString())
+        
+        addSubview(backgroundView)
+        addSubview(alertView)
+    }
+    
+    private func createImageView(urlString:String) -> UIImageView{
         guard let url = URL(string: urlString) else { return UIImageView(frame: CGRect.zero) }
         
         do {
