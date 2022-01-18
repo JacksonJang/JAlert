@@ -24,7 +24,7 @@ pod 'JAlert'
 > if you want to use customizing alertView, you can choose "alertType" in JAlert Library.
 > Actually, JAlert contains "Public Proerties" option.
 
-first of all, Import the module
+first of all, import the module
 
 ```swift
 import JAlert
