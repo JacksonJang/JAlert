@@ -23,6 +23,7 @@ public class JAlert: UIView {
     public var language:Language = .en_US
     public var urlString:String = ""
     public var submitViewHeight:CGFloat = 150
+    public var datePickerViewHeight:CGFloat = 250
     public var imageHeight:CGFloat = 500
     
     //Color
@@ -50,6 +51,8 @@ public class JAlert: UIView {
     public var messageBottomMargin: CGFloat = 20.0
     public var submitSideMargin: CGFloat = 20.0
     public var submitBottomMargin: CGFloat = 20.0
+    public var datePickerViewSideMargin: CGFloat = 20.0
+    public var datePickerViewBottomMargin: CGFloat = 20.0
     
     // MARK: Private Properties
     private var alertType: AlertType = .default
@@ -320,8 +323,8 @@ extension JAlert {
         }
         
         if alertType == .date {
-            datePickerView.frame = CGRect(x: 0, y: 0, width: viewWidth - messageSideMargin*2 - 10, height: 250)
-            datePickerView.center = CGPoint(x: viewWidth/2, y: titleTopMargin + titleLabel.frame.size.height + titleToMessageSpacing + datePickerView.frame.size.height/2)
+            datePickerView.frame = CGRect(x: 0, y: 0, width: viewWidth - datePickerViewSideMargin*2 - 10, height: datePickerViewHeight)
+            datePickerView.center = CGPoint(x: viewWidth/2, y: titleTopMargin + titleLabel.frame.size.height + titleToMessageSpacing + messageLabel.frame.size.height + messageBottomMargin + datePickerView.frame.size.height/2)
         }
 
         if alertType == .image {
@@ -387,7 +390,7 @@ extension JAlert {
                 self.alertView.addSubview(verLine)
             }
         case .date:
-            let topPartHeight = titleTopMargin + titleLabel.frame.size.height + titleToMessageSpacing + datePickerView.frame.size.height + messageBottomMargin
+            let topPartHeight = titleTopMargin + titleLabel.frame.size.height + titleToMessageSpacing + messageLabel.frame.size.height + messageBottomMargin + datePickerView.frame.size.height + datePickerViewBottomMargin
             
             viewHeight = topPartHeight + buttonHeight
             
