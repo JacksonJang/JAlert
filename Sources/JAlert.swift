@@ -22,6 +22,7 @@ public class JAlert: UIView {
     public var dateFormat = "yyyy-MM-dd HH:mm:ss"
     public var language:Language = .en_US
     public var urlString:String = ""
+    public var submitViewHeight:CGFloat = 150
     public var imageHeight:CGFloat = 500
     
     //Color
@@ -47,6 +48,8 @@ public class JAlert: UIView {
     public var titleToMessageSpacing: CGFloat = 20.0
     public var messageSideMargin: CGFloat = 20.0
     public var messageBottomMargin: CGFloat = 20.0
+    public var submitSideMargin: CGFloat = 20.0
+    public var submitBottomMargin: CGFloat = 20.0
     
     // MARK: Private Properties
     private var alertType: AlertType = .default
@@ -55,7 +58,7 @@ public class JAlert: UIView {
     private var alertView: UIView!
     private var titleLabel: UILabel!
     private var messageLabel: UILabel!
-    private var textView: UITextView!
+    private var submitView: UITextView!
     private var datePickerView: UIDatePicker!
     private var imageView:UIImageView!
     
@@ -122,8 +125,8 @@ extension JAlert {
     }
     
     public func getSubmitText() -> String {
-        if textView != nil {
-            return textView.text!
+        if submitView != nil {
+            return submitView.text!
         } else {
             return ""
         }
@@ -180,7 +183,7 @@ extension JAlert {
             alertView.addSubview(titleLabel)
         }
         
-        if message != nil && alertType != .submit {
+        if message != nil {
             messageLabel.text = message
             messageLabel.textAlignment = textAlignment
             messageLabel.textColor = messageColor
@@ -189,11 +192,11 @@ extension JAlert {
         }
         
         if alertType == .submit {
-            textView.layer.borderColor = UIColor.black.cgColor
-            textView.layer.borderWidth = 0.5
-            textView.textColor = submitColor
-            textView.font = submitFont
-            alertView.addSubview(textView)
+            submitView.layer.borderColor = UIColor.black.cgColor
+            submitView.layer.borderWidth = 0.5
+            submitView.textColor = submitColor
+            submitView.font = submitFont
+            alertView.addSubview(submitView)
         }
         
         if alertType == .date {
@@ -215,7 +218,7 @@ extension JAlert {
         alertView = UIView(frame: .zero)
         titleLabel = UILabel(frame: .zero)
         messageLabel = UILabel(frame: .zero)
-        textView = UITextView(frame: .zero)
+        submitView = UITextView(frame: .zero)
         datePickerView = UIDatePicker(frame: .zero)
         imageView = createImageView(urlString: encodingUrlString())
         
@@ -305,15 +308,15 @@ extension JAlert {
             titleLabel.center = CGPoint(x: viewWidth/2, y: titleTopMargin + titleLabel.frame.size.height/2)
         }
         
-        if message != nil && alertType != .submit && alertType != .date {
+        if message != nil {
             messageLabel.frame = CGRect(x: 0, y: 0, width: viewWidth - messageSideMargin*2, height: 0)
             labelHeightToFit(messageLabel)
             messageLabel.center = CGPoint(x: viewWidth/2, y: titleTopMargin + titleLabel.frame.size.height + titleToMessageSpacing + messageLabel.frame.size.height/2)
         }
         
         if alertType == .submit {
-            textView.frame = CGRect(x: 0, y: 0, width: viewWidth - messageSideMargin*2 - 10, height: 150)
-            textView.center = CGPoint(x: viewWidth/2, y: titleTopMargin + titleLabel.frame.size.height + titleToMessageSpacing + textView.frame.size.height/2)
+            submitView.frame = CGRect(x: 0, y: 0, width: viewWidth - submitSideMargin*2 - 10, height: submitViewHeight)
+            submitView.center = CGPoint(x: viewWidth/2, y: titleTopMargin + titleLabel.frame.size.height + titleToMessageSpacing + messageLabel.frame.size.height + messageBottomMargin + submitView.frame.size.height/2)
         }
         
         if alertType == .date {
@@ -366,7 +369,7 @@ extension JAlert {
                 self.alertView.addSubview(verLine)
             }
         case .submit:
-            let topPartHeight = titleTopMargin + titleLabel.frame.size.height + titleToMessageSpacing + textView.frame.size.height + messageBottomMargin
+            let topPartHeight = titleTopMargin + titleLabel.frame.size.height + titleToMessageSpacing + messageLabel.frame.size.height + messageBottomMargin + submitView.frame.size.height + submitBottomMargin
             
             viewHeight = topPartHeight + buttonHeight
             let leftButton = buttons[0]
