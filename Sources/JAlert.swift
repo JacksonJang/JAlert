@@ -53,6 +53,8 @@ public class JAlert: UIView {
     public var submitBottomMargin: CGFloat = 20.0
     public var datePickerViewSideMargin: CGFloat = 20.0
     public var datePickerViewBottomMargin: CGFloat = 20.0
+    public var imageViewSideMargin: CGFloat = 20.0
+    public var imageViewBottomMargin: CGFloat = 20.0
     
     // MARK: Private Properties
     private var alertType: AlertType = .default
@@ -328,9 +330,9 @@ extension JAlert {
         }
 
         if alertType == .image {
-            imageView.frame = CGRect(x: 0, y: 0, width: viewWidth - messageSideMargin*2 - 10, height: imageHeight)
+            imageView.frame = CGRect(x: 0, y: 0, width: viewWidth - imageViewSideMargin*2 - 10, height: imageHeight)
             
-            imageView.center = CGPoint(x: viewWidth/2, y: titleTopMargin + titleLabel.frame.size.height + titleToMessageSpacing + imageView.frame.size.height/2)
+            imageView.center = CGPoint(x: viewWidth/2, y: titleTopMargin + titleLabel.frame.size.height + titleToMessageSpacing + messageLabel.frame.size.height + messageBottomMargin + imageView.frame.size.height/2)
         }
         
         setupButtonView()
@@ -409,7 +411,7 @@ extension JAlert {
                 self.alertView.addSubview(verLine)
             }
         case .image:
-            let topPartHeight = titleTopMargin + titleLabel.frame.size.height + titleToMessageSpacing + imageView.frame.size.height + messageBottomMargin
+            let topPartHeight = titleTopMargin + titleLabel.frame.size.height + titleToMessageSpacing + messageLabel.frame.size.height + messageBottomMargin + imageView.frame.size.height + imageViewBottomMargin
             
             viewHeight = topPartHeight + buttonHeight
             
