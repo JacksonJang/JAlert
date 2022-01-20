@@ -7,6 +7,14 @@
 
 import UIKit
 
+public enum ElementType{
+    case title
+    case message
+    case submit
+    case date
+    case image
+}
+
 public enum AlertType{
     case `default`
     case confirm

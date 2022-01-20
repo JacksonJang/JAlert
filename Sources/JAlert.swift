@@ -15,16 +15,14 @@ public class JAlert: UIView {
     public var appearType: AppearType = .default
     public var disappearType: DisappearType = .default
     
+    public var alertBackgroundColor: UIColor = .white
     public var cornerRadius: CGFloat = 8.0
     public var textAlignment: NSTextAlignment = .center
-    public var alertBackgroundColor: UIColor = .white
     public var animationWithDuration:CGFloat = 0.3
-    public var dateFormat = "yyyy-MM-dd HH:mm:ss"
-    public var language:Language = .en_US
-    public var urlString:String = ""
-    public var submitViewHeight:CGFloat = 150
-    public var datePickerViewHeight:CGFloat = 250
-    public var imageHeight:CGFloat = 500
+    
+    public var dateFormat = "yyyy-MM-dd HH:mm:ss" // Use for ".date" type.(default: "yyyy-MM-dd HH:mm:ss")
+    public var language:Language = .en_US // Use for ".date" type.(default: .en_US)
+    public var urlString:String = "" //Use for ".image" type.
     
     //Color
     public var titleColor:UIColor = UIColor.black
@@ -46,7 +44,7 @@ public class JAlert: UIView {
     
     public var titleSideMargin: CGFloat = 20.0
     public var titleTopMargin: CGFloat = 20.0
-    public var titleToMessageSpacing: CGFloat = 20.0
+    public var titleBottomMargin: CGFloat = 20.0
     public var messageSideMargin: CGFloat = 20.0
     public var messageBottomMargin: CGFloat = 20.0
     public var submitSideMargin: CGFloat = 20.0
@@ -55,6 +53,10 @@ public class JAlert: UIView {
     public var datePickerViewBottomMargin: CGFloat = 20.0
     public var imageViewSideMargin: CGFloat = 20.0
     public var imageViewBottomMargin: CGFloat = 20.0
+    
+    public var submitViewHeight:CGFloat = 150
+    public var datePickerViewHeight:CGFloat = 250
+    public var imageHeight:CGFloat = 500
     
     // MARK: Private Properties
     private var alertType: AlertType = .default
@@ -186,6 +188,8 @@ extension JAlert {
             titleLabel.textColor = titleColor
             titleLabel.font = titleFont
             alertView.addSubview(titleLabel)
+        } else {
+            updateMarginToZero(type: .title)
         }
         
         if message != nil {
@@ -194,6 +198,8 @@ extension JAlert {
             messageLabel.textColor = messageColor
             messageLabel.font = messageFont
             alertView.addSubview(messageLabel)
+        } else {
+            updateMarginToZero(type: .message)
         }
         
         if alertType == .submit {
@@ -202,6 +208,8 @@ extension JAlert {
             submitView.textColor = submitColor
             submitView.font = submitFont
             alertView.addSubview(submitView)
+        } else {
+            updateMarginToZero(type: .submit)
         }
         
         if alertType == .date {
@@ -211,10 +219,14 @@ extension JAlert {
             }
             datePickerView.locale = Locale(identifier: language.rawValue)
             alertView.addSubview(datePickerView)
+        } else {
+            updateMarginToZero(type: .date)
         }
         
         if alertType == .image {
             alertView.addSubview(imageView)
+        } else {
+            updateMarginToZero(type: .image)
         }
     }
     
@@ -316,23 +328,23 @@ extension JAlert {
         if message != nil {
             messageLabel.frame = CGRect(x: 0, y: 0, width: viewWidth - messageSideMargin*2, height: 0)
             labelHeightToFit(messageLabel)
-            messageLabel.center = CGPoint(x: viewWidth/2, y: titleTopMargin + titleLabel.frame.size.height + titleToMessageSpacing + messageLabel.frame.size.height/2)
+            messageLabel.center = CGPoint(x: viewWidth/2, y: titleTopMargin + titleLabel.frame.size.height + titleBottomMargin + messageLabel.frame.size.height/2)
         }
         
         if alertType == .submit {
             submitView.frame = CGRect(x: 0, y: 0, width: viewWidth - submitSideMargin*2 - 10, height: submitViewHeight)
-            submitView.center = CGPoint(x: viewWidth/2, y: titleTopMargin + titleLabel.frame.size.height + titleToMessageSpacing + messageLabel.frame.size.height + messageBottomMargin + submitView.frame.size.height/2)
+            submitView.center = CGPoint(x: viewWidth/2, y: titleTopMargin + titleLabel.frame.size.height + titleBottomMargin + messageLabel.frame.size.height + messageBottomMargin + submitView.frame.size.height/2)
         }
         
         if alertType == .date {
             datePickerView.frame = CGRect(x: 0, y: 0, width: viewWidth - datePickerViewSideMargin*2 - 10, height: datePickerViewHeight)
-            datePickerView.center = CGPoint(x: viewWidth/2, y: titleTopMargin + titleLabel.frame.size.height + titleToMessageSpacing + messageLabel.frame.size.height + messageBottomMargin + datePickerView.frame.size.height/2)
+            datePickerView.center = CGPoint(x: viewWidth/2, y: titleTopMargin + titleLabel.frame.size.height + titleBottomMargin + messageLabel.frame.size.height + messageBottomMargin + datePickerView.frame.size.height/2)
         }
 
         if alertType == .image {
             imageView.frame = CGRect(x: 0, y: 0, width: viewWidth - imageViewSideMargin*2 - 10, height: imageHeight)
             
-            imageView.center = CGPoint(x: viewWidth/2, y: titleTopMargin + titleLabel.frame.size.height + titleToMessageSpacing + messageLabel.frame.size.height + messageBottomMargin + imageView.frame.size.height/2)
+            imageView.center = CGPoint(x: viewWidth/2, y: titleTopMargin + titleLabel.frame.size.height + titleBottomMargin + messageLabel.frame.size.height + messageBottomMargin + imageView.frame.size.height/2)
         }
         
         setupButtonView()
@@ -343,7 +355,7 @@ extension JAlert {
     private func setupButtonView() {
         switch alertType {
         case .default:
-            let topPartHeight = titleTopMargin + titleLabel.frame.size.height + titleToMessageSpacing + messageLabel.frame.size.height + messageBottomMargin
+            let topPartHeight = titleTopMargin + titleLabel.frame.size.height + titleBottomMargin + messageLabel.frame.size.height + messageBottomMargin
             
             viewHeight = topPartHeight + buttonHeight
             
@@ -356,7 +368,7 @@ extension JAlert {
                 alertView.addSubview(lineView)
             }
         case .confirm:
-            let topPartHeight = titleTopMargin + titleLabel.frame.size.height + titleToMessageSpacing + messageLabel.frame.size.height + messageBottomMargin
+            let topPartHeight = titleTopMargin + titleLabel.frame.size.height + titleBottomMargin + messageLabel.frame.size.height + messageBottomMargin
             
             viewHeight = topPartHeight + buttonHeight
             let leftButton = buttons[0]
@@ -374,7 +386,7 @@ extension JAlert {
                 self.alertView.addSubview(verLine)
             }
         case .submit:
-            let topPartHeight = titleTopMargin + titleLabel.frame.size.height + titleToMessageSpacing + messageLabel.frame.size.height + messageBottomMargin + submitView.frame.size.height + submitBottomMargin
+            let topPartHeight = titleTopMargin + titleLabel.frame.size.height + titleBottomMargin + messageLabel.frame.size.height + messageBottomMargin + submitView.frame.size.height + submitBottomMargin
             
             viewHeight = topPartHeight + buttonHeight
             let leftButton = buttons[0]
@@ -392,7 +404,7 @@ extension JAlert {
                 self.alertView.addSubview(verLine)
             }
         case .date:
-            let topPartHeight = titleTopMargin + titleLabel.frame.size.height + titleToMessageSpacing + messageLabel.frame.size.height + messageBottomMargin + datePickerView.frame.size.height + datePickerViewBottomMargin
+            let topPartHeight = titleTopMargin + titleLabel.frame.size.height + titleBottomMargin + messageLabel.frame.size.height + messageBottomMargin + datePickerView.frame.size.height + datePickerViewBottomMargin
             
             viewHeight = topPartHeight + buttonHeight
             
@@ -411,7 +423,7 @@ extension JAlert {
                 self.alertView.addSubview(verLine)
             }
         case .image:
-            let topPartHeight = titleTopMargin + titleLabel.frame.size.height + titleToMessageSpacing + messageLabel.frame.size.height + messageBottomMargin + imageView.frame.size.height + imageViewBottomMargin
+            let topPartHeight = titleTopMargin + titleLabel.frame.size.height + titleBottomMargin + messageLabel.frame.size.height + messageBottomMargin + imageView.frame.size.height + imageViewBottomMargin
             
             viewHeight = topPartHeight + buttonHeight
             
@@ -567,5 +579,33 @@ extension JAlert {
             context: nil)
         
         label.frame.size.height = rect!.size.height
+    }
+    
+    private func updateMarginToZero(type: ElementType) {
+        switch type {
+        case .title:
+            titleTopMargin = 0
+            titleSideMargin = 0
+            titleBottomMargin = 0
+            break;
+        case .message:
+            messageBottomMargin = 0
+            messageSideMargin = 0
+            break;
+        case .submit:
+            submitSideMargin = 0
+            submitBottomMargin = 0
+            break;
+        case .date:
+            datePickerViewSideMargin = 0
+            datePickerViewBottomMargin = 0
+            break;
+        case .image:
+            imageViewSideMargin = 0
+            imageViewBottomMargin = 0
+            break;
+        default:
+            break;
+        }
     }
 }
