@@ -172,7 +172,7 @@ public var messageBottomMargin: CGFloat = 20.0
 ```
 ## Contribution
 
-Discussion and pull requests are welcomed !
+pull requests are welcomed !
 
 ## License
 
