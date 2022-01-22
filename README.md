@@ -145,30 +145,53 @@ public func show()
 
 ### Public Proerties (You can customize Alert View!)
 ```swift
-public weak var delegate: JAlertDelegate? // delegate
+    public weak var delegate: JAlertDelegate? // delegate
     
-public var appearType: AppearType = .default
-public var disappearType: DisappearType = .default
+    public var appearType: AppearType = .default
+    public var disappearType: DisappearType = .default
     
-public var cornerRadius: CGFloat = 8.0
-public var textAlignment: NSTextAlignment = .center
-public var alertBackgroundColor: UIColor = .white
-public var animationWithDuration:CGFloat = 0.3
+    public var alertBackgroundColor: UIColor = .white
+    public var cornerRadius: CGFloat = 8.0
+    public var textAlignment: NSTextAlignment = .center
+    public var animationWithDuration:CGFloat = 0.3
     
-public var titleColor:UIColor = UIColor(red: 5.0/255.0, green: 0, blue: 153.0/255.0, alpha: 1.0)
-public var messageColor:UIColor = UIColor(red: 5.0/255.0, green: 0, blue: 153.0/255.0, alpha: 1.0)
-public var actionButtonColor:UIColor = UIColor.black
-public var cancelButtonColor:UIColor = UIColor.black
+    public var dateFormat = "yyyy-MM-dd HH:mm:ss" // Use for ".date" type.(default: "yyyy-MM-dd HH:mm:ss")
+    public var language:Language = .en_US // Use for ".date" type.(default: .en_US)
+    public var urlString:String = "" //Use for ".image" type.
+    
+    //Color
+    public var titleColor:UIColor = UIColor.black
+    public var messageColor:UIColor = UIColor.black
+    public var actionButtonColor:UIColor = UIColor.black
+    public var cancelButtonColor:UIColor = UIColor.black
+    public var submitColor:UIColor = UIColor.black
+    
+    //Font
+    public var titleFont:UIFont = UIFont.systemFont(ofSize: 17)
+    public var messageFont:UIFont = UIFont.systemFont(ofSize: 17)
+    public var actionButtonFont:UIFont = UIFont.systemFont(ofSize: 17, weight: .bold)
+    public var cancelButtonFont:UIFont = UIFont.systemFont(ofSize: 17)
+    public var submitFont:UIFont = UIFont.systemFont(ofSize: 17)
   
-public var isUseBackgroundView = true
-public var isUseSeparator = true
-public var isAnimation = true
+    public var isUseBackgroundView = true
+    public var isUseSeparator = true
+    public var isAnimation = true
     
-public var titleSideMargin: CGFloat = 20.0
-public var titleTopMargin: CGFloat = 20.0
-public var titleToMessageSpacing: CGFloat = 20.0
-public var messageSideMargin: CGFloat = 20.0
-public var messageBottomMargin: CGFloat = 20.0
+    public var titleSideMargin: CGFloat = 20.0
+    public var titleTopMargin: CGFloat = 20.0
+    public var titleBottomMargin: CGFloat = 20.0
+    public var messageSideMargin: CGFloat = 20.0
+    public var messageBottomMargin: CGFloat = 20.0
+    public var submitSideMargin: CGFloat = 20.0
+    public var submitBottomMargin: CGFloat = 20.0
+    public var datePickerViewSideMargin: CGFloat = 20.0
+    public var datePickerViewBottomMargin: CGFloat = 20.0
+    public var imageViewSideMargin: CGFloat = 20.0
+    public var imageViewBottomMargin: CGFloat = 20.0
+    
+    public var submitViewHeight:CGFloat = 150
+    public var datePickerViewHeight:CGFloat = 250
+    public var imageHeight:CGFloat = 500
 ```
 ## Contribution
 
