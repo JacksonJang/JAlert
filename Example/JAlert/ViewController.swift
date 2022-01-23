@@ -86,7 +86,12 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             alert.show()
         case 4:
             let alert = JAlert(title: "title", alertType: .image)
-            alert.urlString = "https://cdn.pixabay.com/photo/2022/01/02/04/37/animal-6909429_1280.jpg"
+            do{
+                let data = try Data(contentsOf: URL(string: "https://cdn.pixabay.com/photo/2022/01/02/04/37/animal-6909429_1280.jpg")!)
+                alert.image = UIImage(data: data)!
+            }catch{
+                print("image type error")
+            }
             alert.setButton(actionName: "OK", onActionClicked: {
                 print("onActionClicked")
             })

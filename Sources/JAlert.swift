@@ -22,7 +22,7 @@ public class JAlert: UIView {
     
     public var dateFormat = "yyyy-MM-dd HH:mm:ss" // Use for ".date" type.(default: "yyyy-MM-dd HH:mm:ss")
     public var language:Language = .en_US // Use for ".date" type.(default: .en_US)
-    public var urlString:String = "" //Use for ".image" type.
+    public var image:UIImage = UIImage()
     
     //Color
     public var titleColor:UIColor = UIColor.black
@@ -224,6 +224,8 @@ extension JAlert {
         }
         
         if alertType == .image {
+            imageView.image = image
+            imageHeight = viewWidth * image.size.height / image.size.width
             alertView.addSubview(imageView)
         } else {
             updateMarginToZero(type: .image)
@@ -237,7 +239,7 @@ extension JAlert {
         messageLabel = UILabel(frame: .zero)
         submitView = UITextView(frame: .zero)
         datePickerView = UIDatePicker(frame: .zero)
-        imageView = createImageView(urlString: encodingUrlString())
+        imageView = UIImageView(frame: .zero)
         
         addSubview(backgroundView)
         addSubview(alertView)
@@ -523,15 +525,6 @@ extension JAlert {
         }
     }
     
-    private func encodingUrlString() -> String {
-        let urlString = self.urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
-        if urlString == nil {
-            return self.urlString
-        } else {
-            return urlString!
-        }
-    }
-    
     private func close() {
         if self.isAnimation {
             closeAnimation { self.removeFromSuperview() }
@@ -603,8 +596,6 @@ extension JAlert {
         case .image:
             imageViewSideMargin = 0
             imageViewBottomMargin = 0
-            break;
-        default:
             break;
         }
     }
