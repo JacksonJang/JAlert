@@ -324,29 +324,55 @@ extension JAlert {
         if title != nil {
             titleLabel.frame = CGRect(x: 0, y: 0, width: viewWidth - titleSideMargin*2, height: 0)
             labelHeightToFit(titleLabel)
-            titleLabel.center = CGPoint(x: viewWidth/2, y: titleTopMargin + titleLabel.frame.size.height/2)
+            
+            let x = viewWidth/2
+            let y = titleTopMargin + titleLabel.frame.size.height/2
+            
+            titleLabel.center = CGPoint(x: x, y: y)
         }
         
         if message != nil {
             messageLabel.frame = CGRect(x: 0, y: 0, width: viewWidth - messageSideMargin*2, height: 0)
             labelHeightToFit(messageLabel)
-            messageLabel.center = CGPoint(x: viewWidth/2, y: titleTopMargin + titleLabel.frame.size.height + titleBottomMargin + messageLabel.frame.size.height/2)
+            
+            let x = viewWidth/2
+            let y = titleTopMargin + titleLabel.frame.size.height + titleBottomMargin +
+                    messageLabel.frame.size.height/2
+            
+            messageLabel.center = CGPoint(x: x, y: y)
         }
         
         if alertType == .submit {
             submitView.frame = CGRect(x: 0, y: 0, width: viewWidth - submitSideMargin*2 - 10, height: submitViewHeight)
-            submitView.center = CGPoint(x: viewWidth/2, y: titleTopMargin + titleLabel.frame.size.height + titleBottomMargin + messageLabel.frame.size.height + messageBottomMargin + submitView.frame.size.height/2)
+            
+            let x = viewWidth/2
+            let y = titleTopMargin + titleLabel.frame.size.height + titleBottomMargin +
+                    messageLabel.frame.size.height + messageBottomMargin +
+                    submitView.frame.size.height/2
+            
+            submitView.center = CGPoint(x: x, y: y)
         }
         
         if alertType == .date {
             datePickerView.frame = CGRect(x: 0, y: 0, width: viewWidth - datePickerViewSideMargin*2 - 10, height: datePickerViewHeight)
-            datePickerView.center = CGPoint(x: viewWidth/2, y: titleTopMargin + titleLabel.frame.size.height + titleBottomMargin + messageLabel.frame.size.height + messageBottomMargin + datePickerView.frame.size.height/2)
+            
+            let x = viewWidth/2
+            let y = titleTopMargin + titleLabel.frame.size.height + titleBottomMargin +
+                    messageLabel.frame.size.height + messageBottomMargin +
+                    datePickerView.frame.size.height/2
+            
+            datePickerView.center = CGPoint(x: x, y: y)
         }
 
         if alertType == .image {
             imageView.frame = CGRect(x: 0, y: 0, width: viewWidth - imageViewSideMargin*2 - 10, height: imageHeight)
             
-            imageView.center = CGPoint(x: viewWidth/2, y: titleTopMargin + titleLabel.frame.size.height + titleBottomMargin + messageLabel.frame.size.height + messageBottomMargin + imageView.frame.size.height/2)
+            let x = viewWidth/2
+            let y = titleTopMargin + titleLabel.frame.size.height + titleBottomMargin +
+                    messageLabel.frame.size.height + messageBottomMargin +
+                    imageView.frame.size.height/2
+            
+            imageView.center = CGPoint(x: x, y: y)
         }
         
         setupButtonView()
