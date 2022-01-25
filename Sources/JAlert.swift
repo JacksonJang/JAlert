@@ -38,7 +38,7 @@ public class JAlert: UIView {
     public var cancelButtonFont:UIFont = UIFont.systemFont(ofSize: 17)
     public var submitFont:UIFont = UIFont.systemFont(ofSize: 17)
   
-    public var isUseBackgroundView = true
+    public var isUseDimView = true
     public var isUseSeparator = true
     public var isAnimation = true
     
@@ -61,7 +61,7 @@ public class JAlert: UIView {
     // MARK: Private Properties
     private var alertType: AlertType = .default
     
-    private var backgroundView: UIView!
+    private var dimView: UIView!
     private var alertView: UIView!
     private var titleLabel: UILabel!
     private var messageLabel: UILabel!
@@ -104,7 +104,7 @@ public class JAlert: UIView {
         setupElements()
         
         frame = CGRect(origin: .zero, size: UIScreen.main.bounds.size)
-        backgroundView.frame = CGRect(origin: .zero, size: UIScreen.main.bounds.size)
+        dimView.frame = CGRect(origin: .zero, size: UIScreen.main.bounds.size)
         
         addButtonToAlertView()
         setupElemetsFrame()
@@ -233,7 +233,7 @@ extension JAlert {
     }
     
     private func initializeDefaultView() {
-        backgroundView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
+        dimView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
         alertView = UIView(frame: .zero)
         titleLabel = UILabel(frame: .zero)
         messageLabel = UILabel(frame: .zero)
@@ -241,7 +241,7 @@ extension JAlert {
         datePickerView = UIDatePicker(frame: .zero)
         imageView = UIImageView(frame: .zero)
         
-        addSubview(backgroundView)
+        addSubview(dimView)
         addSubview(alertView)
     }
     
@@ -485,7 +485,7 @@ extension JAlert {
     }
     
     private func updateAlertViewFrame() {
-        alertView.frame = CGRect(x: (backgroundView.frame.size.width - viewWidth)/2, y: (backgroundView.frame.size.height - viewHeight)/2, width: viewWidth, height: viewHeight)
+        alertView.frame = CGRect(x: (dimView.frame.size.width - viewWidth)/2, y: (dimView.frame.size.height - viewHeight)/2, width: viewWidth, height: viewHeight)
         alertView.backgroundColor = alertBackgroundColor
         alertView.layer.cornerRadius = CGFloat(cornerRadius)
     }
@@ -538,14 +538,14 @@ extension JAlert {
     
     private func isHiddenJAlert(status:Bool){
         if status {
-            self.backgroundView.alpha = 0
+            self.dimView.alpha = 0
             self.alertView.alpha = 0
         } else {
-            if isUseBackgroundView {
-                backgroundView.backgroundColor = .black
-                backgroundView.alpha = 0.5
+            if isUseDimView {
+                dimView.backgroundColor = .black
+                dimView.alpha = 0.5
             } else {
-                backgroundView.alpha = 0
+                dimView.alpha = 0
             }
             self.alertView.alpha = 1
         }
