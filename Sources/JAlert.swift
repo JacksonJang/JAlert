@@ -97,12 +97,12 @@ public class JAlert: UIView {
     public init(title: String? = nil, message: String? = nil, alertType: AlertType = .default) {
         super.init(frame: CGRect(x: 0, y: 0, width: kDefaultWidth, height: kDefaultHeight))
         setup(title: title, message: message, alertType: alertType)
+        
+        setupDefaultValue()
+        setupElements()
     }
     
     private func show(in view: UIView) {
-        setupDefaultValue()
-        setupElements()
-        
         frame = CGRect(origin: .zero, size: UIScreen.main.bounds.size)
         dimView.frame = CGRect(origin: .zero, size: UIScreen.main.bounds.size)
         
