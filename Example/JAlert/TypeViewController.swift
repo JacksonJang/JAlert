@@ -1,44 +1,34 @@
 //
-//  ViewController.swift
-//  JAlert
+//  TypeViewController.swift
+//  JAlert_Example
 //
-//  Created by 장효원 on 01/02/2022.
-//  Copyright (c) 2022 장효원. All rights reserved.
+//  Created by JacksonJang on 2022/01/28.
+//  Copyright © 2022 CocoaPods. All rights reserved.
 //
 
 import UIKit
 import JAlert
 
-class ViewController: UIViewController {
+class TypeViewController: UIViewController {
     @IBOutlet var tableView: UITableView!
     
     var data:[String] = [
-        "Type : default, animation : default",
-        "Type : confirm, animation : default",
-        "Type : submit, animation : default",
+        "Type : default",
+        "Type : confirm",
+        "Type : submit",
         "Type : date",
         "Type : image",
-        "Animation : scale",
-        "Use JAlertDelegate"
     ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupUI()
-    }
-    
-    func setupUI() {
-        registerDelegate()
-    }
-
-    func registerDelegate() {
         tableView.delegate = self
         tableView.dataSource = self
     }
 }
 
-extension ViewController: UITableViewDelegate, UITableViewDataSource {
+extension TypeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data.count
     }
@@ -96,34 +86,8 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
                 print("onActionClicked")
             })
             alert.show()
-        case 5:
-            let alert = JAlert(title: "title", message: "message", alertType: .default)
-            alert.appearType = .scale
-            alert.disappearType = .scale
-            alert.setButton(actionName: "OK", onActionClicked: {
-                print("onActionClicked")
-            })
-            alert.show()
-        case 6:
-            let alert = JAlert(title: "title", message: "message", alertType: .default)
-            alert.delegate = self
-            alert.setButton(actionName: "OK", onActionClicked: {
-                print("onActionClicked")
-            })
-            alert.show()
         default:
             print("the rest of index")
         }
     }
-}
-
-extension ViewController:JAlertDelegate {
-    func alertView(_ alertView: JAlert, clickedButtonAtIndex buttonIndex: Int) {
-        print("buttonIndex : ", buttonIndex)
-    }
-}
-
-class ExampleListCell: UITableViewCell {
-    @IBOutlet var titleLabel: UILabel!
-    
 }
