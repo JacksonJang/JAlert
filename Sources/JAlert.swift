@@ -189,7 +189,7 @@ extension JAlert {
             titleLabel.font = titleFont
             alertView.addSubview(titleLabel)
         } else {
-            updateMarginToZero(type: .title)
+            deinitInstantceAndMarginToZero(type: .title)
         }
         
         if message != nil {
@@ -199,7 +199,7 @@ extension JAlert {
             messageLabel.font = messageFont
             alertView.addSubview(messageLabel)
         } else {
-            updateMarginToZero(type: .message)
+            deinitInstantceAndMarginToZero(type: .message)
         }
         
         if alertType == .submit {
@@ -209,7 +209,7 @@ extension JAlert {
             submitView.font = submitFont
             alertView.addSubview(submitView)
         } else {
-            updateMarginToZero(type: .submit)
+            deinitInstantceAndMarginToZero(type: .submit)
         }
         
         if alertType == .date {
@@ -220,15 +220,13 @@ extension JAlert {
             datePickerView.locale = Locale(identifier: language.rawValue)
             alertView.addSubview(datePickerView)
         } else {
-            updateMarginToZero(type: .date)
+            deinitInstantceAndMarginToZero(type: .date)
         }
         
         if alertType == .image {
-            imageView.image = image
-            imageHeight = viewWidth * image.size.height / image.size.width
             alertView.addSubview(imageView)
         } else {
-            updateMarginToZero(type: .image)
+            deinitInstantceAndMarginToZero(type: .image)
         }
     }
     
@@ -365,6 +363,9 @@ extension JAlert {
         }
 
         if alertType == .image {
+            imageView.image = image
+            imageHeight = viewWidth * image.size.height / image.size.width
+            
             imageView.frame = CGRect(x: 0, y: 0, width: viewWidth - imageViewSideMargin*2 - 10, height: imageHeight)
             
             let x = viewWidth/2
@@ -600,7 +601,8 @@ extension JAlert {
         label.frame.size.height = rect!.size.height
     }
     
-    private func updateMarginToZero(type: ElementType) {
+    //Don't set nil to the both "title" type and "message" type, because using height of type
+    private func deinitInstantceAndMarginToZero(type: ElementType) {
         switch type {
         case .title:
             titleTopMargin = 0
@@ -614,14 +616,17 @@ extension JAlert {
         case .submit:
             submitSideMargin = 0
             submitBottomMargin = 0
+            submitView = nil
             break;
         case .date:
             datePickerViewSideMargin = 0
             datePickerViewBottomMargin = 0
+            datePickerView = nil
             break;
         case .image:
             imageViewSideMargin = 0
             imageViewBottomMargin = 0
+            imageView = nil
             break;
         }
     }
