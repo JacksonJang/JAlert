@@ -20,9 +20,13 @@ public class JAlert: UIView {
     public var textAlignment: NSTextAlignment = .center
     public var animationWithDuration:CGFloat = 0.3
     
-    public var dateFormat = "yyyy-MM-dd HH:mm:ss" // Use for ".date" type.(default: "yyyy-MM-dd HH:mm:ss")
-    public var language:Language = .en_US // Use for ".date" type.(default: .en_US)
-    public var image:UIImage = UIImage()
+    public var isUseDimView = true
+    public var isUseSeparator = true
+    public var isUseAnimation = true
+    
+    public var isUseBorder = false
+    public var borderWidth: CGFloat = 1.0
+    public var borderColor: CGColor = UIColor.black.cgColor
     
     //Color
     public var titleColor:UIColor = UIColor.black
@@ -37,10 +41,6 @@ public class JAlert: UIView {
     public var actionButtonFont:UIFont = UIFont.systemFont(ofSize: 17, weight: .bold)
     public var cancelButtonFont:UIFont = UIFont.systemFont(ofSize: 17)
     public var submitFont:UIFont = UIFont.systemFont(ofSize: 17)
-  
-    public var isUseDimView = true
-    public var isUseSeparator = true
-    public var isAnimation = true
     
     public var titleSideMargin: CGFloat = 20.0
     public var titleTopMargin: CGFloat = 20.0
@@ -56,7 +56,10 @@ public class JAlert: UIView {
     
     public var submitViewHeight:CGFloat = 150
     public var datePickerViewHeight:CGFloat = 250
-    public var imageHeight:CGFloat = 500
+    
+    public var dateFormat = "yyyy-MM-dd HH:mm:ss" // Use for ".date" type.(default: "yyyy-MM-dd HH:mm:ss")
+    public var language:Language = .en_US // Use for ".date" type.(default: .en_US)
+    public var image:UIImage = UIImage()
     
     // MARK: Private Properties
     private var alertType: AlertType = .default
@@ -88,6 +91,9 @@ public class JAlert: UIView {
     private let kDefaultWidth: CGFloat = 300.0
     private let kDefaultHeight: CGFloat = 144.0
     private let kDefaultCornerRadius: CGFloat = 8.0
+    
+    //for image type
+    private var imageHeight:CGFloat = 0
     
     // MARK: Initialization
     required init?(coder: NSCoder) {
@@ -317,6 +323,11 @@ extension JAlert {
     private func setupElemetsFrame() {
         self.isHiddenJAlert(status: true)
         
+        if isUseBorder {
+            alertView.layer.borderWidth = borderWidth
+            alertView.layer.borderColor = borderColor
+        }
+        
         if title != nil {
             titleLabel.textAlignment = textAlignment
             titleLabel.textColor = titleColor
@@ -517,7 +528,7 @@ extension JAlert {
         self.isHiddenJAlert(status: false)
         
         //Add animation Type
-        if isAnimation {
+        if isUseAnimation {
             showAppearAnimation()
         }
     }
@@ -570,12 +581,13 @@ extension JAlert {
             } else {
                 dimView.alpha = 0
             }
+            
             self.alertView.alpha = 1
         }
     }
     
     private func close() {
-        if self.isAnimation {
+        if self.isUseAnimation {
             closeAnimation { self.removeFromSuperview() }
         } else {
             self.removeFromSuperview()

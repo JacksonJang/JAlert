@@ -16,7 +16,12 @@ class PropertyViewController: UIViewController {
         "alertBackgroundColor : red",
         "cornerRadius : 50",
         "textAlignment : .left",
-        "animationWithDuration : 2.0"
+        "animationWithDuration : 2.0",
+        "isUseDimView : false",
+        "isUseSeparator : false",
+        "isUseAnimation : false",
+        "isUseBorder : true",
+        "Use Border Properties"
     ]
     
     override func viewDidLoad() {
@@ -66,6 +71,28 @@ extension PropertyViewController: UITableViewDelegate, UITableViewDataSource {
         case 3:
             let alert = createJAlert(index: index)
             alert.animationWithDuration = 2.0
+            alert.show()
+        case 4:
+            let alert = createJAlert(index: index)
+            alert.isUseDimView = false
+            alert.show()
+        case 5:
+            let alert = createJAlert(index: index)
+            alert.isUseSeparator = false
+            alert.show()
+        case 6:
+            let alert = createJAlert(index: index)
+            alert.isUseAnimation = false
+            alert.show()
+        case 7:
+            let alert = createJAlert(index: index)
+            alert.isUseBorder = true
+            alert.show()
+        case 8:
+            let alert = createJAlert(index: index)
+            alert.isUseBorder = true
+            alert.borderWidth = 2.0
+            alert.borderColor = UIColor.red.cgColor
             alert.show()
         default:
             print("the rest of index")
