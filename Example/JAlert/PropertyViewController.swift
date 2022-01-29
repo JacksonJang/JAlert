@@ -21,7 +21,8 @@ class PropertyViewController: UIViewController {
         "isUseSeparator : false",
         "isUseAnimation : false",
         "isUseBorder : true",
-        "Use Border Properties"
+        "Use Border Properties",
+        "Change Color to all Text"
     ]
     
     override func viewDidLoad() {
@@ -93,6 +94,14 @@ extension PropertyViewController: UITableViewDelegate, UITableViewDataSource {
             alert.isUseBorder = true
             alert.borderWidth = 2.0
             alert.borderColor = UIColor.red.cgColor
+            alert.show()
+        case 9:
+            let alert = JAlert(title: "Property Example", message: self.data[index], alertType: .submit)
+            alert.titleColor = .red
+            alert.messageColor = .gray
+            alert.actionButtonColor = .blue
+            alert.cancelButtonColor = .green
+            alert.submitColor = .purple
             alert.show()
         default:
             print("the rest of index")

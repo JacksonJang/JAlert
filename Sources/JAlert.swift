@@ -28,6 +28,9 @@ public class JAlert: UIView {
     public var borderWidth: CGFloat = 1.0
     public var borderColor: CGColor = UIColor.black.cgColor
     
+    public var submitBorderWidth: CGFloat = 0.5
+    public var submitBorderColor: CGColor = UIColor.black.cgColor
+    
     //Color
     public var titleColor:UIColor = UIColor.black
     public var messageColor:UIColor = UIColor.black
@@ -207,10 +210,6 @@ extension JAlert {
         }
         
         if alertType == .submit {
-            submitView.layer.borderColor = UIColor.black.cgColor
-            submitView.layer.borderWidth = 0.5
-            submitView.textColor = submitColor
-            submitView.font = submitFont
             alertView.addSubview(submitView)
         } else {
             deinitInstantceAndMarginToZero(type: .submit)
@@ -358,6 +357,11 @@ extension JAlert {
         }
         
         if alertType == .submit {
+            submitView.layer.borderColor = submitBorderColor
+            submitView.layer.borderWidth = submitBorderWidth
+            submitView.textColor = submitColor
+            submitView.font = submitFont
+            
             submitView.frame = CGRect(x: 0, y: 0, width: viewWidth - submitSideMargin*2 - 10, height: submitViewHeight)
             
             let x = viewWidth/2
