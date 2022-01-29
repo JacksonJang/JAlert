@@ -13,7 +13,10 @@ class PropertyViewController: UIViewController {
     @IBOutlet var tableView: UITableView!
     
     var data: [String] = [
-        
+        "alertBackgroundColor : red",
+        "cornerRadius : 50",
+        "textAlignment : .left",
+        "animationWithDuration : 2.0"
     ]
     
     override func viewDidLoad() {
@@ -21,6 +24,12 @@ class PropertyViewController: UIViewController {
         
         tableView.delegate = self
         tableView.dataSource = self
+    }
+    
+    func createJAlert(index: Int) -> JAlert {
+        let alert = JAlert(title: "Property Example", message: self.data[index], alertType: .default)
+        
+        return alert
     }
 }
 
@@ -42,6 +51,22 @@ extension PropertyViewController: UITableViewDelegate, UITableViewDataSource {
         let index = indexPath.row
      
         switch index {
+        case 0:
+            let alert = createJAlert(index: index)
+            alert.alertBackgroundColor = .red
+            alert.show()
+        case 1:
+            let alert = createJAlert(index: index)
+            alert.cornerRadius = 50
+            alert.show()
+        case 2:
+            let alert = createJAlert(index: index)
+            alert.textAlignment = .left
+            alert.show()
+        case 3:
+            let alert = createJAlert(index: index)
+            alert.animationWithDuration = 2.0
+            alert.show()
         default:
             print("the rest of index")
         }
