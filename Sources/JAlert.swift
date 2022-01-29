@@ -131,6 +131,10 @@ extension JAlert {
         self.onCancelClicked = onCancelClicked
     }
     
+    public func setButton(buttonTitles:[String]) {
+        self.buttonTitles = buttonTitles
+    }
+    
     public func getSubmitText() -> String {
         if submitView != nil {
             return submitView.text!
@@ -481,6 +485,22 @@ extension JAlert {
                     alertView.addSubview(lineView)
                 }
             }
+        case .multi:
+            let topPartHeight = titleTopMargin + titleLabel.frame.size.height + titleBottomMargin + messageLabel.frame.size.height + messageBottomMargin
+            
+            viewHeight = topPartHeight + buttonHeight * CGFloat(buttons.count)
+            var j = 1
+            
+            for button in buttons.reversed() {
+                button.frame = CGRect(x: 0, y: viewHeight-buttonHeight*CGFloat(j), width: viewWidth, height: buttonHeight)
+                j += 1
+                if isUseSeparator {
+                    let lineView = UIView(frame: CGRect(x: 0, y: button.frame.origin.y, width: viewWidth, height: 0.5))
+                    lineView.backgroundColor = .black
+                    alertView.addSubview(lineView)
+                }
+            }
+
         }
         
     }
@@ -576,10 +596,12 @@ extension JAlert {
         
         delegate?.alertView?(self, clickedButtonAtIndex: buttonIndex)
 
-        if buttonIndex == actionButtonIndex {
-            onActionClicked?()
-        } else {
-            onCancelClicked?()
+        if alertType != .multi {
+            if buttonIndex == actionButtonIndex {
+                onActionClicked?()
+            } else {
+                onCancelClicked?()
+            }
         }
     }
 }

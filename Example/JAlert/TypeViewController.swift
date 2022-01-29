@@ -18,6 +18,7 @@ class TypeViewController: UIViewController {
         "Type : submit",
         "Type : date",
         "Type : image",
+        "Type : multi"
     ]
     
     override func viewDidLoad() {
@@ -85,6 +86,17 @@ extension TypeViewController: UITableViewDelegate, UITableViewDataSource {
             alert.setButton(actionName: "OK", onActionClicked: {
                 print("onActionClicked")
             })
+            alert.show()
+        case 5:
+            let alert = JAlert(title: "title", message: "message", alertType: .multi)
+            alert.setButton(buttonTitles: ["OK", "Cancel", "Test", "This is JAlert Button"])
+            
+            /*
+             if you want to add Event, you can use delegate.
+             but you need to write JAlertDelegate.
+             */
+            //alert.delegate = self
+            
             alert.show()
         default:
             print("the rest of index")
