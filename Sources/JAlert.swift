@@ -328,11 +328,14 @@ extension JAlert {
         }
         
         if title != nil {
+            let width = viewWidth - titleSideMargin*2
+            
             titleLabel.textAlignment = textAlignment
             titleLabel.textColor = titleColor
             titleLabel.font = titleFont
+            titleLabel.numberOfLines = 0
             
-            titleLabel.frame = CGRect(x: 0, y: 0, width: viewWidth - titleSideMargin*2, height: 0)
+            titleLabel.frame = CGRect(x: 0, y: 0, width: width, height: 0)
             labelHeightToFit(titleLabel)
             
             let x = viewWidth/2
@@ -342,11 +345,14 @@ extension JAlert {
         }
         
         if message != nil {
+            let width = viewWidth - messageSideMargin*2
+            
             messageLabel.textAlignment = textAlignment
             messageLabel.textColor = messageColor
             messageLabel.font = messageFont
+            messageLabel.numberOfLines = 0
             
-            messageLabel.frame = CGRect(x: 0, y: 0, width: viewWidth - messageSideMargin*2, height: 0)
+            messageLabel.frame = CGRect(x: 0, y: 0, width: width, height: 0)
             labelHeightToFit(messageLabel)
             
             let x = viewWidth/2
@@ -385,7 +391,15 @@ extension JAlert {
 
         if alertType == .image {
             imageView.image = image
-            imageHeight = viewWidth * image.size.height / image.size.width
+            
+            let width = viewWidth - imageViewSideMargin*2
+            imageHeight = width * image.size.height / image.size.width
+            
+            
+            if imageHeight.isNaN {
+                print("Error : Please set UIImage")
+                imageHeight = 0
+            }
             
             imageView.frame = CGRect(x: 0, y: 0, width: viewWidth - imageViewSideMargin*2 - 10, height: imageHeight)
             
@@ -631,14 +645,8 @@ extension JAlert {
 //Utils Function
 extension JAlert {
     private func labelHeightToFit(_ label: UILabel) {
-        let maxWidth = label.frame.size.width
-        let maxHeight = CGFloat.greatestFiniteMagnitude
-        let rect = label.attributedText?.boundingRect(
-            with: CGSize(width: maxWidth, height: maxHeight),
-            options: .usesLineFragmentOrigin,
-            context: nil)
-        
-        label.frame.size.height = rect!.size.height
+        label.frame.size = CGSize(width: label.frame.size.width, height: CGFloat.greatestFiniteMagnitude)
+        label.sizeToFit()
     }
     
     //Don't set nil to the both "title" type and "message" type, because using height of type
