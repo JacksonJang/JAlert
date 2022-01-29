@@ -188,9 +188,6 @@ extension JAlert {
         
         if title != nil {
             titleLabel.text = title
-            titleLabel.textAlignment = textAlignment
-            titleLabel.textColor = titleColor
-            titleLabel.font = titleFont
             alertView.addSubview(titleLabel)
         } else {
             deinitInstantceAndMarginToZero(type: .title)
@@ -198,9 +195,6 @@ extension JAlert {
         
         if message != nil {
             messageLabel.text = message
-            messageLabel.textAlignment = textAlignment
-            messageLabel.textColor = messageColor
-            messageLabel.font = messageFont
             alertView.addSubview(messageLabel)
         } else {
             deinitInstantceAndMarginToZero(type: .message)
@@ -324,6 +318,10 @@ extension JAlert {
         self.isHiddenJAlert(status: true)
         
         if title != nil {
+            titleLabel.textAlignment = textAlignment
+            titleLabel.textColor = titleColor
+            titleLabel.font = titleFont
+            
             titleLabel.frame = CGRect(x: 0, y: 0, width: viewWidth - titleSideMargin*2, height: 0)
             labelHeightToFit(titleLabel)
             
@@ -334,6 +332,10 @@ extension JAlert {
         }
         
         if message != nil {
+            messageLabel.textAlignment = textAlignment
+            messageLabel.textColor = messageColor
+            messageLabel.font = messageFont
+            
             messageLabel.frame = CGRect(x: 0, y: 0, width: viewWidth - messageSideMargin*2, height: 0)
             labelHeightToFit(messageLabel)
             
