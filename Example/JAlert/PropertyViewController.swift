@@ -22,7 +22,8 @@ class PropertyViewController: UIViewController {
         "isUseAnimation : false",
         "isUseBorder : true",
         "Use Border Properties",
-        "Change Color to all Text"
+        "Change Color of all text to some color",
+        "Change Font of all text to some font"
     ]
     
     override func viewDidLoad() {
@@ -102,6 +103,14 @@ extension PropertyViewController: UITableViewDelegate, UITableViewDataSource {
             alert.actionButtonColor = .blue
             alert.cancelButtonColor = .green
             alert.submitColor = .purple
+            alert.show()
+        case 10:
+            let alert = JAlert(title: "Property Example", message: self.data[index], alertType: .submit)
+            alert.titleFont = UIFont.systemFont(ofSize: 15, weight: .bold)
+            alert.messageFont = UIFont.systemFont(ofSize: 15, weight: .bold)
+            alert.actionButtonFont = UIFont.systemFont(ofSize: 15, weight: .bold)
+            alert.cancelButtonFont = UIFont.systemFont(ofSize: 15, weight: .bold)
+            alert.submitFont = UIFont.systemFont(ofSize: 15, weight: .bold)
             alert.show()
         default:
             print("the rest of index")
