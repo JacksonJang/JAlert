@@ -200,7 +200,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j0n-sc-MF7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-26.399999999999999" y="-599.55022488755628"/>
+            <point key="canvasLocation" x="-818" y="-600"/>
         </scene>
         <!--Animation View Controller-->
         <scene sceneID="vQ8-zl-vVK">
@@ -319,6 +319,65 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KPz-rs-8dK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="801" y="859"/>
+        </scene>
+        <!--Type Property View Controller-->
+        <scene sceneID="e9Z-Fr-XKj">
+            <objects>
+                <viewController storyboardIdentifier="TypePropertyViewController" id="KSP-bw-fQD" customClass="TypePropertyViewController" customModule="JAlert_Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="vhX-Cl-Xdt"/>
+                        <viewControllerLayoutGuide type="bottom" id="fwK-Xk-Xaj"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="AMa-dV-wUK">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="iIt-WT-Oqd">
+                                <rect key="frame" x="16" y="20" width="343" height="627"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ExampleListCell" rowHeight="44" id="q9K-83-QOx" customClass="ExampleListCell" customModule="JAlert_Example" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="44.5" width="343" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="q9K-83-QOx" id="lg5-Df-cJE">
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M1S-Nv-VQs">
+                                                    <rect key="frame" x="10" y="11.5" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="M1S-Nv-VQs" firstAttribute="centerY" secondItem="lg5-Df-cJE" secondAttribute="centerY" id="4Rh-EX-5fD"/>
+                                                <constraint firstItem="M1S-Nv-VQs" firstAttribute="leading" secondItem="lg5-Df-cJE" secondAttribute="leading" constant="10" id="RRp-d4-8bW"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="titleLabel" destination="M1S-Nv-VQs" id="fes-gU-iZs"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="iIt-WT-Oqd" firstAttribute="leading" secondItem="AMa-dV-wUK" secondAttribute="leadingMargin" id="8G4-fJ-la3"/>
+                            <constraint firstItem="fwK-Xk-Xaj" firstAttribute="top" secondItem="iIt-WT-Oqd" secondAttribute="bottom" constant="20" id="LRx-xX-4Dp"/>
+                            <constraint firstItem="iIt-WT-Oqd" firstAttribute="top" secondItem="vhX-Cl-Xdt" secondAttribute="bottom" constant="20" id="S14-i7-rG3"/>
+                            <constraint firstItem="iIt-WT-Oqd" firstAttribute="trailing" secondItem="AMa-dV-wUK" secondAttribute="trailingMargin" id="vvR-ae-qbN"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="iIt-WT-Oqd" id="SQf-Fb-TA9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1MO-qS-vwQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-26" y="-600"/>
         </scene>
     </scenes>
     <resources>

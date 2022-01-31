@@ -220,7 +220,6 @@ extension JAlert {
             if #available(iOS 13.4, *) {
                 datePickerView.preferredDatePickerStyle = .wheels
             }
-            datePickerView.locale = Locale(identifier: language.rawValue)
             alertView.addSubview(datePickerView)
         } else {
             deinitInstantceAndMarginToZero(type: .date)
@@ -379,6 +378,7 @@ extension JAlert {
         }
         
         if alertType == .date {
+            datePickerView.locale = Locale(identifier: language.rawValue)
             datePickerView.frame = CGRect(x: 0, y: 0, width: viewWidth - datePickerViewSideMargin*2 - 10, height: datePickerViewHeight)
             
             let x = viewWidth/2
