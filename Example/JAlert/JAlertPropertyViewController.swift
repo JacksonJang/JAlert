@@ -9,7 +9,7 @@
 import UIKit
 import JAlert
 
-class PropertyViewController: UIViewController {
+class JAlertPropertyViewController: UIViewController {
     @IBOutlet var tableView: UITableView!
     
     var data: [String] = [
@@ -27,9 +27,7 @@ class PropertyViewController: UIViewController {
         "Change Margin for defalut type",
         "Change Margin for submit type",
         "Change Margin for datePicker type",
-        "Change Margin for image type",
-        "submitViewHeight : 300",
-        "datePickerViewHeight : 500"
+        "Change Margin for image type"
     ]
     
     override func viewDidLoad() {
@@ -46,7 +44,7 @@ class PropertyViewController: UIViewController {
     }
 }
 
-extension PropertyViewController: UITableViewDelegate, UITableViewDataSource {
+extension JAlertPropertyViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data.count
     }
@@ -148,14 +146,6 @@ extension PropertyViewController: UITableViewDelegate, UITableViewDataSource {
                 print("image type error")
             }
             
-            alert.show()
-        case 15:
-            let alert = JAlert(title: "Property Example", message: self.data[index], alertType: .submit)
-            alert.submitViewHeight = 300
-            alert.show()
-        case 16:
-            let alert = JAlert(title: "Property Example", message: self.data[index], alertType: .date)
-            alert.datePickerViewHeight = 500
             alert.show()
         default:
             print("the rest of index")

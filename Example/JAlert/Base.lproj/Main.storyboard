@@ -84,10 +84,10 @@
             </objects>
             <point key="canvasLocation" x="-26" y="131"/>
         </scene>
-        <!--Property View Controller-->
+        <!--Alert Property View Controller-->
         <scene sceneID="TxF-EN-Msa">
             <objects>
-                <viewController storyboardIdentifier="PropertyViewController" id="EpY-Pl-IPJ" customClass="PropertyViewController" customModule="JAlert_Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="JAlertPropertyViewController" id="EpY-Pl-IPJ" customClass="JAlertPropertyViewController" customModule="JAlert_Example" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="IzB-9f-YHt"/>
                         <viewControllerLayoutGuide type="bottom" id="Vsy-NS-4qv"/>

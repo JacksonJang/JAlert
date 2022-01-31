@@ -12,24 +12,21 @@ public class JAlert: UIView {
     // MARK: Public Proerties (You can customize Alert View!)
     public weak var delegate: JAlertDelegate? // delegate
     
+    //Setting animation
     public var appearType: AppearType = .default
     public var disappearType: DisappearType = .default
     
+    //AlertView Property
     public var alertBackgroundColor: UIColor = .white
+    public var borderWidth: CGFloat = 1.0
+    public var borderColor: CGColor = UIColor.black.cgColor
     public var cornerRadius: CGFloat = 8.0
     public var textAlignment: NSTextAlignment = .center
     public var animationWithDuration:CGFloat = 0.3
-    
     public var isUseDimView = true
     public var isUseSeparator = true
     public var isUseAnimation = true
-    
     public var isUseBorder = false
-    public var borderWidth: CGFloat = 1.0
-    public var borderColor: CGColor = UIColor.black.cgColor
-    
-    public var submitBorderWidth: CGFloat = 0.5
-    public var submitBorderColor: CGColor = UIColor.black.cgColor
     
     //Color
     public var titleColor:UIColor = UIColor.black
@@ -45,6 +42,7 @@ public class JAlert: UIView {
     public var cancelButtonFont:UIFont = UIFont.systemFont(ofSize: 17)
     public var submitFont:UIFont = UIFont.systemFont(ofSize: 17)
     
+    //Margin
     public var titleSideMargin: CGFloat = 20.0
     public var titleTopMargin: CGFloat = 20.0
     public var titleBottomMargin: CGFloat = 20.0
@@ -57,12 +55,14 @@ public class JAlert: UIView {
     public var imageViewSideMargin: CGFloat = 20.0
     public var imageViewBottomMargin: CGFloat = 20.0
     
-    public var submitViewHeight:CGFloat = 150
-    public var datePickerViewHeight:CGFloat = 250
-    
+    //Type Property
     public var dateFormat = "yyyy-MM-dd HH:mm:ss" // Use for ".date" type.(default: "yyyy-MM-dd HH:mm:ss")
     public var language:Language = .en_US // Use for ".date" type.(default: .en_US)
     public var image:UIImage = UIImage()
+    public var submitBorderWidth: CGFloat = 0.5
+    public var submitBorderColor: CGColor = UIColor.black.cgColor
+    public var submitViewHeight:CGFloat = 150
+    public var datePickerViewHeight:CGFloat = 250
     
     // MARK: Private Properties
     private var alertType: AlertType = .default

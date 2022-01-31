@@ -15,7 +15,7 @@ class MainViewController: UIViewController {
     var data:[String] = [
         "Type Example",
         "Type Property Example",
-        "Property Example",
+        "JAlert Property Example",
         "Animation Example",
         "Using Delegate"
     ]
@@ -66,7 +66,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         case 1:
             pushViewController(name: "TypePropertyViewController")
         case 2:
-            pushViewController(name: "PropertyViewController")
+            pushViewController(name: "JAlertPropertyViewController")
         case 3:
             pushViewController(name: "AnimationViewController")
         case 4:

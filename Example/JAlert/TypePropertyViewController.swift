@@ -15,7 +15,9 @@ class TypePropertyViewController: UIViewController {
     var data:[String] = [
         "date type) dateFormat : yyyyMMdd",
         "date type) language : selected your country",
-        "image type) set UIImage"
+        "image type) set UIImage",
+        "submitViewHeight : 300",
+        "datePickerViewHeight : 500"
     ]
     
     override func viewDidLoad() {
@@ -70,6 +72,14 @@ extension TypePropertyViewController: UITableViewDelegate, UITableViewDataSource
                 print("image type error")
             }
             
+            alert.show()
+        case 3:
+            let alert = JAlert(title: "Property Example", message: self.data[index], alertType: .submit)
+            alert.submitViewHeight = 300
+            alert.show()
+        case 4:
+            let alert = JAlert(title: "Property Example", message: self.data[index], alertType: .date)
+            alert.datePickerViewHeight = 500
             alert.show()
         default:
             print("the rest of index")

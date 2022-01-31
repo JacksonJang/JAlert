@@ -13,7 +13,7 @@ class DelegateViewController: UIViewController {
     @IBOutlet var tableView: UITableView!
     
     var data: [String] = [
-        "Use JAlertDelegate"
+        "clickedButtonAtIndex Delegate"
     ]
     
     override func viewDidLoad() {

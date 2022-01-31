@@ -17,7 +17,7 @@
 		7E986BAC2905FB0BD837D010 /* Pods_JAlert_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2ACB43C285E7F00F8FE4A114 /* Pods_JAlert_Tests.framework */; };
 		E206856627A3D9D00090AB6E /* AnimationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E206856527A3D9D00090AB6E /* AnimationViewController.swift */; };
 		E206856827A3DB9F0090AB6E /* TypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E206856727A3DB9F0090AB6E /* TypeViewController.swift */; };
-		E206856A27A3DBC40090AB6E /* PropertyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E206856927A3DBC40090AB6E /* PropertyViewController.swift */; };
+		E206856A27A3DBC40090AB6E /* JAlertPropertyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E206856927A3DBC40090AB6E /* JAlertPropertyViewController.swift */; };
 		E206856C27A3DBD60090AB6E /* DelegateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E206856B27A3DBD60090AB6E /* DelegateViewController.swift */; };
 		E206856F27A7A3CD0090AB6E /* TypePropertyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E206856E27A7A3CD0090AB6E /* TypePropertyViewController.swift */; };
 /* End PBXBuildFile section */
@@ -52,7 +52,7 @@
 		D7201675FE3F81BED8B82E97 /* Pods_JAlert_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JAlert_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E206856527A3D9D00090AB6E /* AnimationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationViewController.swift; sourceTree = "<group>"; };
 		E206856727A3DB9F0090AB6E /* TypeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeViewController.swift; sourceTree = "<group>"; };
-		E206856927A3DBC40090AB6E /* PropertyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyViewController.swift; sourceTree = "<group>"; };
+		E206856927A3DBC40090AB6E /* JAlertPropertyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JAlertPropertyViewController.swift; sourceTree = "<group>"; };
 		E206856B27A3DBD60090AB6E /* DelegateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelegateViewController.swift; sourceTree = "<group>"; };
 		E206856E27A7A3CD0090AB6E /* TypePropertyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypePropertyViewController.swift; sourceTree = "<group>"; };
 		E2CFCACAC2209AA20F744198 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
@@ -175,7 +175,7 @@
 			children = (
 				E206856727A3DB9F0090AB6E /* TypeViewController.swift */,
 				E206856E27A7A3CD0090AB6E /* TypePropertyViewController.swift */,
-				E206856927A3DBC40090AB6E /* PropertyViewController.swift */,
+				E206856927A3DBC40090AB6E /* JAlertPropertyViewController.swift */,
 				E206856527A3D9D00090AB6E /* AnimationViewController.swift */,
 				E206856B27A3DBD60090AB6E /* DelegateViewController.swift */,
 			);
@@ -356,7 +356,7 @@
 			files = (
 				E206856F27A7A3CD0090AB6E /* TypePropertyViewController.swift in Sources */,
 				E206856827A3DB9F0090AB6E /* TypeViewController.swift in Sources */,
-				E206856A27A3DBC40090AB6E /* PropertyViewController.swift in Sources */,
+				E206856A27A3DBC40090AB6E /* JAlertPropertyViewController.swift in Sources */,
 				E206856627A3D9D00090AB6E /* AnimationViewController.swift in Sources */,
 				607FACD81AFB9204008FA782 /* MainViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
