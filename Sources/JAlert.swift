@@ -18,11 +18,13 @@ public class JAlert: UIView {
     
     //AlertView Property
     public var alertBackgroundColor: UIColor = .white
+    public var buttonBackgroundColor: UIColor = .white
     public var borderWidth: CGFloat = 1.0
     public var borderColor: CGColor = UIColor.black.cgColor
     public var cornerRadius: CGFloat = 8.0
     public var textAlignment: NSTextAlignment = .center
     public var animationWithDuration:CGFloat = 0.3
+    public var isUseButtonBackground = true
     public var isUseDimView = true
     public var isUseSeparator = true
     public var isUseAnimation = true
@@ -186,7 +188,6 @@ extension JAlert {
     }
     
     private func setupDefaultValue() {
-        clipsToBounds = true
         viewWidth = kDefaultWidth
         viewHeight = kDefaultHeight
         cornerRadius = kDefaultCornerRadius
@@ -194,6 +195,8 @@ extension JAlert {
     
     private func setupElements() {
         initializeDefaultView()
+        
+        alertView.clipsToBounds = true
         
         if title != nil {
             titleLabel.text = title
@@ -277,7 +280,21 @@ extension JAlert {
         let button = UIButton(type: .custom)
         button.setTitle(name, for: .normal)
         buttons.append(button)
+        
         alertView.addSubview(button)
+        
+        if isUseButtonBackground {
+            let backgroundView = UIView()
+            backgroundView.translatesAutoresizingMaskIntoConstraints = false
+            backgroundView.backgroundColor = buttonBackgroundColor
+
+            alertView.insertSubview(backgroundView, at: alertView.subviews.count - 1)
+
+            backgroundView.topAnchor.constraint(equalTo: button.topAnchor).isActive = true
+            backgroundView.leadingAnchor.constraint(equalTo: button.leadingAnchor).isActive = true
+            backgroundView.bottomAnchor.constraint(equalTo: button.bottomAnchor).isActive = true
+            backgroundView.trailingAnchor.constraint(equalTo: button.trailingAnchor).isActive = true
+        }
     }
     
     private func checkButtonCountAndAppend() {
@@ -426,6 +443,7 @@ extension JAlert {
             let button = buttons.first!
             
             button.frame = CGRect(x: 0, y: viewHeight-buttonHeight, width: viewWidth, height: buttonHeight)
+            
             if isUseSeparator {
                 let lineView = UIView(frame: CGRect(x: 0, y: button.frame.origin.y, width: viewWidth, height: 0.5))
                 lineView.backgroundColor = .black

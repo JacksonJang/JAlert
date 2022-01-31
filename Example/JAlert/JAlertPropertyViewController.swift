@@ -27,7 +27,8 @@ class JAlertPropertyViewController: UIViewController {
         "Change Margin for defalut type",
         "Change Margin for submit type",
         "Change Margin for datePicker type",
-        "Change Margin for image type"
+        "Change Margin for image type",
+        "buttonBackgroundColor : red"
     ]
     
     override func viewDidLoad() {
@@ -146,6 +147,10 @@ extension JAlertPropertyViewController: UITableViewDelegate, UITableViewDataSour
                 print("image type error")
             }
             
+            alert.show()
+        case 15:
+            let alert = JAlert(title: "Property Example", message: self.data[index], alertType: .confirm)
+            alert.buttonBackgroundColor = .red
             alert.show()
         default:
             print("the rest of index")
