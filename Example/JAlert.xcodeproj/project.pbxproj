@@ -19,6 +19,7 @@
 		E206856827A3DB9F0090AB6E /* TypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E206856727A3DB9F0090AB6E /* TypeViewController.swift */; };
 		E206856A27A3DBC40090AB6E /* PropertyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E206856927A3DBC40090AB6E /* PropertyViewController.swift */; };
 		E206856C27A3DBD60090AB6E /* DelegateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E206856B27A3DBD60090AB6E /* DelegateViewController.swift */; };
+		E206856F27A7A3CD0090AB6E /* TypePropertyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E206856E27A7A3CD0090AB6E /* TypePropertyViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		E206856727A3DB9F0090AB6E /* TypeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeViewController.swift; sourceTree = "<group>"; };
 		E206856927A3DBC40090AB6E /* PropertyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyViewController.swift; sourceTree = "<group>"; };
 		E206856B27A3DBD60090AB6E /* DelegateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelegateViewController.swift; sourceTree = "<group>"; };
+		E206856E27A7A3CD0090AB6E /* TypePropertyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypePropertyViewController.swift; sourceTree = "<group>"; };
 		E2CFCACAC2209AA20F744198 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		EF1F9C23AF5907375F152FB6 /* Pods-JAlert_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JAlert_Tests.debug.xcconfig"; path = "Target Support Files/Pods-JAlert_Tests/Pods-JAlert_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -172,6 +174,7 @@
 			isa = PBXGroup;
 			children = (
 				E206856727A3DB9F0090AB6E /* TypeViewController.swift */,
+				E206856E27A7A3CD0090AB6E /* TypePropertyViewController.swift */,
 				E206856927A3DBC40090AB6E /* PropertyViewController.swift */,
 				E206856527A3D9D00090AB6E /* AnimationViewController.swift */,
 				E206856B27A3DBD60090AB6E /* DelegateViewController.swift */,
@@ -351,6 +354,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E206856F27A7A3CD0090AB6E /* TypePropertyViewController.swift in Sources */,
 				E206856827A3DB9F0090AB6E /* TypeViewController.swift in Sources */,
 				E206856A27A3DBC40090AB6E /* PropertyViewController.swift in Sources */,
 				E206856627A3D9D00090AB6E /* AnimationViewController.swift in Sources */,
