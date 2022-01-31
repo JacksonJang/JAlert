@@ -27,7 +27,9 @@ class PropertyViewController: UIViewController {
         "Change Margin for defalut type",
         "Change Margin for submit type",
         "Change Margin for datePicker type",
-        "Change Margin for image type"
+        "Change Margin for image type",
+        "submitViewHeight : 300",
+        "datePickerViewHeight : 500"
     ]
     
     override func viewDidLoad() {
@@ -146,6 +148,14 @@ extension PropertyViewController: UITableViewDelegate, UITableViewDataSource {
                 print("image type error")
             }
             
+            alert.show()
+        case 15:
+            let alert = JAlert(title: "Property Example", message: self.data[index], alertType: .submit)
+            alert.submitViewHeight = 300
+            alert.show()
+        case 16:
+            let alert = JAlert(title: "Property Example", message: self.data[index], alertType: .date)
+            alert.datePickerViewHeight = 500
             alert.show()
         default:
             print("the rest of index")
