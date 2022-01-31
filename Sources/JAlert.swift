@@ -284,17 +284,21 @@ extension JAlert {
         alertView.addSubview(button)
         
         if isUseButtonBackground {
-            let backgroundView = UIView()
-            backgroundView.translatesAutoresizingMaskIntoConstraints = false
-            backgroundView.backgroundColor = buttonBackgroundColor
-
-            alertView.insertSubview(backgroundView, at: alertView.subviews.count - 1)
-
-            backgroundView.topAnchor.constraint(equalTo: button.topAnchor).isActive = true
-            backgroundView.leadingAnchor.constraint(equalTo: button.leadingAnchor).isActive = true
-            backgroundView.bottomAnchor.constraint(equalTo: button.bottomAnchor).isActive = true
-            backgroundView.trailingAnchor.constraint(equalTo: button.trailingAnchor).isActive = true
+            createButtonBackground(button:button)
         }
+    }
+    
+    private func createButtonBackground(button:UIButton) {
+        let backgroundView = UIView()
+        backgroundView.translatesAutoresizingMaskIntoConstraints = false
+        backgroundView.backgroundColor = buttonBackgroundColor
+
+        alertView.insertSubview(backgroundView, at: alertView.subviews.count - 1)
+
+        backgroundView.topAnchor.constraint(equalTo: button.topAnchor).isActive = true
+        backgroundView.leadingAnchor.constraint(equalTo: button.leadingAnchor).isActive = true
+        backgroundView.bottomAnchor.constraint(equalTo: button.bottomAnchor).isActive = true
+        backgroundView.trailingAnchor.constraint(equalTo: button.trailingAnchor).isActive = true
     }
     
     private func checkButtonCountAndAppend() {

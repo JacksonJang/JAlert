@@ -68,40 +68,44 @@ extension JAlertPropertyViewController: UITableViewDelegate, UITableViewDataSour
             alert.alertBackgroundColor = .red
             alert.show()
         case 1:
-            let alert = createJAlert(index: index)
-            alert.cornerRadius = 50
+            let alert = JAlert(title: "Property Example", message: self.data[index], alertType: .default)
+            alert.buttonBackgroundColor = .red
             alert.show()
         case 2:
             let alert = createJAlert(index: index)
-            alert.textAlignment = .left
+            alert.cornerRadius = 50
             alert.show()
         case 3:
             let alert = createJAlert(index: index)
-            alert.animationWithDuration = 2.0
+            alert.textAlignment = .left
             alert.show()
         case 4:
             let alert = createJAlert(index: index)
-            alert.isUseDimView = false
+            alert.animationWithDuration = 2.0
             alert.show()
         case 5:
             let alert = createJAlert(index: index)
-            alert.isUseSeparator = false
+            alert.isUseDimView = false
             alert.show()
         case 6:
             let alert = createJAlert(index: index)
-            alert.isUseAnimation = false
+            alert.isUseSeparator = false
             alert.show()
         case 7:
             let alert = createJAlert(index: index)
-            alert.isUseBorder = true
+            alert.isUseAnimation = false
             alert.show()
         case 8:
+            let alert = createJAlert(index: index)
+            alert.isUseBorder = true
+            alert.show()
+        case 9:
             let alert = createJAlert(index: index)
             alert.isUseBorder = true
             alert.borderWidth = 2.0
             alert.borderColor = UIColor.red.cgColor
             alert.show()
-        case 9:
+        case 10:
             let alert = JAlert(title: "Property Example", message: self.data[index], alertType: .submit)
             alert.titleColor = .red
             alert.messageColor = .gray
@@ -109,7 +113,7 @@ extension JAlertPropertyViewController: UITableViewDelegate, UITableViewDataSour
             alert.cancelButtonColor = .green
             alert.submitColor = .purple
             alert.show()
-        case 10:
+        case 11:
             let alert = JAlert(title: "Property Example", message: self.data[index], alertType: .submit)
             alert.titleFont = UIFont.systemFont(ofSize: 15, weight: .bold)
             alert.messageFont = UIFont.systemFont(ofSize: 15, weight: .bold)
@@ -117,7 +121,7 @@ extension JAlertPropertyViewController: UITableViewDelegate, UITableViewDataSour
             alert.cancelButtonFont = UIFont.systemFont(ofSize: 15, weight: .bold)
             alert.submitFont = UIFont.systemFont(ofSize: 15, weight: .bold)
             alert.show()
-        case 11:
+        case 12:
             let alert = JAlert(title: "Property Example", message: self.data[index], alertType: .default)
             alert.titleTopMargin = 50
             alert.titleSideMargin = 100
@@ -125,17 +129,17 @@ extension JAlertPropertyViewController: UITableViewDelegate, UITableViewDataSour
             alert.messageSideMargin = 100
             alert.messageBottomMargin = 100
             alert.show()
-        case 12:
+        case 13:
             let alert = JAlert(title: "Property Example", message: self.data[index], alertType: .submit)
             alert.submitSideMargin = 100
             alert.submitBottomMargin = 100
             alert.show()
-        case 13:
+        case 14:
             let alert = JAlert(title: "Property Example", message: self.data[index], alertType: .date)
             alert.datePickerViewSideMargin = 100
             alert.datePickerViewBottomMargin = 100
             alert.show()
-        case 14:
+        case 15:
             let alert = JAlert(title: "Property Example", message: self.data[index], alertType: .image)
             alert.imageViewSideMargin = 100
             alert.imageViewBottomMargin = 100
@@ -147,10 +151,6 @@ extension JAlertPropertyViewController: UITableViewDelegate, UITableViewDataSour
                 print("image type error")
             }
             
-            alert.show()
-        case 15:
-            let alert = JAlert(title: "Property Example", message: self.data[index], alertType: .confirm)
-            alert.buttonBackgroundColor = .red
             alert.show()
         default:
             print("the rest of index")
