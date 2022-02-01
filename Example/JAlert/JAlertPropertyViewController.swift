@@ -14,6 +14,7 @@ class JAlertPropertyViewController: UIViewController {
     
     var data: [String] = [
         "alertBackgroundColor : red",
+        "buttonBackgroundColor : red",
         "cornerRadius : 50",
         "textAlignment : .left",
         "animationWithDuration : 2.0",
@@ -27,8 +28,7 @@ class JAlertPropertyViewController: UIViewController {
         "Change Margin for defalut type",
         "Change Margin for submit type",
         "Change Margin for datePicker type",
-        "Change Margin for image type",
-        "buttonBackgroundColor : red"
+        "Change Margin for image type"
     ]
     
     override func viewDidLoad() {
