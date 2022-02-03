@@ -6,9 +6,8 @@
 
 ## Overview
 
-if you need a customizable Alert, you can use "JAlert" easily.
-I'd like to use easily for everyone through JAlert Library. 
-When you have the features you want but not in JAlert, just send me your ask.
+JAlert is a simple, customizable Alert View written in Swift.
+You can choose the type you want and use it.
 
 ## Installation
 
@@ -19,7 +18,7 @@ it, simply add the following line to your Podfile:
 pod 'JAlert'
 ```
 
-## DEMO
+## Demos
 | Type |
 |---|
 |<img src = "https://gist.githubusercontent.com/JacksonJang/050927a21f291ad4d65cac0e2df4b4c9/raw/5b60cf21ac58bc87ac81adc1e245071092570ab9/Demo1.gif" width="293px" height="633px"> |
@@ -32,10 +31,7 @@ pod 'JAlert'
 
 ## Usage
 
-> if you want to use customizing alertView, you can choose "alertType" in JAlert Library.
-> Actually, JAlert contains "Public Proerties" option.
-
-first of all, import the module
+> First of all, import the module
 
 ```swift
 import JAlert
@@ -101,19 +97,6 @@ alert.show()
 ```swift
 let alert = JAlert(title: "title", message: "message", alertType: .image)
 alert.urlString = "https://cdn.pixabay.com/photo/2022/01/02/04/37/animal-6909429_1280.jpg"
-alert.setButton(actionName: "OK", onActionClicked: {
-    print("onActionClicked")
-})
-alert.show()
-```
----
-
-| Animation : scale |
-|---|
-```swift
-let alert = JAlert(title: "title", message: "message", alertType: .default)
-alert.appearType = .scale
-alert.disappearType = .scale
 alert.setButton(actionName: "OK", onActionClicked: {
     print("onActionClicked")
 })
@@ -215,7 +198,7 @@ public func show()
 ```
 ## Contribution
 
-pull requests are welcomed !
+Discussion and pull requests are welcomed !
 
 ## License
 
