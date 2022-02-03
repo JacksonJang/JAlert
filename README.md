@@ -19,6 +19,17 @@ it, simply add the following line to your Podfile:
 pod 'JAlert'
 ```
 
+## DEMO
+| Type |
+|---|
+|<img src = "https://gist.githubusercontent.com/JacksonJang/050927a21f291ad4d65cac0e2df4b4c9/raw/5b60cf21ac58bc87ac81adc1e245071092570ab9/Demo1.gif" width="293px" height="633px"> |
+
+---
+
+| Properties |
+|---|
+|<img src = "https://gist.githubusercontent.com/JacksonJang/050927a21f291ad4d65cac0e2df4b4c9/raw/5b60cf21ac58bc87ac81adc1e245071092570ab9/Demo2.gif" width="293px" height="633px"> |
+
 ## Usage
 
 > if you want to use customizing alertView, you can choose "alertType" in JAlert Library.
