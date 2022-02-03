@@ -105,6 +105,10 @@ public class JAlert: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    deinit {
+        print("deinit")
+    }
+    
     public init(title: String? = nil, message: String? = nil, alertType: AlertType = .default) {
         super.init(frame: CGRect(x: 0, y: 0, width: kDefaultWidth, height: kDefaultHeight))
         setup(title: title, message: message, alertType: alertType)
@@ -626,14 +630,31 @@ extension JAlert {
         }
     }
     
-    private func close() {
-        if self.isUseAnimation {
-            closeAnimation { self.removeFromSuperview() }
-        } else {
+    private func removeAllViews(){
+        DispatchQueue.main.async {
+            
+            for item in self.alertView.subviews {
+                item.removeFromSuperview()
+            }
+            
+            for item in self.subviews {
+                item.removeFromSuperview()
+            }
+            
             self.removeFromSuperview()
         }
+    }
+    
+    private func close() {
+        NotificationCenter.default.removeObserver(self)
         
-        self.isHiddenJAlert(status: true)
+        if self.isUseAnimation {
+            closeAnimation {
+                self.removeAllViews()
+            }
+        } else {
+            removeAllViews()
+        }
     }
 }
 
@@ -653,8 +674,10 @@ extension JAlert {
         if alertType != .multi {
             if buttonIndex == actionButtonIndex {
                 onActionClicked?()
+                onActionClicked = nil
             } else {
                 onCancelClicked?()
+                onCancelClicked = nil
             }
         }
     }
