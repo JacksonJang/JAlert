@@ -105,10 +105,6 @@ public class JAlert: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    deinit {
-        print("deinit")
-    }
-    
     public init(title: String? = nil, message: String? = nil, alertType: AlertType = .default) {
         super.init(frame: CGRect(x: 0, y: 0, width: kDefaultWidth, height: kDefaultHeight))
         setup(title: title, message: message, alertType: alertType)
@@ -250,25 +246,6 @@ extension JAlert {
         
         addSubview(dimView)
         addSubview(alertView)
-    }
-    
-    private func createImageView(urlString:String) -> UIImageView{
-        guard let url = URL(string: urlString) else { return UIImageView(frame: CGRect.zero) }
-        
-        do {
-            let data = try Data(contentsOf: url)
-            let image = UIImage(data: data)!
-            imageHeight = viewWidth * image.size.height / image.size.width
-            imageView = UIImageView(image: image)
-        } catch {
-            print("createImageView error")
-        }
-        
-        if urlString == "" {
-            imageView = UIImageView(frame: CGRect.zero)
-        }
-        
-        return imageView
     }
     
     private func addButtonToAlertView() {
