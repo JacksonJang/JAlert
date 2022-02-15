@@ -39,7 +39,9 @@ class JAlertPropertyViewController: UIViewController {
     }
     
     func createJAlert(index: Int) -> JAlert {
-        let alert = JAlert(title: "Property Example", message: self.data[index], alertType: .default)
+        let alert = JAlert(title: "Property Example", message: self.data[index], alertType: .default, onButtonClicked: { index in
+            print("index : \(index)")
+        })
         
         return alert
     }
@@ -68,7 +70,9 @@ extension JAlertPropertyViewController: UITableViewDelegate, UITableViewDataSour
             alert.alertBackgroundColor = .red
             alert.show()
         case 1:
-            let alert = JAlert(title: "Property Example", message: self.data[index], alertType: .default)
+            let alert = JAlert(title: "Property Example", message: self.data[index], alertType: .default, onButtonClicked: { index in
+                print("index : \(index)")
+            })
             alert.buttonBackgroundColor = .red
             alert.show()
         case 2:
@@ -106,7 +110,9 @@ extension JAlertPropertyViewController: UITableViewDelegate, UITableViewDataSour
             alert.borderColor = UIColor.red.cgColor
             alert.show()
         case 10:
-            let alert = JAlert(title: "Property Example", message: self.data[index], alertType: .submit)
+            let alert = JAlert(title: "Property Example", message: self.data[index], alertType: .submit, onButtonClicked: { index in
+                print("index : \(index)")
+            })
             alert.titleColor = .red
             alert.messageColor = .gray
             alert.actionButtonColor = .blue
@@ -114,7 +120,9 @@ extension JAlertPropertyViewController: UITableViewDelegate, UITableViewDataSour
             alert.submitColor = .purple
             alert.show()
         case 11:
-            let alert = JAlert(title: "Property Example", message: self.data[index], alertType: .submit)
+            let alert = JAlert(title: "Property Example", message: self.data[index], alertType: .submit, onButtonClicked: { index in
+                print("index : \(index)")
+            })
             alert.titleFont = UIFont.systemFont(ofSize: 15, weight: .bold)
             alert.messageFont = UIFont.systemFont(ofSize: 15, weight: .bold)
             alert.actionButtonFont = UIFont.systemFont(ofSize: 15, weight: .bold)
@@ -122,7 +130,9 @@ extension JAlertPropertyViewController: UITableViewDelegate, UITableViewDataSour
             alert.submitFont = UIFont.systemFont(ofSize: 15, weight: .bold)
             alert.show()
         case 12:
-            let alert = JAlert(title: "Property Example", message: self.data[index], alertType: .default)
+            let alert = JAlert(title: "Property Example", message: self.data[index], alertType: .default, onButtonClicked: { index in
+                print("index : \(index)")
+            })
             alert.titleTopMargin = 50
             alert.titleSideMargin = 100
             alert.titleBottomMargin = 100
@@ -130,17 +140,23 @@ extension JAlertPropertyViewController: UITableViewDelegate, UITableViewDataSour
             alert.messageBottomMargin = 100
             alert.show()
         case 13:
-            let alert = JAlert(title: "Property Example", message: self.data[index], alertType: .submit)
+            let alert = JAlert(title: "Property Example", message: self.data[index], alertType: .submit, onButtonClicked: { index in
+                print("index : \(index)")
+            })
             alert.submitSideMargin = 100
             alert.submitBottomMargin = 100
             alert.show()
         case 14:
-            let alert = JAlert(title: "Property Example", message: self.data[index], alertType: .date)
+            let alert = JAlert(title: "Property Example", message: self.data[index], alertType: .date, onButtonClicked: { index in
+                print("index : \(index)")
+            })
             alert.datePickerViewSideMargin = 100
             alert.datePickerViewBottomMargin = 100
             alert.show()
         case 15:
-            let alert = JAlert(title: "Property Example", message: self.data[index], alertType: .image)
+            let alert = JAlert(title: "Property Example", message: self.data[index], alertType: .image, onButtonClicked: { index in
+                print("index : \(index)")
+            })
             alert.imageViewSideMargin = 100
             alert.imageViewBottomMargin = 100
             

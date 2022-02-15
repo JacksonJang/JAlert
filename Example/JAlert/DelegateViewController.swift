@@ -43,7 +43,9 @@ extension DelegateViewController: UITableViewDelegate, UITableViewDataSource {
         
         switch index {
         case 0:
-            let alert = JAlert(title: "title", message: "message", alertType: .default)
+            let alert = JAlert(title: "title", message: "message", alertType: .default, onButtonClicked: { index in
+                print("index : \(index)")
+            })
             alert.delegate = self
             alert.show()
         default:

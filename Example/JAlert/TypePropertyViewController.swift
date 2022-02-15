@@ -47,24 +47,25 @@ extension TypePropertyViewController: UITableViewDelegate, UITableViewDataSource
         
         switch index {
         case 0:
-            let alert = JAlert(title: "title", message: "message", alertType: .date)
+            let alert = JAlert(title: "title", message: "message", alertType: .date, onButtonClicked: { index in
+                print("index : \(index)")
+            })
             //default : yyyy-MM-dd HH:mm:s
             alert.dateFormat = "yyyyMMdd"
-            alert.setButton(actionName: "OK", cancelName: "Cancel", onActionClicked: {
-                print("date : \(alert.getDate())")
-                print("onActionClicked")
-            })
+            alert.setButton(actionName: "OK", cancelName: "Cancel")
             alert.show()
         case 1:
-            let alert = JAlert(title: "title", message: "message", alertType: .date)
-            alert.language = .ko_KR
-            alert.setButton(actionName: "OK", cancelName: "Cancel", onActionClicked: {
-                print("date : \(alert.getDate())")
-                print("onActionClicked")
+            let alert = JAlert(title: "title", message: "message", alertType: .date, onButtonClicked: { index in
+                print("index : \(index)")
             })
+            alert.language = .ko_KR
+            alert.setButton(actionName: "OK", cancelName: "Cancel")
             alert.show()
         case 2:
-            let alert = JAlert(title: "Property Example", message: self.data[index], alertType: .image)
+            let alert = JAlert(title: "Property Example", message: self.data[index], alertType: .image, onButtonClicked: { index in
+                print("index : \(index)")
+            })
+            
             do{
                 let data = try Data(contentsOf: URL(string: "https://cdn.pixabay.com/photo/2022/01/02/04/37/animal-6909429_1280.jpg")!)
                 alert.image = UIImage(data: data)!
@@ -74,11 +75,15 @@ extension TypePropertyViewController: UITableViewDelegate, UITableViewDataSource
             
             alert.show()
         case 3:
-            let alert = JAlert(title: "Property Example", message: self.data[index], alertType: .submit)
+            let alert = JAlert(title: "Property Example", message: self.data[index], alertType: .submit, onButtonClicked: { index in
+                print("index : \(index)")
+            })
             alert.submitViewHeight = 300
             alert.show()
         case 4:
-            let alert = JAlert(title: "Property Example", message: self.data[index], alertType: .date)
+            let alert = JAlert(title: "Property Example", message: self.data[index], alertType: .date, onButtonClicked: { index in
+                print("index : \(index)")
+            })
             alert.datePickerViewHeight = 500
             alert.show()
         default:

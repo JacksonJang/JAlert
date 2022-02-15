@@ -90,8 +90,7 @@ public class JAlert: UIView {
     
     private var isUseButton:Bool = false
     
-    private var onActionClicked: (() -> Void)?
-    private var onCancelClicked: (() -> Void)?
+    private var onButtonClicked: ((Int) -> Void)?
     
     private let kDefaultWidth: CGFloat = 300.0
     private let kDefaultHeight: CGFloat = 144.0
@@ -105,9 +104,34 @@ public class JAlert: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public init(title: String? = nil, message: String? = nil, alertType: AlertType = .default) {
+    public init(title: String? = nil, message: String? = nil, alertType: AlertType = .default, onButtonClicked: ((Int) -> Void)?) {
         super.init(frame: CGRect(x: 0, y: 0, width: kDefaultWidth, height: kDefaultHeight))
         setup(title: title, message: message, alertType: alertType)
+
+        self.onButtonClicked = onButtonClicked
+        
+        setupDefaultValue()
+        setupElements()
+    }
+    
+    public init(title: String? = nil, message: String? = nil, buttons: [String], onButtonClicked: ((Int) -> Void)?) {
+        super.init(frame: CGRect(x: 0, y: 0, width: kDefaultWidth, height: kDefaultHeight))
+        
+        self.title = title
+        self.message = message
+        
+        if buttons.count == 1 {
+            self.alertType = .default
+        }
+        else if buttons.count == 2 {
+            self.alertType = .confirm
+        }
+        else {
+            self.alertType = .multi
+        }
+        
+        self.buttonTitles = buttons
+        self.onButtonClicked = onButtonClicked
         
         setupDefaultValue()
         setupElements()
@@ -129,7 +153,7 @@ public class JAlert: UIView {
 //Public function
 extension JAlert {
     
-    public func setButton(actionName:String, cancelName:String? = nil, onActionClicked: (() -> Void)? = nil, onCancelClicked: (() -> Void)? = nil) {
+    public func setButton(actionName:String, cancelName:String? = nil) {
         if cancelName != nil {
             isUseButton = true
             buttonTitles = [actionName, cancelName!]
@@ -137,9 +161,6 @@ extension JAlert {
             isUseButton = true
             buttonTitles = [actionName]
         }
-        
-        self.onActionClicked = onActionClicked
-        self.onCancelClicked = onCancelClicked
     }
     
     public func setButton(buttonTitles:[String]) {
@@ -648,14 +669,8 @@ extension JAlert {
         
         delegate?.alertView?(self, clickedButtonAtIndex: buttonIndex)
 
-        if alertType != .multi {
-            if buttonIndex == actionButtonIndex {
-                onActionClicked?()
-                onActionClicked = nil
-            } else {
-                onCancelClicked?()
-                onCancelClicked = nil
-            }
+        if self.onButtonClicked != nil {
+            self.onButtonClicked!(buttonIndex)
         }
     }
 }

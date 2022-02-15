@@ -44,22 +44,22 @@ extension AnimationViewController: UITableViewDelegate, UITableViewDataSource {
         
         switch index {
         case 0:
-            let alert = JAlert(title: "title", message: "message", alertType: .default)
+            let alert = JAlert(title: "title", message: "message", alertType: .default, onButtonClicked: { index in
+                print("index : \(index)")
+            })
             //Actually, you don't need to set '.default', but this example is showing for you
             alert.appearType = .default
             alert.disappearType = .default
             
-            alert.setButton(actionName: "OK", onActionClicked: {
-                print("onActionClicked")
-            })
+            alert.setButton(actionName: "OK")
             alert.show()
         case 1:
-            let alert = JAlert(title: "title", message: "message", alertType: .default)
+            let alert = JAlert(title: "title", message: "message", alertType: .default, onButtonClicked: { index in
+                print("index : \(index)")
+            })
             alert.appearType = .scale
             alert.disappearType = .scale
-            alert.setButton(actionName: "OK", onActionClicked: {
-                print("onActionClicked")
-            })
+            alert.setButton(actionName: "OK")
             alert.show()
         default:
             print("the rest of index")

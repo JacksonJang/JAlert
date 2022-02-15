@@ -48,47 +48,44 @@ extension TypeViewController: UITableViewDelegate, UITableViewDataSource {
         
         switch index {
         case 0:
-            let alert = JAlert(title: "title", message: "message", alertType: .default)
-            alert.setButton(actionName: "OK")
+            let alert = JAlert(title: "title", message: "message", buttons: ["OK","Cancel"], onButtonClicked: { index in
+                print("index : \(index)")
+            })
             alert.show()
         case 1:
-            let alert = JAlert(title: "title", message: "message", alertType: .confirm)
-            alert.setButton(actionName: "OK", cancelName: "Cancel", onActionClicked: {
-                print("onActionClicked")
-            }, onCancelClicked: {
-                print("onCancelClicked")
+            let alert = JAlert(title: "title", message: "message", alertType: .confirm, onButtonClicked: { index in
+                print("index : \(index)")
             })
             alert.show()
         case 2:
-            let alert = JAlert(title: "title", message: "message", alertType: .submit)
-            alert.setButton(actionName: "OK", cancelName: "Cancel", onActionClicked: {
-                print("text : \(alert.getSubmitText())")
-                print("onActionClicked")
-            }, onCancelClicked: {
-                print("onCancelClicked")
+            let alert = JAlert(title: "title", message: "message", alertType: .submit, onButtonClicked: { index in
+                print("index : \(index)")
             })
+            alert.setButton(actionName: "OK", cancelName: "Cancel")
             alert.show()
         case 3:
-            let alert = JAlert(title: "title", message: "message", alertType: .date)
-            alert.setButton(actionName: "OK", cancelName: "Cancel", onActionClicked: {
-                print("date : \(alert.getDate())")
-                print("onActionClicked")
+            let alert = JAlert(title: "title", message: "message", alertType: .date, onButtonClicked: { index in
+                //TODO: getDate need to handle
+//                print("date : \($0.getDate())")
+                print("index : \(index)")
             })
+            alert.setButton(actionName: "OK", cancelName: "Cancel")
             alert.show()
         case 4:
-            let alert = JAlert(title: "title", alertType: .image)
+            let alert = JAlert(title: "title", alertType: .image, onButtonClicked: { index in
+                print("index : \(index)")
+            })
             do{
                 let data = try Data(contentsOf: URL(string: "https://cdn.pixabay.com/photo/2022/01/02/04/37/animal-6909429_1280.jpg")!)
                 alert.image = UIImage(data: data)!
             }catch{
                 print("image type error")
             }
-            alert.setButton(actionName: "OK", onActionClicked: {
-                print("onActionClicked")
-            })
             alert.show()
         case 5:
-            let alert = JAlert(title: "title", message: "message", alertType: .multi)
+            let alert = JAlert(title: "title", message: "message", alertType: .multi, onButtonClicked: { index in
+                print("index : \(index)")
+            })
             alert.setButton(buttonTitles: ["OK", "Cancel", "Test", "This is JAlert Button"])
             
             /*
