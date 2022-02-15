@@ -59,6 +59,8 @@ extension TypeViewController: UITableViewDelegate, UITableViewDataSource {
             alert.show()
         case 2:
             let alert = JAlert(title: "title", message: "message", alertType: .submit, onButtonClicked: { index in
+                //TODO: getSubmitText need to handle
+//                print("text : \(alert.getSubmitText())")
                 print("index : \(index)")
             })
             alert.setButton(actionName: "OK", cancelName: "Cancel")
