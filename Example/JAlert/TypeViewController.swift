@@ -48,7 +48,7 @@ extension TypeViewController: UITableViewDelegate, UITableViewDataSource {
         
         switch index {
         case 0:
-            let alert = JAlert(title: "title", message: "message", buttons: ["OK","Cancel"], onButtonClicked: { index in
+            let alert = JAlert(title: "title", message: "message", buttons: ["OK"], onButtonClicked: { index in
                 print("index : \(index)")
             })
             alert.show()
