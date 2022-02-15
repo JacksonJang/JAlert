@@ -58,20 +58,20 @@ extension TypeViewController: UITableViewDelegate, UITableViewDataSource {
             })
             alert.show()
         case 2:
-            let alert = JAlert(title: "title", message: "message", alertType: .submit, onButtonClicked: { index in
-                //TODO: getSubmitText need to handle
-//                print("text : \(alert.getSubmitText())")
-                print("index : \(index)")
-            })
+            let alert = JAlert(title: "title", message: "message", alertType: .submit)
             alert.setButton(actionName: "OK", cancelName: "Cancel")
+            alert.onButtonClicked = { index in
+                print("index : \(index)")
+                print("text : \(alert.getSubmitText())")
+            }
             alert.show()
         case 3:
-            let alert = JAlert(title: "title", message: "message", alertType: .date, onButtonClicked: { index in
-                //TODO: getDate need to handle
-//                print("date : \($0.getDate())")
-                print("index : \(index)")
-            })
+            let alert = JAlert(title: "title", message: "message", alertType: .date)
             alert.setButton(actionName: "OK", cancelName: "Cancel")
+            alert.onButtonClicked = { index in
+                print("date : \(alert.getDate())")
+                print("index : \(index)")
+            }
             alert.show()
         case 4:
             let alert = JAlert(title: "title", alertType: .image, onButtonClicked: { index in

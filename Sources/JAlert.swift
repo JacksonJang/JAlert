@@ -66,6 +66,9 @@ public class JAlert: UIView {
     public var submitViewHeight:CGFloat = 150
     public var datePickerViewHeight:CGFloat = 250
     
+    //Event
+    public var onButtonClicked: ((Int) -> Void)?
+    
     // MARK: Private Properties
     private var alertType: AlertType = .default
     
@@ -90,8 +93,6 @@ public class JAlert: UIView {
     
     private var isUseButton:Bool = false
     
-    private var onButtonClicked: ((Int) -> Void)?
-    
     private let kDefaultWidth: CGFloat = 300.0
     private let kDefaultHeight: CGFloat = 144.0
     private let kDefaultCornerRadius: CGFloat = 8.0
@@ -104,7 +105,7 @@ public class JAlert: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public init(title: String? = nil, message: String? = nil, alertType: AlertType = .default, onButtonClicked: ((Int) -> Void)?) {
+    public init(title: String? = nil, message: String? = nil, alertType: AlertType = .default, onButtonClicked: ((Int) -> Void)? = nil) {
         super.init(frame: CGRect(x: 0, y: 0, width: kDefaultWidth, height: kDefaultHeight))
         setup(title: title, message: message, alertType: alertType)
 
@@ -114,7 +115,7 @@ public class JAlert: UIView {
         setupElements()
     }
     
-    public init(title: String? = nil, message: String? = nil, buttons: [String], onButtonClicked: ((Int) -> Void)?) {
+    public init(title: String? = nil, message: String? = nil, buttons: [String], onButtonClicked: ((Int) -> Void)? = nil) {
         super.init(frame: CGRect(x: 0, y: 0, width: kDefaultWidth, height: kDefaultHeight))
         
         self.title = title
@@ -154,11 +155,10 @@ public class JAlert: UIView {
 extension JAlert {
     
     public func setButton(actionName:String, cancelName:String? = nil) {
+        isUseButton = true
         if cancelName != nil {
-            isUseButton = true
             buttonTitles = [actionName, cancelName!]
         } else {
-            isUseButton = true
             buttonTitles = [actionName]
         }
     }
