@@ -55,6 +55,7 @@
 		E206856927A3DBC40090AB6E /* JAlertPropertyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JAlertPropertyViewController.swift; sourceTree = "<group>"; };
 		E206856B27A3DBD60090AB6E /* DelegateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelegateViewController.swift; sourceTree = "<group>"; };
 		E206856E27A7A3CD0090AB6E /* TypePropertyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypePropertyViewController.swift; sourceTree = "<group>"; };
+		E24FD92527BD1F2F0009E3EC /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Package.swift; path = ../Package.swift; sourceTree = "<group>"; };
 		E2CFCACAC2209AA20F744198 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		EF1F9C23AF5907375F152FB6 /* Pods-JAlert_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JAlert_Tests.debug.xcconfig"; path = "Target Support Files/Pods-JAlert_Tests/Pods-JAlert_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -143,6 +144,7 @@
 		607FACF51AFB993E008FA782 /* Podspec Metadata */ = {
 			isa = PBXGroup;
 			children = (
+				E24FD92527BD1F2F0009E3EC /* Package.swift */,
 				033E72FC1789667B46AB223D /* JAlert.podspec */,
 				E2CFCACAC2209AA20F744198 /* README.md */,
 				3C08535B3064E32BEE7A9C15 /* LICENSE */,
