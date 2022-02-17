@@ -62,7 +62,7 @@ class ExampleViewController: UIViewController {
         let alert = JAlert(
             title: "title", 
             message: "message", 
-            buttons: ["OK"], 
+            buttons: ["OK","Cancel"], 
             onButtonClicked: { index in
                 print("index : \(index)")
         })
@@ -74,7 +74,7 @@ class ExampleViewController: UIViewController {
         let alert = JAlert(
             title: "title", 
             message: "message", 
-            alertType: .default
+            alertType: .confirm
         )
         alert.setButton(
             actionName: "OK",
