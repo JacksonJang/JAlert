@@ -11,16 +11,11 @@ JAlert is a simple, customizable Alert View written in Swift.
 We can choose the type we want and use it.
 
 ## Preview
-| Type |
-|---|
-|<img src = "https://gist.githubusercontent.com/JacksonJang/050927a21f291ad4d65cac0e2df4b4c9/raw/5b60cf21ac58bc87ac81adc1e245071092570ab9/Demo1.gif" width="293px" height="633px"> |
+| Type | Properties |
+|---|---|
+| <img src="https://gist.githubusercontent.com/JacksonJang/050927a21f291ad4d65cac0e2df4b4c9/raw/5b60cf21ac58bc87ac81adc1e245071092570ab9/Demo1.gif"  width="300"> | <img src="https://gist.githubusercontent.com/JacksonJang/050927a21f291ad4d65cac0e2df4b4c9/raw/5b60cf21ac58bc87ac81adc1e245071092570ab9/Demo2.gif"  width="300"> | <img src="https://user-images.githubusercontent.com/138476/153866283-9b2718c3-9e33-43ca-94ee-5e0e3add2d25.PNG"  width="300"> |
 
 ---
-
-| Properties |
-|---|
-|<img src = "https://gist.githubusercontent.com/JacksonJang/050927a21f291ad4d65cac0e2df4b4c9/raw/5b60cf21ac58bc87ac81adc1e245071092570ab9/Demo2.gif" width="293px" height="633px"> |
-
 ## CocoaPods
 
 JAlert is available through [CocoaPods](https://cocoapods.org). To install
