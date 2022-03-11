@@ -63,6 +63,7 @@ public class JAlert: UIView {
     public var image:UIImage = UIImage()
     public var submitBorderWidth: CGFloat = 0.5
     public var submitBorderColor: CGColor = UIColor.black.cgColor
+    public var submitKeyboardType:UIKeyboardType = .default
     public var submitViewHeight:CGFloat = 150
     public var datePickerViewHeight:CGFloat = 250
     
@@ -389,6 +390,7 @@ extension JAlert {
             submitView.layer.borderWidth = submitBorderWidth
             submitView.textColor = submitColor
             submitView.font = submitFont
+            submitView.keyboardType = submitKeyboardType
             
             submitView.frame = CGRect(x: 0, y: 0, width: viewWidth - submitSideMargin*2 - 10, height: submitViewHeight)
             
