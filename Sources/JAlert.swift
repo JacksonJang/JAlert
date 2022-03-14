@@ -38,7 +38,7 @@ public class JAlert: UIView {
     public var submitColor:UIColor = UIColor.black
     
     //Font
-    public var titleFont:UIFont = UIFont.systemFont(ofSize: 17)
+    public var titleFont:UIFont = UIFont.systemFont(ofSize: 17, weight: .bold)
     public var messageFont:UIFont = UIFont.systemFont(ofSize: 17)
     public var actionButtonFont:UIFont = UIFont.systemFont(ofSize: 17, weight: .bold)
     public var cancelButtonFont:UIFont = UIFont.systemFont(ofSize: 17)
