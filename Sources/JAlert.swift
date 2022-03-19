@@ -57,6 +57,11 @@ public class JAlert: UIView {
     public var imageViewSideMargin: CGFloat = 20.0
     public var imageViewBottomMargin: CGFloat = 20.0
     
+    //Type View
+    public var submitView: UITextView!
+    public var datePickerView: UIDatePicker!
+    public var imageView:UIImageView!
+    
     //Type Property
     public var dateFormat = "yyyy-MM-dd HH:mm:ss" // Use for ".date" type.(default: "yyyy-MM-dd HH:mm:ss")
     public var language:Language = .en_US // Use for ".date" type.(default: .en_US)
@@ -77,9 +82,6 @@ public class JAlert: UIView {
     private var alertView: UIView!
     private var titleLabel: UILabel!
     private var messageLabel: UILabel!
-    private var submitView: UITextView!
-    private var datePickerView: UIDatePicker!
-    private var imageView:UIImageView!
     
     private var title: String?
     private var message: String?
