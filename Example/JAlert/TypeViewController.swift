@@ -46,59 +46,8 @@ extension TypeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let index = indexPath.row
         
-        switch index {
-        case 0:
-            let alert = JAlert(title: "title", message: "message", buttons: ["OK"], onButtonClicked: { index in
-                print("index : \(index)")
-            })
-            alert.show()
-        case 1:
-            let alert = JAlert(title: "title", message: "message", alertType: .confirm, onButtonClicked: { index in
-                print("index : \(index)")
-            })
-            alert.show()
-        case 2:
-            let alert = JAlert(title: "title", message: "message", alertType: .submit)
-            alert.setButton(actionName: "OK", cancelName: "Cancel")
-            alert.onButtonClicked = { index in
-                print("index : \(index)")
-                print("text : \(alert.getSubmitText())")
-            }
-            alert.show()
-        case 3:
-            let alert = JAlert(title: "title", message: "message", alertType: .date)
-            alert.setButton(actionName: "OK", cancelName: "Cancel")
-            alert.onButtonClicked = { index in
-                print("date : \(alert.getDate())")
-                print("index : \(index)")
-            }
-            alert.show()
-        case 4:
-            let alert = JAlert(title: "title", alertType: .image, onButtonClicked: { index in
-                print("index : \(index)")
-            })
-            do{
-                let data = try Data(contentsOf: URL(string: "https://cdn.pixabay.com/photo/2022/01/02/04/37/animal-6909429_1280.jpg")!)
-                alert.image = UIImage(data: data)!
-            }catch{
-                print("image type error")
-            }
-            alert.show()
-        case 5:
-            let alert = JAlert(title: "title", message: "message", alertType: .multi, onButtonClicked: { index in
-                print("index : \(index)")
-            })
-            alert.setButton(buttonTitles: ["OK", "Cancel", "Test", "This is JAlert Button"])
-            
-            /*
-             if you want to add Event, you can use delegate.
-             but you need to write JAlertDelegate.
-             */
-            //alert.delegate = self
-            
-            alert.show()
-        default:
-            print("the rest of index")
-        }
+
+        JAlert.shared.show()
+        print("index : ", index)
     }
 }
