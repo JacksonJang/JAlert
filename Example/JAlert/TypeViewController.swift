@@ -47,7 +47,7 @@ extension TypeViewController: UITableViewDelegate, UITableViewDataSource {
         let index = indexPath.row
         
 
-        JAlert.shared.show()
+        JAlert.show()
         print("index : ", index)
     }
 }

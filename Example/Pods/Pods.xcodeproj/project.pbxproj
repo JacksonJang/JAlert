@@ -234,10 +234,10 @@
 		E21D8BB327871DF90041DBCE /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				E21D8BAC27871D1B0041DBCE /* Enums.swift */,
 				E21D8BAD27871D1B0041DBCE /* JAlert.swift */,
 				E24153322830BF41001EB989 /* JConfig.swift */,
 				E24153342830BF89001EB989 /* JAlertDelegate.swift */,
+				E21D8BAC27871D1B0041DBCE /* Enums.swift */,
 				E24153362830C655001EB989 /* BaseUIView.swift */,
 			);
 			path = Sources;

@@ -1,39 +1,54 @@
 import UIKit
 
-public class JAlert: NSObject {
-    public static let shared = JAlert()
-    
-    var alertView:BaseUIView? = nil
+public let JAlert = JAlertManager.shared
+
+public class JAlertManager: NSObject {
+    public static let shared = JAlertManager()
     
     public weak var delegate: JAlertDelegate? // delegate
     
-    private var config:JConfig = JConfig()
+    public var leftMarign:CGFloat = 20.0
+    public var rightMargin:CGFloat = 20.0
+    public var cornerRadius:CGFloat = 10.0
+    public var contentBackgroundColor:UIColor = .white
     
-    /*
-        withAlphaComponet set backgroundColor of dimView
-     */
+    //BackgroundColor of dimView
     var withAlphaComponent:CGFloat = 0.4 {
         didSet{
             dimView.backgroundColor = UIColor.black.withAlphaComponent(withAlphaComponent)
         }
     }
     
-    lazy var dimView:BaseUIView = {
-        let view = BaseUIView()
-        
-        view.backgroundColor = UIColor.black.withAlphaComponent(withAlphaComponent)
-        
-        return view
+    public var titleTopMargin:CGFloat = 10.0
+    public var titleLeftMargin:CGFloat = 10.0
+    public var titleRightMargin:CGFloat = 10.0
+    
+    private var titleLabel:UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        return label
     }()
+    
+    //MARK: Alert Default Properties
+    private var title:String = ""
+    private var message:String = ""
+    
+    //MARK: Private Properties
+    private var config:JConfig = JConfig()
+    
+    //MARK: UI
+    private var alertView:BaseUIView!
+    private var dimView:BaseUIView!
+    private var contentView:BaseUIView!
     
 }
 
-extension JAlert {
+extension JAlertManager {
     public func configuration(config:JConfig) {
         self.config = config
     }
     
-    public func show() {
+    public func show(title:String = "", message:String = "") {
         createJAlert()
         
         if let alertView = alertView,
@@ -47,6 +62,11 @@ extension JAlert {
                 alertView.trailingAnchor.constraint(equalTo: window.trailingAnchor),
                 alertView.bottomAnchor.constraint(equalTo: window.bottomAnchor)
             ])
+            
+            alertView.layoutIfNeeded()
+            //TODO: Temporary data
+            titleLabel.text = "dasdsadsadsasadsadsadsadsadasdasdasdsaasdasdasddsadsadsadasdsadaadsdsdsadas"
+            setupContentConstraints()
         }
     }
     
@@ -55,31 +75,64 @@ extension JAlert {
     }
 }
 
-extension JAlert {
+extension JAlertManager {
     private func createJAlert(){
         alertView = BaseUIView()
         
         setupDimView()
+        setupContentView()
     }
     
     private func setupDimView() {
-        if let alertView = alertView {
-            alertView.addSubview(dimView)
-            
-            NSLayoutConstraint.activate([
-                dimView.topAnchor.constraint(equalTo: alertView.topAnchor),
-                dimView.leadingAnchor.constraint(equalTo: alertView.leadingAnchor),
-                dimView.trailingAnchor.constraint(equalTo: alertView.trailingAnchor),
-                dimView.bottomAnchor.constraint(equalTo: alertView.bottomAnchor)
-            ])
-        }
+        dimView = BaseUIView()
+        dimView.backgroundColor = UIColor.black.withAlphaComponent(withAlphaComponent)
+        
+        alertView.addSubview(dimView)
+        
+        NSLayoutConstraint.activate([
+            dimView.topAnchor.constraint(equalTo: alertView.topAnchor),
+            dimView.leadingAnchor.constraint(equalTo: alertView.leadingAnchor),
+            dimView.trailingAnchor.constraint(equalTo: alertView.trailingAnchor),
+            dimView.bottomAnchor.constraint(equalTo: alertView.bottomAnchor)
+        ])
     }
     
     private func setupContentView() {
-        if let alertView = alertView {
-            let contentView = BaseUIView()
-            
-            alertView.addSubview(contentView)
-        }
+        contentView = BaseUIView()
+        contentView.clipsToBounds = true
+        contentView.layer.masksToBounds = true
+        contentView.layer.cornerRadius = cornerRadius
+        contentView.backgroundColor = contentBackgroundColor
+        
+        alertView.addSubview(contentView)
+    }
+    
+    private func setupContentConstraints() {
+        setupContentHeightConstraints()
+        
+        NSLayoutConstraint.activate([
+            contentView.centerXAnchor.constraint(equalTo: alertView.centerXAnchor),
+            contentView.centerYAnchor.constraint(equalTo: alertView.centerYAnchor),
+            contentView.leadingAnchor.constraint(equalTo: alertView.leadingAnchor, constant: leftMarign),
+            contentView.trailingAnchor.constraint(equalTo: alertView.trailingAnchor, constant: -rightMargin),
+        ])
+    }
+    
+    private func setupContentHeightConstraints() {
+        titleLabel.frame.size = alertView.frame.size
+        labelHeightToFit(titleLabel)
+        
+        let contentViewHeight:CGFloat = titleTopMargin + titleLabel.frame.height
+        NSLayoutConstraint.activate([
+            contentView.heightAnchor.constraint(equalToConstant: contentViewHeight)
+        ])
+    }
+}
+
+extension JAlertManager {
+    private func labelHeightToFit(_ label: UILabel) {
+        label.frame.size = CGSize(width: label.frame.size.width,
+                                  height: CGFloat.greatestFiniteMagnitude)
+        label.sizeToFit()
     }
 }

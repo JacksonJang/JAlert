@@ -1,3 +1,3 @@
 public protocol JAlertDelegate: AnyObject {
-    func alertView(_ alertView: JAlert, clickedButtonAtIndex buttonIndex: Int)
+    func alertView(clickedButtonAtIndex buttonIndex: Int)
 }
