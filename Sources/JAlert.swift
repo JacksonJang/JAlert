@@ -30,12 +30,16 @@ public class JAlertManager: NSObject {
     
     private var titleLabel:UILabel = {
         let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textAlignment = .center
         label.numberOfLines = 0
         return label
     }()
     
     private var messageLabel:UILabel = {
         let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textAlignment = .center
         label.numberOfLines = 0
         return label
     }()
@@ -118,7 +122,19 @@ extension JAlertManager {
         contentView.layer.cornerRadius = cornerRadius
         contentView.backgroundColor = contentBackgroundColor
         
+        setupTitleLabel()
+        
         alertView.addSubview(contentView)
+    }
+    
+    private func setupTitleLabel() {
+        contentView.addSubview(titleLabel)
+        
+        NSLayoutConstraint.activate([
+            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: titleTopMargin),
+            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: leftMarign),
+            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -rightMargin)
+        ])
     }
     
     private func setupContentConstraints() {
