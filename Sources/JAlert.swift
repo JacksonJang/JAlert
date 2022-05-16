@@ -22,8 +22,19 @@ public class JAlertManager: NSObject {
     public var titleTopMargin:CGFloat = 10.0
     public var titleLeftMargin:CGFloat = 10.0
     public var titleRightMargin:CGFloat = 10.0
+    public var betweenTitleAndMessageMargin:CGFloat = 10.0
+    public var messageLeftMargin:CGFloat = 10.0
+    public var messageRightMargin:CGFloat = 10.0
+    public var messageBottomMargin:CGFloat = 10.0
+    
     
     private var titleLabel:UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        return label
+    }()
+    
+    private var messageLabel:UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
         return label
@@ -64,8 +75,11 @@ extension JAlertManager {
             ])
             
             alertView.layoutIfNeeded()
+            
             //TODO: Temporary data
-            titleLabel.text = "dasdsadsadsasadsadsadsadsadasdasdasdsaasdasdasddsadsadsadasdsadaadsdsdsadas"
+            titleLabel.text = "Title Example"
+            messageLabel.text = "Message Example"
+            
             setupContentConstraints()
         }
     }
@@ -122,7 +136,11 @@ extension JAlertManager {
         titleLabel.frame.size = alertView.frame.size
         labelHeightToFit(titleLabel)
         
-        let contentViewHeight:CGFloat = titleTopMargin + titleLabel.frame.height
+        messageLabel.frame.size = alertView.frame.size
+        labelHeightToFit(messageLabel)
+        
+        let contentViewHeight:CGFloat = titleTopMargin + titleLabel.frame.height + betweenTitleAndMessageMargin + messageLabel.frame.height + messageBottomMargin
+        
         NSLayoutConstraint.activate([
             contentView.heightAnchor.constraint(equalToConstant: contentViewHeight)
         ])
