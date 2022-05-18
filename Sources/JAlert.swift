@@ -68,6 +68,16 @@ public class JAlertManager: NSObject {
         sv.backgroundColor = contentBackgroundColor
         return sv
     }()
+    
+    private var cotentBottomBorderView:UIView = {
+        let view = UIView()
+        
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .gray
+        
+        return view
+    }()
+    
     private lazy var buttonStackView:UIStackView = {
         let sv = UIStackView()
 
@@ -120,6 +130,7 @@ extension JAlertManager {
         
         setupDimView()
         setupContentStackView()
+        setupCotentBottomBorderView()
     }
     
     private func setupDimView() {
@@ -137,7 +148,7 @@ extension JAlertManager {
     }
     
     private func setupContentStackView() {
-        setupTitleAndMessageLabel()
+        addTitleAndMessageToContentStackView()
         
         alertView.addSubview(contentStackView)
         
@@ -149,17 +160,17 @@ extension JAlertManager {
         ])
     }
     
-    private func setupTitleAndMessageLabel() {
+    private func addTitleAndMessageToContentStackView() {
         createSpacingView(spacing: titleTopMargin)
         contentStackView.addArrangedSubview(titleLabel)
         createSpacingView(spacing: betweenTitleAndMessageMargin)
         contentStackView.addArrangedSubview(messageLabel)
         createSpacingView(spacing: messageBottomMargin)
         
-        setupTitleAndMessageLabelConstraints()
+        setupTitleAndMessageConstraints()
     }
     
-    private func setupTitleAndMessageLabelConstraints() {
+    private func setupTitleAndMessageConstraints() {
         if let contentStackView = titleLabel.superview {
             NSLayoutConstraint.activate([
                 titleLabel.leadingAnchor.constraint(equalTo: contentStackView.leadingAnchor, constant: titleLeftMargin),
@@ -168,6 +179,20 @@ extension JAlertManager {
                 messageLabel.trailingAnchor.constraint(equalTo: contentStackView.trailingAnchor, constant: -messageRightMargin)
             ])
         }
+    }
+    
+    private func setupCotentBottomBorderView() {
+        contentStackView.addArrangedSubview(cotentBottomBorderView)
+        
+        NSLayoutConstraint.activate([
+            cotentBottomBorderView.leadingAnchor.constraint(equalTo: contentStackView.leadingAnchor, constant: 0),
+            cotentBottomBorderView.trailingAnchor.constraint(equalTo: contentStackView.trailingAnchor, constant: 0),
+            cotentBottomBorderView.heightAnchor.constraint(equalToConstant: 1)
+        ])
+    }
+    
+    private func setupButtonStackView() {
+        
     }
 }
 
