@@ -28,21 +28,23 @@ public class JAlertManager: NSObject {
     public var messageRightMargin:CGFloat = 10.0
     public var messageBottomMargin:CGFloat = 10.0
     
-    private var titleLabel:UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
+    private lazy var titleLabel:JPaddingLabel = {
+        let label = JPaddingLabel(left: titleLeftMargin, right: titleRightMargin)
+        
         label.lineBreakMode = .byCharWrapping
         label.textAlignment = .center
         label.numberOfLines = 0
+        
         return label
     }()
     
-    private var messageLabel:UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
+    private lazy var messageLabel:JPaddingLabel = {
+        let label = JPaddingLabel(left: titleLeftMargin, right: titleRightMargin)
+        
         label.lineBreakMode = .byCharWrapping
         label.textAlignment = .center
         label.numberOfLines = 0
+        
         return label
     }()
     
@@ -167,29 +169,20 @@ extension JAlertManager {
     }
     
     private func setupContentStackView() {
-        addTitleAndMessageToContentStackView()
         setupAlertContentView()
+        addTitleAndMessageToContentStackView()
     }
     
     private func addTitleAndMessageToContentStackView() {
         createSpacingView(spacing: titleTopMargin)
-        contentStackView.addArrangedSubview(titleLabel)
-        createSpacingView(spacing: betweenTitleAndMessageMargin)
-        contentStackView.addArrangedSubview(messageLabel)
-        createSpacingView(spacing: messageBottomMargin)
         
-        setupTitleAndMessageConstraints()
-    }
-    
-    private func setupTitleAndMessageConstraints() {
-        if let contentStackView = titleLabel.superview {
-            NSLayoutConstraint.activate([
-                titleLabel.leadingAnchor.constraint(equalTo: contentStackView.leadingAnchor, constant: titleLeftMargin),
-                titleLabel.trailingAnchor.constraint(equalTo: contentStackView.trailingAnchor, constant: -titleRightMargin),
-                messageLabel.leadingAnchor.constraint(equalTo: contentStackView.leadingAnchor, constant: messageLeftMargin),
-                messageLabel.trailingAnchor.constraint(equalTo: contentStackView.trailingAnchor, constant: -messageRightMargin)
-            ])
+        contentStackView.addArrangedSubview(titleLabel)
+        if #available(iOS 11.0, *) {
+            contentStackView.setCustomSpacing(betweenTitleAndMessageMargin, after: titleLabel)
         }
+        contentStackView.addArrangedSubview(messageLabel)
+        
+        createSpacingView(spacing: messageBottomMargin)
     }
     
     private func setupAlertContentView() {
@@ -254,11 +247,5 @@ extension JAlertManager {
         NSLayoutConstraint.activate([
             spacingView.heightAnchor.constraint(equalToConstant: spacing)
         ])
-    }
-    
-    private func labelHeightToFit(_ label: UILabel) {
-        label.frame.size = CGSize(width: label.frame.size.width,
-                                  height: CGFloat.greatestFiniteMagnitude)
-        label.sizeToFit()
     }
 }
