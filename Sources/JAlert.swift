@@ -93,7 +93,7 @@ public class JAlertManager: NSObject {
         let view = UIView()
         
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .red
+//        view.backgroundColor = .red
         
         return view
     }()
@@ -102,7 +102,6 @@ public class JAlertManager: NSObject {
         let view = UIView()
         
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .blue
         
         return view
     }()
@@ -148,8 +147,9 @@ extension JAlertManager {
         
         setupDimView()
         setupContentStackView()
-        setupCotentBottomBorderView()
+        setupBetweenCotentAndButtonBorderView()
         setupButtonStackView()
+        setupSecondButtonLeftBorderView()
     }
     
     private func setupDimView() {
@@ -168,15 +168,7 @@ extension JAlertManager {
     
     private func setupContentStackView() {
         addTitleAndMessageToContentStackView()
-        
-        alertView.addSubview(contentStackView)
-        
-        NSLayoutConstraint.activate([
-            contentStackView.centerXAnchor.constraint(equalTo: alertView.centerXAnchor),
-            contentStackView.centerYAnchor.constraint(equalTo: alertView.centerYAnchor),
-            contentStackView.leadingAnchor.constraint(equalTo: alertView.leadingAnchor, constant: 20),
-            contentStackView.trailingAnchor.constraint(equalTo: alertView.trailingAnchor, constant: -20),
-        ])
+        setupAlertContentView()
     }
     
     private func addTitleAndMessageToContentStackView() {
@@ -200,7 +192,18 @@ extension JAlertManager {
         }
     }
     
-    private func setupCotentBottomBorderView() {
+    private func setupAlertContentView() {
+        alertView.addSubview(contentStackView)
+        
+        NSLayoutConstraint.activate([
+            contentStackView.centerXAnchor.constraint(equalTo: alertView.centerXAnchor),
+            contentStackView.centerYAnchor.constraint(equalTo: alertView.centerYAnchor),
+            contentStackView.leadingAnchor.constraint(equalTo: alertView.leadingAnchor, constant: 20),
+            contentStackView.trailingAnchor.constraint(equalTo: alertView.trailingAnchor, constant: -20),
+        ])
+    }
+    
+    private func setupBetweenCotentAndButtonBorderView() {
         contentStackView.addArrangedSubview(cotentBottomBorderView)
         
         NSLayoutConstraint.activate([
@@ -219,6 +222,21 @@ extension JAlertManager {
             buttonStackView.leadingAnchor.constraint(equalTo: contentStackView.leadingAnchor),
             buttonStackView.trailingAnchor.constraint(equalTo: contentStackView.trailingAnchor),
             buttonStackView.heightAnchor.constraint(equalToConstant: 40)
+        ])
+    }
+    
+    private func setupSecondButtonLeftBorderView() {
+        let borderView = UIView()
+        borderView.backgroundColor = .gray
+        borderView.translatesAutoresizingMaskIntoConstraints = false
+        
+        secondButtonView.addSubview(borderView)
+        
+        NSLayoutConstraint.activate([
+            borderView.topAnchor.constraint(equalTo: secondButtonView.topAnchor),
+            borderView.bottomAnchor.constraint(equalTo: secondButtonView.bottomAnchor),
+            borderView.leadingAnchor.constraint(equalTo: secondButtonView.leadingAnchor, constant: -0.5),
+            borderView.widthAnchor.constraint(equalToConstant: 1)
         ])
     }
 }
