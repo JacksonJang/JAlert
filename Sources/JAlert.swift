@@ -84,9 +84,27 @@ public class JAlertManager: NSObject {
         sv.translatesAutoresizingMaskIntoConstraints = false
         sv.axis = .horizontal
         sv.alignment = .fill
-        sv.distribution = .fill
+        sv.distribution = .fillEqually
 
         return sv
+    }()
+    
+    private var firstButtonView:UIView = {
+        let view = UIView()
+        
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .red
+        
+        return view
+    }()
+    
+    private var secondButtonView:UIView = {
+        let view = UIView()
+        
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .blue
+        
+        return view
     }()
     
 }
@@ -131,6 +149,7 @@ extension JAlertManager {
         setupDimView()
         setupContentStackView()
         setupCotentBottomBorderView()
+        setupButtonStackView()
     }
     
     private func setupDimView() {
@@ -185,14 +204,22 @@ extension JAlertManager {
         contentStackView.addArrangedSubview(cotentBottomBorderView)
         
         NSLayoutConstraint.activate([
-            cotentBottomBorderView.leadingAnchor.constraint(equalTo: contentStackView.leadingAnchor, constant: 0),
-            cotentBottomBorderView.trailingAnchor.constraint(equalTo: contentStackView.trailingAnchor, constant: 0),
+            cotentBottomBorderView.leadingAnchor.constraint(equalTo: contentStackView.leadingAnchor),
+            cotentBottomBorderView.trailingAnchor.constraint(equalTo: contentStackView.trailingAnchor),
             cotentBottomBorderView.heightAnchor.constraint(equalToConstant: 1)
         ])
     }
     
     private func setupButtonStackView() {
+        buttonStackView.addArrangedSubview(firstButtonView)
+        buttonStackView.addArrangedSubview(secondButtonView)
+        contentStackView.addArrangedSubview(buttonStackView)
         
+        NSLayoutConstraint.activate([
+            buttonStackView.leadingAnchor.constraint(equalTo: contentStackView.leadingAnchor),
+            buttonStackView.trailingAnchor.constraint(equalTo: contentStackView.trailingAnchor),
+            buttonStackView.heightAnchor.constraint(equalToConstant: 40)
+        ])
     }
 }
 
