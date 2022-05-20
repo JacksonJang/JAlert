@@ -12,8 +12,11 @@ public class JAlertManager: NSObject {
     public var cornerRadius:CGFloat = 10.0
     public var contentBackgroundColor:UIColor = .white
     
+    public var firstButtonString:String = "OK"
+    public var secondButtonString:String = "Cancel"
+    
     //BackgroundColor of dimView
-    var withAlphaComponent:CGFloat = 0.4 {
+    public var withAlphaComponent:CGFloat = 0.4 {
         didSet{
             dimView.backgroundColor = UIColor.black.withAlphaComponent(withAlphaComponent)
         }
@@ -95,7 +98,6 @@ public class JAlertManager: NSObject {
         let view = UIView()
         
         view.translatesAutoresizingMaskIntoConstraints = false
-//        view.backgroundColor = .red
         
         return view
     }()
@@ -151,7 +153,6 @@ extension JAlertManager {
         setupContentStackView()
         setupBetweenCotentAndButtonBorderView()
         setupButtonStackView()
-        setupSecondButtonLeftBorderView()
     }
     
     private func setupDimView() {
@@ -216,6 +217,43 @@ extension JAlertManager {
             buttonStackView.trailingAnchor.constraint(equalTo: contentStackView.trailingAnchor),
             buttonStackView.heightAnchor.constraint(equalToConstant: 40)
         ])
+        
+        setupFirstButtonView()
+        setupSecondButtonView()
+    }
+    
+    private func setupFirstButtonView() {
+        let label = UILabel()
+        let button = UIButton()
+        
+        label.translatesAutoresizingMaskIntoConstraints = false
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        label.text = firstButtonString
+        button.addTarget(self, action: #selector(onTouchFirstButtonView(sender:)), for: .touchUpInside)
+        
+        [
+            label,
+            button
+        ].forEach{
+            firstButtonView.addSubview($0)
+        }
+        
+        if let superView = button.superview {
+            NSLayoutConstraint.activate([
+                button.topAnchor.constraint(equalTo: superView.topAnchor),
+                button.leadingAnchor.constraint(equalTo: superView.leadingAnchor),
+                button.trailingAnchor.constraint(equalTo: superView.trailingAnchor),
+                button.bottomAnchor.constraint(equalTo: superView.bottomAnchor),
+                label.centerXAnchor.constraint(equalTo: superView.centerXAnchor),
+                label.centerYAnchor.constraint(equalTo: superView.centerYAnchor),
+            ])
+        }
+    }
+    
+    private func setupSecondButtonView() {
+        
+        setupSecondButtonLeftBorderView()
     }
     
     private func setupSecondButtonLeftBorderView() {
@@ -247,5 +285,15 @@ extension JAlertManager {
         NSLayoutConstraint.activate([
             spacingView.heightAnchor.constraint(equalToConstant: spacing)
         ])
+    }
+    
+    @objc
+    private func onTouchFirstButtonView(sender:UIButton) {
+        print("onTouchFirstButtonView")
+    }
+    
+    @objc
+    private func onTouchSecondButtonView(sender:UIButton) {
+        print("onTouchSecondButtonView")
     }
 }
