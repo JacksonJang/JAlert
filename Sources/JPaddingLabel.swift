@@ -10,6 +10,16 @@ class JPaddingLabel: UILabel {
         commonInit()
     }
     
+    override var intrinsicContentSize: CGSize {
+        let size = super.intrinsicContentSize
+        return CGSize(width: size.width + padding.left + padding.right, height: size.height + padding.top + padding.bottom)
+    }
+    
+    func configuration(top:CGFloat = 0.0, left:CGFloat = 0.0, bottom:CGFloat = 0.0, right:CGFloat = 0.0) {
+        self.padding = UIEdgeInsets(top: top, left: left, bottom: bottom, right: right)
+    }
+    
+    
     private func commonInit() {
         translatesAutoresizingMaskIntoConstraints = false
     }

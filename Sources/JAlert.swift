@@ -40,6 +40,7 @@ public class JAlertManager: NSObject {
     //MARK: UI
     private var alertView:BaseUIView!
     private var dimView:BaseUIView!
+    
     private lazy var contentStackView:UIStackView = {
         let sv = UIStackView()
         sv.translatesAutoresizingMaskIntoConstraints = false
@@ -89,6 +90,18 @@ public class JAlertManager: NSObject {
         return view
     }()
     
+    private var titleTopSpacingView:UIView!
+    private var messageBottomSpacingView:UIView!
+    
+    public override init() {
+        super.init()
+        setupUI()
+    }
+    
+    private func setupUI() {
+        print("setupUI")
+        createJAlert()
+    }
 }
 
 extension JAlertManager {
@@ -101,8 +114,7 @@ extension JAlertManager {
                      buttonTitles:[String] = []) {
         titleLabel.text = title
         messageLabel.text = message
-        
-        createJAlert()
+        updateConfiguration()
         
         if let alertView = alertView,
            let window = UIApplication.shared.windows.first(where: { $0.isKeyWindow}) {
@@ -120,14 +132,28 @@ extension JAlertManager {
         }
     }
     
-    public func hide() {
+    private func removeViewConstraints() {
+        titleTopSpacingView.removeConstraints()
+        messageBottomSpacingView.removeConstraints()
+    }
+    
+    private func updateConfiguration() {
+        removeViewConstraints()
         
+        print("titleTopSpacingView constraints : ", titleTopSpacingView.constraints)
+        
+        NSLayoutConstraint.activate([
+            titleTopSpacingView.heightAnchor.constraint(equalToConstant: config.titleTopMargin),
+            messageBottomSpacingView.heightAnchor.constraint(equalToConstant: config.messageBottomMargin)
+        ])
     }
 }
 
 extension JAlertManager {
     private func createJAlert(){
         alertView = BaseUIView()
+        titleTopSpacingView = BaseUIView()
+        messageBottomSpacingView = BaseUIView()
         
         setupDimView()
         setupContentStackView()
@@ -155,15 +181,13 @@ extension JAlertManager {
     }
     
     private func addTitleAndMessageToContentStackView() {
-        createSpacingView(spacing: config.titleTopMargin)
-        
+        contentStackView.addArrangedSubview(titleTopSpacingView)
         contentStackView.addArrangedSubview(titleLabel)
         if #available(iOS 11.0, *) {
             contentStackView.setCustomSpacing(config.betweenTitleAndMessageMargin, after: titleLabel)
         }
         contentStackView.addArrangedSubview(messageLabel)
-        
-        createSpacingView(spacing: config.messageBottomMargin)
+        contentStackView.addArrangedSubview(messageBottomSpacingView)
     }
     
     private func setupAlertContentView() {
@@ -279,27 +303,15 @@ extension JAlertManager {
 }
 
 extension JAlertManager {
-    private func createSpacingView(spacing:CGFloat) {
-        let spacingView:UIView = {
-            let view = UIView()
-            view.translatesAutoresizingMaskIntoConstraints = false
-            return view
-        }()
-        
-        contentStackView.addArrangedSubview(spacingView)
-        
-        NSLayoutConstraint.activate([
-            spacingView.heightAnchor.constraint(equalToConstant: spacing)
-        ])
-    }
-    
     @objc
     private func onTouchFirstButtonView(sender:UIButton) {
         print("onTouchFirstButtonView")
+        alertView.removeFromSuperview()
     }
     
     @objc
     private func onTouchSecondButtonView(sender:UIButton) {
         print("onTouchSecondButtonView")
+        alertView.removeFromSuperview()
     }
 }

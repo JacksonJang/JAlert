@@ -46,7 +46,17 @@ extension TypeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let index = indexPath.row
         
-        JAlert.show(title: "title test", message: "message test")
+        if index == 0 {
+            let config = JConfig()
+            config.titleTopMargin = 10
+            JAlert.configuration(config: config)
+            JAlert.show(title: "title test", message: "message test")
+        } else {
+            let config = JConfig()
+            config.titleTopMargin = 30
+            JAlert.configuration(config: config)
+            JAlert.show(title: "title test", message: "message test")
+        }
         
         print("index : ", index)
     }
