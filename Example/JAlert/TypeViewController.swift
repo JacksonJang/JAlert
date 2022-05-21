@@ -47,6 +47,7 @@ extension TypeViewController: UITableViewDelegate, UITableViewDataSource {
         let index = indexPath.row
         
         JAlert.show(title: "title test", message: "message test")
+        
         print("index : ", index)
     }
 }

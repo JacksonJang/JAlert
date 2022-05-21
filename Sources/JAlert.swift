@@ -7,32 +7,11 @@ public class JAlertManager: NSObject {
     
     public weak var delegate: JAlertDelegate? // delegate
     
-    public var alertLeftMarign:CGFloat = 20.0
-    public var alertRightMargin:CGFloat = 20.0
-    public var cornerRadius:CGFloat = 10.0
-    public var contentBackgroundColor:UIColor = .white
-    
     public var firstButtonString:String = "OK"
     public var secondButtonString:String = "Cancel"
     
-    //BackgroundColor of dimView
-    public var withAlphaComponent:CGFloat = 0.4 {
-        didSet{
-            dimView.backgroundColor = UIColor.black.withAlphaComponent(withAlphaComponent)
-        }
-    }
-    
-    public var spacing:CGFloat = 15.0
-    public var titleTopMargin:CGFloat = 10.0
-    public var titleLeftMargin:CGFloat = 10.0
-    public var titleRightMargin:CGFloat = 10.0
-    public var betweenTitleAndMessageMargin:CGFloat = 10.0
-    public var messageLeftMargin:CGFloat = 10.0
-    public var messageRightMargin:CGFloat = 10.0
-    public var messageBottomMargin:CGFloat = 10.0
-    
     private lazy var titleLabel:JPaddingLabel = {
-        let label = JPaddingLabel(left: titleLeftMargin, right: titleRightMargin)
+        let label = JPaddingLabel(left: config.titleLeftMargin, right: config.titleRightMargin)
         
         label.lineBreakMode = .byCharWrapping
         label.textAlignment = .center
@@ -42,7 +21,7 @@ public class JAlertManager: NSObject {
     }()
     
     private lazy var messageLabel:JPaddingLabel = {
-        let label = JPaddingLabel(left: titleLeftMargin, right: titleRightMargin)
+        let label = JPaddingLabel(left: config.titleLeftMargin, right: config.titleRightMargin)
         
         label.lineBreakMode = .byCharWrapping
         label.textAlignment = .center
@@ -69,8 +48,8 @@ public class JAlertManager: NSObject {
         sv.axis = .vertical
         sv.alignment = .fill
         sv.distribution = .fill
-        sv.layer.cornerRadius = cornerRadius
-        sv.backgroundColor = contentBackgroundColor
+        sv.layer.cornerRadius = config.cornerRadius
+        sv.backgroundColor = config.contentBackgroundColor
         return sv
     }()
     
@@ -117,7 +96,9 @@ extension JAlertManager {
         self.config = config
     }
     
-    public func show(title:String = "", message:String = "") {
+    public func show(title:String = "",
+                     message:String = "",
+                     buttonTitles:[String] = []) {
         titleLabel.text = title
         messageLabel.text = message
         
@@ -156,7 +137,7 @@ extension JAlertManager {
     
     private func setupDimView() {
         dimView = BaseUIView()
-        dimView.backgroundColor = UIColor.black.withAlphaComponent(withAlphaComponent)
+        dimView.backgroundColor = UIColor.black.withAlphaComponent(config.backgroundWithAlphaComponent)
         
         alertView.addSubview(dimView)
         
@@ -174,15 +155,15 @@ extension JAlertManager {
     }
     
     private func addTitleAndMessageToContentStackView() {
-        createSpacingView(spacing: titleTopMargin)
+        createSpacingView(spacing: config.titleTopMargin)
         
         contentStackView.addArrangedSubview(titleLabel)
         if #available(iOS 11.0, *) {
-            contentStackView.setCustomSpacing(betweenTitleAndMessageMargin, after: titleLabel)
+            contentStackView.setCustomSpacing(config.betweenTitleAndMessageMargin, after: titleLabel)
         }
         contentStackView.addArrangedSubview(messageLabel)
         
-        createSpacingView(spacing: messageBottomMargin)
+        createSpacingView(spacing: config.messageBottomMargin)
     }
     
     private func setupAlertContentView() {
