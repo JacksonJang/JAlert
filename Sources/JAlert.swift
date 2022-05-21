@@ -252,6 +252,32 @@ extension JAlertManager {
     }
     
     private func setupSecondButtonView() {
+        let label = UILabel()
+        let button = UIButton()
+        
+        label.translatesAutoresizingMaskIntoConstraints = false
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        label.text = secondButtonString
+        button.addTarget(self, action: #selector(onTouchSecondButtonView(sender:)), for: .touchUpInside)
+        
+        [
+            label,
+            button
+        ].forEach{
+            secondButtonView.addSubview($0)
+        }
+        
+        if let superView = button.superview {
+            NSLayoutConstraint.activate([
+                button.topAnchor.constraint(equalTo: superView.topAnchor),
+                button.leadingAnchor.constraint(equalTo: superView.leadingAnchor),
+                button.trailingAnchor.constraint(equalTo: superView.trailingAnchor),
+                button.bottomAnchor.constraint(equalTo: superView.bottomAnchor),
+                label.centerXAnchor.constraint(equalTo: superView.centerXAnchor),
+                label.centerYAnchor.constraint(equalTo: superView.centerYAnchor),
+            ])
+        }
         
         setupSecondButtonLeftBorderView()
     }
