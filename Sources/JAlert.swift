@@ -118,9 +118,8 @@ extension JAlertManager {
     }
     
     public func show(title:String = "", message:String = "") {
-        //TODO: Temporary data
-        titleLabel.text = "Title Example"
-        messageLabel.text = "Message Example"
+        titleLabel.text = title
+        messageLabel.text = message
         
         createJAlert()
         

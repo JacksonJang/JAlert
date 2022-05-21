@@ -46,8 +46,7 @@ extension TypeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let index = indexPath.row
         
-
-        JAlert.show()
+        JAlert.show(title: "title test", message: "message test")
         print("index : ", index)
     }
 }
