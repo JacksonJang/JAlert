@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'JAlert'
-  s.version          = '0.6.5'
+  s.version          = '0.6.6'
   s.summary          = '"JAlert" is a customizable Alert easily.'
 
 # This description is used to generate tags and improve search results.
