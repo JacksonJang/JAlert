@@ -1,24 +1,13 @@
-//
-//  TypeViewController.swift
-//  JAlert_Example
-//
-//  Created by JacksonJang on 2022/01/28.
-//  Copyright © 2022 CocoaPods. All rights reserved.
-//
-
 import UIKit
 import JAlert
 
-class TypeViewController: UIViewController {
+class BasicViewController: UIViewController {
     @IBOutlet var tableView: UITableView!
     
     var data:[String] = [
-        "Type : default",
-        "Type : confirm",
-        "Type : submit",
-        "Type : date",
-        "Type : image",
-        "Type : multi"
+        "default",
+        "Add buttonTitles",
+        "Add completion",
     ]
     
     override func viewDidLoad() {
@@ -29,7 +18,7 @@ class TypeViewController: UIViewController {
     }
 }
 
-extension TypeViewController: UITableViewDelegate, UITableViewDataSource {
+extension BasicViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data.count
     }
@@ -46,20 +35,20 @@ extension TypeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let index = indexPath.row
         
-        if index == 0 {
-            let config = JConfig()
-            config.titleTopMargin = 10
-            JAlert.configuration(config: config)
-            JAlert.show(title: "title test", message: "message test") { (index) in
+        switch index {
+        case 0:
+            JAlert.show(title: "title test", message: "message test")
+            break;
+        case 1:
+            JAlert.show(title: "title test", message: "message test", buttonTitles: ["YES", "NO"])
+            break;
+        case 2:
+            JAlert.show(title: "title test", message: "message test", buttonTitles: ["YES", "NO"]) { (index) in
                 print("index : ", index)
             }
-        } else {
-            let config = JConfig()
-            config.titleTopMargin = 30
-            JAlert.configuration(config: config)
-            JAlert.show(title: "title test", message: "message test")
+            break;
+        default:
+            print("not exist")
         }
-        
-//        print("index : ", index)
     }
 }

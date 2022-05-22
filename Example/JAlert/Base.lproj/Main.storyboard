@@ -84,10 +84,10 @@
             </objects>
             <point key="canvasLocation" x="-26" y="131"/>
         </scene>
-        <!--Type View Controller-->
+        <!--Basic View Controller-->
         <scene sceneID="DHW-ED-PVw">
             <objects>
-                <viewController storyboardIdentifier="TypeViewController" id="TLl-Ds-PDg" customClass="TypeViewController" customModule="JAlert_Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BasicViewController" id="TLl-Ds-PDg" customClass="BasicViewController" customModule="JAlert_Example" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="aWX-Ws-geL"/>
                         <viewControllerLayoutGuide type="bottom" id="oIN-Pc-VFr"/>

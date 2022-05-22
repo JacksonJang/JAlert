@@ -13,7 +13,7 @@ class MainViewController: UIViewController {
     @IBOutlet var tableView: UITableView!
     
     var data:[String] = [
-        "Type Example"
+        "Basic Example"
     ]
     
     override func viewDidLoad() {
@@ -58,7 +58,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         
         switch index {
         case 0:
-            pushViewController(name: "TypeViewController")
+            pushViewController(name: "BasicViewController")
         default:
             print("the rest of index")
         }
