@@ -33,6 +33,7 @@ public class JAlertManager: NSObject {
     //MARK: Alert Default Properties
     private var title:String = ""
     private var message:String = ""
+    private var completion:((Int) -> Void)? = nil
     
     //MARK: Private Properties
     private var config:JConfig = JConfig()
@@ -99,7 +100,6 @@ public class JAlertManager: NSObject {
     }
     
     private func setupUI() {
-        print("setupUI")
         createJAlert()
     }
 }
@@ -111,9 +111,12 @@ extension JAlertManager {
     
     public func show(title:String = "",
                      message:String = "",
-                     buttonTitles:[String] = []) {
+                     buttonTitles:[String] = [],
+                     completion:((Int) -> Void)? = nil) {
         titleLabel.text = title
         messageLabel.text = message
+        self.completion = completion
+        
         updateConfiguration()
         
         if let alertView = alertView,
@@ -139,8 +142,6 @@ extension JAlertManager {
     
     private func updateConfiguration() {
         removeViewConstraints()
-        
-        print("titleTopSpacingView constraints : ", titleTopSpacingView.constraints)
         
         NSLayoutConstraint.activate([
             titleTopSpacingView.heightAnchor.constraint(equalToConstant: config.titleTopMargin),
@@ -306,12 +307,18 @@ extension JAlertManager {
     @objc
     private func onTouchFirstButtonView(sender:UIButton) {
         print("onTouchFirstButtonView")
+        if let completion = self.completion {
+            completion(0)
+        }
         alertView.removeFromSuperview()
     }
     
     @objc
     private func onTouchSecondButtonView(sender:UIButton) {
         print("onTouchSecondButtonView")
+        if let completion = self.completion {
+            completion(1)
+        }
         alertView.removeFromSuperview()
     }
 }

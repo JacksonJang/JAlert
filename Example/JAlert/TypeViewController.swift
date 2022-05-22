@@ -50,7 +50,9 @@ extension TypeViewController: UITableViewDelegate, UITableViewDataSource {
             let config = JConfig()
             config.titleTopMargin = 10
             JAlert.configuration(config: config)
-            JAlert.show(title: "title test", message: "message test")
+            JAlert.show(title: "title test", message: "message test") { (index) in
+                print("index : ", index)
+            }
         } else {
             let config = JConfig()
             config.titleTopMargin = 30
@@ -58,6 +60,6 @@ extension TypeViewController: UITableViewDelegate, UITableViewDataSource {
             JAlert.show(title: "title test", message: "message test")
         }
         
-        print("index : ", index)
+//        print("index : ", index)
     }
 }
