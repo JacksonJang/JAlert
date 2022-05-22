@@ -7,9 +7,6 @@ public class JAlertManager: NSObject {
     
     public weak var delegate: JAlertDelegate? // delegate
     
-    public var firstButtonString:String = "OK"
-    public var secondButtonString:String = "Cancel"
-    
     private lazy var titleLabel:JPaddingLabel = {
         let label = JPaddingLabel(left: config.titleLeftMargin, right: config.titleRightMargin)
         
@@ -30,9 +27,13 @@ public class JAlertManager: NSObject {
         return label
     }()
     
+    private var firstButtonLabel:JPaddingLabel!
+    private var secondButtonLabel:JPaddingLabel!
+    
     //MARK: Alert Default Properties
     private var title:String = ""
     private var message:String = ""
+    private var buttonTitles:[String] = ["OK"]
     private var completion:((Int) -> Void)? = nil
     
     //MARK: Private Properties
@@ -111,13 +112,15 @@ extension JAlertManager {
     
     public func show(title:String = "",
                      message:String = "",
-                     buttonTitles:[String] = [],
+                     buttonTitles:[String] = ["OK"],
                      completion:((Int) -> Void)? = nil) {
         titleLabel.text = title
         messageLabel.text = message
+        self.buttonTitles = buttonTitles
         self.completion = completion
         
-        updateConfiguration()
+        updateTitleAndMessageConfiguration()
+        updateButtonConfiguration()
         
         if let alertView = alertView,
            let window = UIApplication.shared.windows.first(where: { $0.isKeyWindow}) {
@@ -140,13 +143,25 @@ extension JAlertManager {
         messageBottomSpacingView.removeConstraints()
     }
     
-    private func updateConfiguration() {
+    private func updateTitleAndMessageConfiguration() {
         removeViewConstraints()
         
         NSLayoutConstraint.activate([
             titleTopSpacingView.heightAnchor.constraint(equalToConstant: config.titleTopMargin),
             messageBottomSpacingView.heightAnchor.constraint(equalToConstant: config.messageBottomMargin)
         ])
+    }
+    
+    private func updateButtonConfiguration() {
+        for index in 0..<buttonTitles.count {
+            if index == 0 {
+                firstButtonLabel.text = buttonTitles[index]
+                secondButtonView.isHidden = true
+            } else if index == 1 {
+                secondButtonLabel.text = buttonTitles[index]
+                secondButtonView.isHidden = false
+            }
+        }
     }
 }
 
@@ -228,17 +243,14 @@ extension JAlertManager {
     }
     
     private func setupFirstButtonView() {
-        let label = UILabel()
+        firstButtonLabel = JPaddingLabel()
         let button = UIButton()
         
-        label.translatesAutoresizingMaskIntoConstraints = false
         button.translatesAutoresizingMaskIntoConstraints = false
-        
-        label.text = firstButtonString
         button.addTarget(self, action: #selector(onTouchFirstButtonView(sender:)), for: .touchUpInside)
         
         [
-            label,
+            firstButtonLabel,
             button
         ].forEach{
             firstButtonView.addSubview($0)
@@ -250,24 +262,21 @@ extension JAlertManager {
                 button.leadingAnchor.constraint(equalTo: superView.leadingAnchor),
                 button.trailingAnchor.constraint(equalTo: superView.trailingAnchor),
                 button.bottomAnchor.constraint(equalTo: superView.bottomAnchor),
-                label.centerXAnchor.constraint(equalTo: superView.centerXAnchor),
-                label.centerYAnchor.constraint(equalTo: superView.centerYAnchor),
+                firstButtonLabel.centerXAnchor.constraint(equalTo: superView.centerXAnchor),
+                firstButtonLabel.centerYAnchor.constraint(equalTo: superView.centerYAnchor),
             ])
         }
     }
     
     private func setupSecondButtonView() {
-        let label = UILabel()
+        secondButtonLabel = JPaddingLabel()
         let button = UIButton()
         
-        label.translatesAutoresizingMaskIntoConstraints = false
         button.translatesAutoresizingMaskIntoConstraints = false
-        
-        label.text = secondButtonString
         button.addTarget(self, action: #selector(onTouchSecondButtonView(sender:)), for: .touchUpInside)
         
         [
-            label,
+            secondButtonLabel,
             button
         ].forEach{
             secondButtonView.addSubview($0)
@@ -279,8 +288,8 @@ extension JAlertManager {
                 button.leadingAnchor.constraint(equalTo: superView.leadingAnchor),
                 button.trailingAnchor.constraint(equalTo: superView.trailingAnchor),
                 button.bottomAnchor.constraint(equalTo: superView.bottomAnchor),
-                label.centerXAnchor.constraint(equalTo: superView.centerXAnchor),
-                label.centerYAnchor.constraint(equalTo: superView.centerYAnchor),
+                secondButtonLabel.centerXAnchor.constraint(equalTo: superView.centerXAnchor),
+                secondButtonLabel.centerYAnchor.constraint(equalTo: superView.centerYAnchor),
             ])
         }
         
@@ -306,19 +315,19 @@ extension JAlertManager {
 extension JAlertManager {
     @objc
     private func onTouchFirstButtonView(sender:UIButton) {
-        print("onTouchFirstButtonView")
         if let completion = self.completion {
             completion(0)
         }
+        
         alertView.removeFromSuperview()
     }
     
     @objc
     private func onTouchSecondButtonView(sender:UIButton) {
-        print("onTouchSecondButtonView")
         if let completion = self.completion {
             completion(1)
         }
+        
         alertView.removeFromSuperview()
     }
 }
