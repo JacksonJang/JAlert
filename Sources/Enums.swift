@@ -7,21 +7,8 @@
 
 import UIKit
 
-public enum ElementType{
-    case title
-    case message
-    case submit
-    case date
-    case image
-}
-
 public enum AlertType{
     case `default`
-    case confirm
-    case submit
-    case date
-    case image
-    case multi
 }
 
 //MARK: - Language
@@ -42,16 +29,4 @@ public enum Language:String{
     case en_AU = "en_AU"
     case zh_CN = "zh_CN"
     case zh_TW = "zh_TW"
-}
-
-
-//MARK: - Animation
-public enum AppearType {
-    case `default`
-    case scale
-}
-
-public enum DisappearType {
-    case `default`
-    case scale
 }

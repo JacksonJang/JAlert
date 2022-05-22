@@ -1,19 +1,13 @@
-//
-//  DelegateViewController.swift
-//  JAlert_Example
-//
-//  Created by JacksonJang on 2022/01/28.
-//  Copyright © 2022 CocoaPods. All rights reserved.
-//
-
 import UIKit
 import JAlert
 
-class DelegateViewController: UIViewController {
+class BasicViewController: UIViewController {
     @IBOutlet var tableView: UITableView!
     
-    var data: [String] = [
-        "clickedButtonAtIndex Delegate"
+    var data:[String] = [
+        "default",
+        "Add buttonTitles",
+        "Add completion",
     ]
     
     override func viewDidLoad() {
@@ -24,7 +18,7 @@ class DelegateViewController: UIViewController {
     }
 }
 
-extension DelegateViewController: UITableViewDelegate, UITableViewDataSource {
+extension BasicViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data.count
     }
@@ -43,19 +37,18 @@ extension DelegateViewController: UITableViewDelegate, UITableViewDataSource {
         
         switch index {
         case 0:
-            let alert = JAlert(title: "title", message: "message", alertType: .default, onButtonClicked: { index in
-                print("index : \(index)")
-            })
-            alert.delegate = self
-            alert.show()
+            JAlert.show(title: "title test", message: "message test")
+            break;
+        case 1:
+            JAlert.show(title: "title test", message: "message test", buttonTitles: ["YES", "NO"])
+            break;
+        case 2:
+            JAlert.show(title: "title test", message: "message test", buttonTitles: ["YES", "NO"]) { (index) in
+                print("index : ", index)
+            }
+            break;
         default:
-            print("the rest of index")
+            print("not exist")
         }
-    }
-}
-
-extension DelegateViewController:JAlertDelegate {
-    func alertView(_ alertView: JAlert, clickedButtonAtIndex buttonIndex: Int) {
-        print("buttonIndex : ", buttonIndex)
     }
 }

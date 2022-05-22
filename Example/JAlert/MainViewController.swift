@@ -13,11 +13,7 @@ class MainViewController: UIViewController {
     @IBOutlet var tableView: UITableView!
     
     var data:[String] = [
-        "Type Example",
-        "Type Property Example",
-        "JAlert Property Example",
-        "Animation Example",
-        "Using Delegate"
+        "Basic Example"
     ]
     
     override func viewDidLoad() {
@@ -62,15 +58,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         
         switch index {
         case 0:
-            pushViewController(name: "TypeViewController")
-        case 1:
-            pushViewController(name: "TypePropertyViewController")
-        case 2:
-            pushViewController(name: "JAlertPropertyViewController")
-        case 3:
-            pushViewController(name: "AnimationViewController")
-        case 4:
-            pushViewController(name: "DelegateViewController")
+            pushViewController(name: "BasicViewController")
         default:
             print("the rest of index")
         }

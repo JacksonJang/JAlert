@@ -16,6 +16,11 @@
 		E0516F6F0B2FAF245F0BAEAD0C1558E8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
 		E21D8BAE27871D1B0041DBCE /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21D8BAC27871D1B0041DBCE /* Enums.swift */; };
 		E21D8BAF27871D1B0041DBCE /* JAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21D8BAD27871D1B0041DBCE /* JAlert.swift */; };
+		E24153332830BF41001EB989 /* JConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24153322830BF41001EB989 /* JConfig.swift */; };
+		E24153352830BF89001EB989 /* JAlertDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24153342830BF89001EB989 /* JAlertDelegate.swift */; };
+		E24153372830C655001EB989 /* BaseUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24153362830C655001EB989 /* BaseUIView.swift */; };
+		E24625FE283688E800399185 /* JPaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24625FD283688E800399185 /* JPaddingLabel.swift */; };
+		E2874F152838B90C00463530 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2874F142838B90C00463530 /* UIView+Extensions.swift */; };
 		E374520901AD70B7045A4DF54F5F0DDA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
 		E60CB03C5F8D32BCFD374BE367E12735 /* Pods-JAlert_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = EAEDF4FF634B9CAA8B2A14FAE6077156 /* Pods-JAlert_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
@@ -66,6 +71,11 @@
 		E0121E063B3D6472FA11962437834510 /* Pods-JAlert_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-JAlert_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		E21D8BAC27871D1B0041DBCE /* Enums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		E21D8BAD27871D1B0041DBCE /* JAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JAlert.swift; sourceTree = "<group>"; };
+		E24153322830BF41001EB989 /* JConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JConfig.swift; sourceTree = "<group>"; };
+		E24153342830BF89001EB989 /* JAlertDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JAlertDelegate.swift; sourceTree = "<group>"; };
+		E24153362830C655001EB989 /* BaseUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUIView.swift; sourceTree = "<group>"; };
+		E24625FD283688E800399185 /* JPaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JPaddingLabel.swift; sourceTree = "<group>"; };
+		E2874F142838B90C00463530 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		E605433FD475ADBF1D0E115E00A69325 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		EA1904604318621384E2965FF42D9AC0 /* Pods-JAlert_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-JAlert_Example-dummy.m"; sourceTree = "<group>"; };
 		EAEDF4FF634B9CAA8B2A14FAE6077156 /* Pods-JAlert_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-JAlert_Example-umbrella.h"; sourceTree = "<group>"; };
@@ -228,8 +238,13 @@
 		E21D8BB327871DF90041DBCE /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				E21D8BAC27871D1B0041DBCE /* Enums.swift */,
 				E21D8BAD27871D1B0041DBCE /* JAlert.swift */,
+				E24153322830BF41001EB989 /* JConfig.swift */,
+				E24153342830BF89001EB989 /* JAlertDelegate.swift */,
+				E21D8BAC27871D1B0041DBCE /* Enums.swift */,
+				E24153362830C655001EB989 /* BaseUIView.swift */,
+				E24625FD283688E800399185 /* JPaddingLabel.swift */,
+				E2874F142838B90C00463530 /* UIView+Extensions.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -379,8 +394,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				E21D8BAF27871D1B0041DBCE /* JAlert.swift in Sources */,
+				E24153332830BF41001EB989 /* JConfig.swift in Sources */,
 				E21D8BAE27871D1B0041DBCE /* Enums.swift in Sources */,
+				E24625FE283688E800399185 /* JPaddingLabel.swift in Sources */,
+				E24153352830BF89001EB989 /* JAlertDelegate.swift in Sources */,
 				9B4C5AFFB1F29D1178D3E86AB512BB52 /* JAlert-dummy.m in Sources */,
+				E2874F152838B90C00463530 /* UIView+Extensions.swift in Sources */,
+				E24153372830C655001EB989 /* BaseUIView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
