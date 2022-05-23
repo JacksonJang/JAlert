@@ -13,7 +13,7 @@ We can choose the type we want and use it.
 ## Preview
 | default | buttonTitles |
 |---|---|
-| <img src="https://gist.githubusercontent.com/JacksonJang/050927a21f291ad4d65cac0e2df4b4c9/raw/0fa232e39f8eceaf13e261519a5ad55df5d0e1e4/JAlert1.png"  width="300" height="398"> | <img src="https://gist.githubusercontent.com/JacksonJang/050927a21f291ad4d65cac0e2df4b4c9/raw/0fa232e39f8eceaf13e261519a5ad55df5d0e1e4/JAlert2.png"  width="300" height="398"> 
+| <img src="https://gist.githubusercontent.com/JacksonJang/050927a21f291ad4d65cac0e2df4b4c9/raw/0fa232e39f8eceaf13e261519a5ad55df5d0e1e4/JAlert1.png"  width="300"> | <img src="https://gist.githubusercontent.com/JacksonJang/050927a21f291ad4d65cac0e2df4b4c9/raw/0fa232e39f8eceaf13e261519a5ad55df5d0e1e4/JAlert2.png"  width="300" > 
 
 ---
 ## CocoaPods
