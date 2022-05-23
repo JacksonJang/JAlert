@@ -37,13 +37,16 @@ extension BasicViewController: UITableViewDelegate, UITableViewDataSource {
         
         switch index {
         case 0:
-            JAlert.show(title: "title test", message: "message test")
+            JAlert.show(title: "title test",
+                        message: "message test")
             break;
         case 1:
             JAlert.show(title: "title test", message: "message test", buttonTitles: ["YES", "NO"])
             break;
         case 2:
-            JAlert.show(title: "title test", message: "message test", buttonTitles: ["YES", "NO"]) { (index) in
+            JAlert.show(title: "title test",
+                        message: "message test",
+                        buttonTitles: ["YES", "NO"]) { (index) in
                 print("index : ", index)
             }
             break;
