@@ -13,7 +13,8 @@ class MainViewController: UIViewController {
     @IBOutlet var tableView: UITableView!
     
     var data:[String] = [
-        "Basic Example"
+        "Basic Example",
+        "Properties Example"
     ]
     
     override func viewDidLoad() {
@@ -35,6 +36,10 @@ class MainViewController: UIViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: name)
         
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func pushViewController(_ vc:UIViewController) {
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }
@@ -59,6 +64,10 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         switch index {
         case 0:
             pushViewController(name: "BasicViewController")
+        case 1:
+            if #available(iOS 11.0, *) {
+                pushViewController(PropertiesViewController())
+            }
         default:
             print("the rest of index")
         }
@@ -66,5 +75,36 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 class ExampleListCell: UITableViewCell {
+    static let identifier = String(describing: ExampleListCell.self)
+    
     @IBOutlet var titleLabel: UILabel!
+    
+    func createTitleLabel(text:String) {
+        self.selectionStyle = .none
+        if titleLabel == nil {
+            titleLabel = UILabel()
+            titleLabel.text = text
+            titleLabel.translatesAutoresizingMaskIntoConstraints = false
+            
+            self.contentView.addSubview(titleLabel)
+            
+            NSLayoutConstraint.activate([
+                titleLabel.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor),
+                titleLabel.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor),
+            ])
+        }
+    }
+//    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+//        super.init(style: style, reuseIdentifier: reuseIdentifier)
+//        
+//    }
+    //
+    //    required init?(coder: NSCoder) {
+    //        fatalError("init(coder:) has not been implemented")
+    //    }
+    
+//    override func draw(_ rect: CGRect) {
+//        super.draw(rect)
+//
+//    }
 }

@@ -56,11 +56,11 @@ public class JAlertManager: NSObject {
         return sv
     }()
     
-    private var cotentBottomBorderView:UIView = {
+    private lazy var cotentBottomBorderView:UIView = {
         let view = UIView()
         
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .gray
+        view.backgroundColor = config.borderColor
         
         return view
     }()
@@ -119,6 +119,7 @@ extension JAlertManager {
         self.buttonTitles = buttonTitles
         self.completion = completion
         
+        updateJConfigProperties()
         updateTitleAndMessageConfiguration()
         updateButtonConfiguration()
         
@@ -138,20 +139,41 @@ extension JAlertManager {
         }
     }
     
-    private func removeViewConstraints() {
-        titleTopSpacingView.removeConstraints()
-        messageBottomSpacingView.removeConstraints()
+    private func updateJConfigProperties() {
+//        titleLabel.configuration(left: config.titleLeftMargin,
+//                                 right: config.titleRightMargin)
+//        messageLabel.configuration(left: config.messageLeftMargin,
+//                                   right: config.messageRightMargin)
+        titleLabel.removeConstraints()
+        messageLabel.removeConstraints()
+        
+        if let superView = titleLabel.superview {
+            NSLayoutConstraint.activate([
+                titleLabel.leadingAnchor.constraint(equalTo: superView.leadingAnchor, constant: config.titleLeftMargin),
+                titleLabel.trailingAnchor.constraint(equalTo: superView.trailingAnchor, constant: -config.titleRightMargin),
+                messageLabel.leadingAnchor.constraint(equalTo: superView.leadingAnchor, constant: config.messageLeftMargin),
+                messageLabel.trailingAnchor.constraint(equalTo: superView.trailingAnchor, constant: -config.messageRightMargin),
+            ])
+        }
+        
+        
+        cotentBottomBorderView.layer.borderColor = config.borderColor.cgColor
     }
     
     private func updateTitleAndMessageConfiguration() {
-        removeViewConstraints()
+        titleTopSpacingView.removeConstraints()
+        messageBottomSpacingView.removeConstraints()
+        
+        if #available(iOS 11.0, *) {
+            contentStackView.setCustomSpacing(config.betweenTitleAndMessageMargin, after: titleLabel)
+        }
         
         NSLayoutConstraint.activate([
             titleTopSpacingView.heightAnchor.constraint(equalToConstant: config.titleTopMargin),
             messageBottomSpacingView.heightAnchor.constraint(equalToConstant: config.messageBottomMargin)
         ])
     }
-    
+
     private func updateButtonConfiguration() {
         for index in 0..<buttonTitles.count {
             if index == 0 {
@@ -298,7 +320,7 @@ extension JAlertManager {
     
     private func setupSecondButtonLeftBorderView() {
         let borderView = UIView()
-        borderView.backgroundColor = .gray
+        borderView.backgroundColor = config.borderColor
         borderView.translatesAutoresizingMaskIntoConstraints = false
         
         secondButtonView.addSubview(borderView)

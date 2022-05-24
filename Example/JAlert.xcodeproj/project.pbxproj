@@ -16,6 +16,7 @@
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		7E986BAC2905FB0BD837D010 /* Pods_JAlert_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2ACB43C285E7F00F8FE4A114 /* Pods_JAlert_Tests.framework */; };
 		E206856827A3DB9F0090AB6E /* BasicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E206856727A3DB9F0090AB6E /* BasicViewController.swift */; };
+		E2874F17283BAE6F00463530 /* PropertiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2874F16283BAE6F00463530 /* PropertiesViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,7 @@
 		D7201675FE3F81BED8B82E97 /* Pods_JAlert_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JAlert_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E206856727A3DB9F0090AB6E /* BasicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicViewController.swift; sourceTree = "<group>"; };
 		E24FD92527BD1F2F0009E3EC /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Package.swift; path = ../Package.swift; sourceTree = "<group>"; };
+		E2874F16283BAE6F00463530 /* PropertiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertiesViewController.swift; sourceTree = "<group>"; };
 		E2CFCACAC2209AA20F744198 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		EF1F9C23AF5907375F152FB6 /* Pods-JAlert_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JAlert_Tests.debug.xcconfig"; path = "Target Support Files/Pods-JAlert_Tests/Pods-JAlert_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -168,6 +170,7 @@
 			isa = PBXGroup;
 			children = (
 				E206856727A3DB9F0090AB6E /* BasicViewController.swift */,
+				E2874F16283BAE6F00463530 /* PropertiesViewController.swift */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -345,6 +348,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E206856827A3DB9F0090AB6E /* BasicViewController.swift in Sources */,
+				E2874F17283BAE6F00463530 /* PropertiesViewController.swift in Sources */,
 				607FACD81AFB9204008FA782 /* MainViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 			);

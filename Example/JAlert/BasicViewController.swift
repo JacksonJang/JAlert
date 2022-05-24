@@ -24,7 +24,7 @@ extension BasicViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ExampleListCell", for: indexPath) as! ExampleListCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: ExampleListCell.identifier, for: indexPath) as! ExampleListCell
         let index = indexPath.row
         
         cell.titleLabel.text = data[index]
@@ -37,13 +37,16 @@ extension BasicViewController: UITableViewDelegate, UITableViewDataSource {
         
         switch index {
         case 0:
+            JAlert.configuration(config: JConfig())
             JAlert.show(title: "title test",
                         message: "message test")
             break;
         case 1:
+            JAlert.configuration(config: JConfig())
             JAlert.show(title: "title test", message: "message test", buttonTitles: ["YES", "NO"])
             break;
         case 2:
+            JAlert.configuration(config: JConfig())
             JAlert.show(title: "title test",
                         message: "message test",
                         buttonTitles: ["YES", "NO"]) { (index) in

@@ -21,6 +21,7 @@ public class JConfig {
     public var cornerRadius:CGFloat = 10.0
     public var contentBackgroundColor:UIColor = .white
     public var backgroundWithAlphaComponent:CGFloat = 0.4
+    public var borderColor:UIColor = .gray
     
     public init() {
         
