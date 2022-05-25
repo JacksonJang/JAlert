@@ -16,7 +16,8 @@ class PropertiesViewController: UIViewController {
     }()
     
     var data:[String] = [
-        "Change Margin"
+        "Change Margin",
+        "Change BorderColor"
     ]
     
     override func viewDidLoad() {
@@ -74,6 +75,12 @@ extension PropertiesViewController: UITableViewDelegate, UITableViewDataSource {
             JAlert.show(title: "title test title test title test title test title test",
                         message: "message test")
             break;
+        case 1:
+            let config = JConfig()
+            config.borderColor = .blue
+            JAlert.configuration(config: config)
+            JAlert.show(title: "title test title test title test title test title test",
+                        message: "message test", buttonTitles: ["OK", "NO"])
         default:
             print("not exist")
         }
