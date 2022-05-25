@@ -65,6 +65,15 @@ public class JAlertManager: NSObject {
         return view
     }()
     
+    private lazy var secondBorderView:UIView = {
+        let view = UIView()
+        
+        view.backgroundColor = config.borderColor
+        view.translatesAutoresizingMaskIntoConstraints = false
+        
+        return view
+    }()
+    
     private lazy var buttonStackView:UIStackView = {
         let sv = UIStackView()
 
@@ -140,12 +149,6 @@ extension JAlertManager {
     }
     
     private func updateJConfigProperties() {
-//        titleLabel.configuration(left: config.titleLeftMargin,
-//                                 right: config.titleRightMargin)
-//        messageLabel.configuration(left: config.messageLeftMargin,
-//                                   right: config.messageRightMargin)
-        titleLabel.removeConstraints()
-        messageLabel.removeConstraints()
         
         if let superView = titleLabel.superview {
             NSLayoutConstraint.activate([
@@ -156,8 +159,8 @@ extension JAlertManager {
             ])
         }
         
-        
-        cotentBottomBorderView.layer.borderColor = config.borderColor.cgColor
+        cotentBottomBorderView.backgroundColor = config.borderColor
+        secondBorderView.backgroundColor = config.borderColor
     }
     
     private func updateTitleAndMessageConfiguration() {
@@ -319,17 +322,13 @@ extension JAlertManager {
     }
     
     private func setupSecondButtonLeftBorderView() {
-        let borderView = UIView()
-        borderView.backgroundColor = config.borderColor
-        borderView.translatesAutoresizingMaskIntoConstraints = false
-        
-        secondButtonView.addSubview(borderView)
+        secondButtonView.addSubview(secondBorderView)
         
         NSLayoutConstraint.activate([
-            borderView.topAnchor.constraint(equalTo: secondButtonView.topAnchor),
-            borderView.bottomAnchor.constraint(equalTo: secondButtonView.bottomAnchor),
-            borderView.leadingAnchor.constraint(equalTo: secondButtonView.leadingAnchor, constant: -0.5),
-            borderView.widthAnchor.constraint(equalToConstant: 1)
+            secondBorderView.topAnchor.constraint(equalTo: secondButtonView.topAnchor),
+            secondBorderView.bottomAnchor.constraint(equalTo: secondButtonView.bottomAnchor),
+            secondBorderView.leadingAnchor.constraint(equalTo: secondButtonView.leadingAnchor, constant: -0.5),
+            secondBorderView.widthAnchor.constraint(equalToConstant: 1)
         ])
     }
 }
