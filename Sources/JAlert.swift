@@ -7,6 +7,25 @@ public class JAlertManager: NSObject {
     
     public weak var delegate: JAlertDelegate? // delegate
     
+    //MARK: Alert Default Properties
+    private var title:String = ""
+    private var message:String = ""
+    private var buttonTitles:[String] = ["OK"]
+    private var completion:((Int) -> Void)? = nil
+    private var config:JConfig = JConfig()
+    
+    private lazy var titleLabelStackView:UIStackView = {
+        let sv = UIStackView()
+        sv.isLayoutMarginsRelativeArrangement = true
+        return sv
+    }()
+    
+    private lazy var messageLabelStackView:UIStackView = {
+        let sv = UIStackView()
+        sv.isLayoutMarginsRelativeArrangement = true
+        return sv
+    }()
+    
     private lazy var titleLabel:JPaddingLabel = {
         let label = JPaddingLabel(left: config.titleLeftMargin, right: config.titleRightMargin)
         
@@ -30,16 +49,6 @@ public class JAlertManager: NSObject {
     private var firstButtonLabel:JPaddingLabel!
     private var secondButtonLabel:JPaddingLabel!
     
-    //MARK: Alert Default Properties
-    private var title:String = ""
-    private var message:String = ""
-    private var buttonTitles:[String] = ["OK"]
-    private var completion:((Int) -> Void)? = nil
-    
-    //MARK: Private Properties
-    private var config:JConfig = JConfig()
-    
-    //MARK: UI
     private var alertView:BaseUIView!
     private var dimView:BaseUIView!
     
@@ -149,15 +158,13 @@ extension JAlertManager {
     }
     
     private func updateJConfigProperties() {
+        titleLabelStackView.layoutMargins = UIEdgeInsets(top: config.titleTopMargin, left: config.titleLeftMargin, bottom: 0, right: config.titleRightMargin)
         
-        if let superView = titleLabel.superview {
-            NSLayoutConstraint.activate([
-                titleLabel.leadingAnchor.constraint(equalTo: superView.leadingAnchor, constant: config.titleLeftMargin),
-                titleLabel.trailingAnchor.constraint(equalTo: superView.trailingAnchor, constant: -config.titleRightMargin),
-                messageLabel.leadingAnchor.constraint(equalTo: superView.leadingAnchor, constant: config.messageLeftMargin),
-                messageLabel.trailingAnchor.constraint(equalTo: superView.trailingAnchor, constant: -config.messageRightMargin),
-            ])
+        if #available(iOS 11.0, *) {
+            contentStackView.setCustomSpacing(config.betweenTitleAndMessageMargin, after: titleLabelStackView)
         }
+        
+        messageLabelStackView.layoutMargins = UIEdgeInsets(top: 0, left: config.messageLeftMargin, bottom: config.messageBottomMargin, right: config.messageRightMargin)
         
         cotentBottomBorderView.backgroundColor = config.borderColor
         secondBorderView.backgroundColor = config.borderColor
@@ -222,13 +229,20 @@ extension JAlertManager {
     }
     
     private func addTitleAndMessageToContentStackView() {
-        contentStackView.addArrangedSubview(titleTopSpacingView)
-        contentStackView.addArrangedSubview(titleLabel)
+//        contentStackView.addArrangedSubview(titleTopSpacingView)
+        
+        titleLabelStackView.addArrangedSubview(titleLabel)
+        messageLabelStackView.addArrangedSubview(messageLabel)
+        
+        contentStackView.addArrangedSubview(titleLabelStackView)
+        
         if #available(iOS 11.0, *) {
-            contentStackView.setCustomSpacing(config.betweenTitleAndMessageMargin, after: titleLabel)
+            contentStackView.setCustomSpacing(config.betweenTitleAndMessageMargin, after: titleLabelStackView)
         }
-        contentStackView.addArrangedSubview(messageLabel)
-        contentStackView.addArrangedSubview(messageBottomSpacingView)
+        
+        contentStackView.addArrangedSubview(messageLabelStackView)
+        
+//        contentStackView.addArrangedSubview(messageBottomSpacingView)
     }
     
     private func setupAlertContentView() {
