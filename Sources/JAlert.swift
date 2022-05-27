@@ -132,8 +132,12 @@ extension JAlertManager {
                      message:String = "",
                      buttonTitles:[String] = ["OK"],
                      completion:((Int) -> Void)? = nil) {
-        titleLabel.text = title
-        messageLabel.text = message
+        self.title = title
+        self.message = message
+        
+        titleLabel.text = self.title
+        messageLabel.text = self.message
+        
         self.buttonTitles = buttonTitles
         self.completion = completion
         
@@ -164,7 +168,9 @@ extension JAlertManager {
             contentStackView.setCustomSpacing(config.betweenTitleAndMessageMargin, after: titleLabelStackView)
         }
         
-        messageLabelStackView.layoutMargins = UIEdgeInsets(top: 0, left: config.messageLeftMargin, bottom: config.messageBottomMargin, right: config.messageRightMargin)
+        if message != "" {
+            messageLabelStackView.layoutMargins = UIEdgeInsets(top: 0, left: config.messageLeftMargin, bottom: config.messageBottomMargin, right: config.messageRightMargin)
+        }
         
         cotentBottomBorderView.backgroundColor = config.borderColor
         secondBorderView.backgroundColor = config.borderColor
