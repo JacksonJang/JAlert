@@ -162,7 +162,9 @@ extension JAlertManager {
     }
     
     private func updateJConfigProperties() {
-        titleLabelStackView.layoutMargins = UIEdgeInsets(top: config.titleTopMargin, left: config.titleLeftMargin, bottom: 0, right: config.titleRightMargin)
+        if title != "" {
+            titleLabelStackView.layoutMargins = UIEdgeInsets(top: config.titleTopMargin, left: config.titleLeftMargin, bottom: 0, right: config.titleRightMargin)
+        }
         
         if #available(iOS 11.0, *) {
             contentStackView.setCustomSpacing(config.betweenTitleAndMessageMargin, after: titleLabelStackView)

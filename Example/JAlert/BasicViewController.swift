@@ -8,7 +8,8 @@ class BasicViewController: UIViewController {
         "default",
         "Add buttonTitles",
         "Add completion",
-        "Only title"
+        "Only title",
+        "Only message"
     ]
     
     override func viewDidLoad() {
@@ -57,6 +58,10 @@ extension BasicViewController: UITableViewDelegate, UITableViewDataSource {
         case 3:
             JAlert.configuration(config: JConfig())
             JAlert.show(title: "title test")
+            break;
+        case 4:
+            JAlert.configuration(config: JConfig())
+            JAlert.show(message:"message test")
             break;
         default:
             print("not exist")
