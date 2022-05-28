@@ -164,6 +164,8 @@ extension JAlertManager {
     private func updateJConfigProperties() {
         if title != "" {
             titleLabelStackView.layoutMargins = UIEdgeInsets(top: config.titleTopMargin, left: config.titleLeftMargin, bottom: 0, right: config.titleRightMargin)
+        } else {
+            titleLabelStackView.layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         }
         
         if #available(iOS 11.0, *) {
@@ -172,6 +174,8 @@ extension JAlertManager {
         
         if message != "" {
             messageLabelStackView.layoutMargins = UIEdgeInsets(top: 0, left: config.messageLeftMargin, bottom: config.messageBottomMargin, right: config.messageRightMargin)
+        } else {
+            messageLabelStackView.layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         }
         
         cotentBottomBorderView.backgroundColor = config.borderColor
