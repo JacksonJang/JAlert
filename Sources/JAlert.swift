@@ -14,6 +14,11 @@ public class JAlertManager: NSObject {
     private var completion:((Int) -> Void)? = nil
     private var config:JConfig = JConfig()
     
+    //MARK: Parent View
+    private var alertView:BaseUIView = BaseUIView()
+    private var dimView:BaseUIView = BaseUIView()
+    
+    //MARK: - StackView
     private lazy var titleLabelStackView:UIStackView = {
         let sv = UIStackView()
         sv.isLayoutMarginsRelativeArrangement = true
@@ -26,6 +31,31 @@ public class JAlertManager: NSObject {
         return sv
     }()
     
+    private lazy var contentStackView:UIStackView = {
+        let sv = UIStackView()
+        sv.translatesAutoresizingMaskIntoConstraints = false
+        sv.clipsToBounds = true
+        sv.layer.masksToBounds = true
+        sv.axis = .vertical
+        sv.alignment = .fill
+        sv.distribution = .fill
+        sv.layer.cornerRadius = config.cornerRadius
+        sv.backgroundColor = config.contentBackgroundColor
+        return sv
+    }()
+    
+    private lazy var buttonStackView:UIStackView = {
+        let sv = UIStackView()
+
+        sv.translatesAutoresizingMaskIntoConstraints = false
+        sv.axis = .horizontal
+        sv.alignment = .fill
+        sv.distribution = .fillEqually
+
+        return sv
+    }()
+    
+    //MARK: - Label
     private lazy var titleLabel:JPaddingLabel = {
         let label = JPaddingLabel(left: config.titleLeftMargin, right: config.titleRightMargin)
         
@@ -46,25 +76,10 @@ public class JAlertManager: NSObject {
         return label
     }()
     
-    private var firstButtonLabel:JPaddingLabel!
-    private var secondButtonLabel:JPaddingLabel!
+    private var firstButtonLabel:JPaddingLabel = JPaddingLabel()
+    private var secondButtonLabel:JPaddingLabel = JPaddingLabel()
     
-    private var alertView:BaseUIView!
-    private var dimView:BaseUIView!
-    
-    private lazy var contentStackView:UIStackView = {
-        let sv = UIStackView()
-        sv.translatesAutoresizingMaskIntoConstraints = false
-        sv.clipsToBounds = true
-        sv.layer.masksToBounds = true
-        sv.axis = .vertical
-        sv.alignment = .fill
-        sv.distribution = .fill
-        sv.layer.cornerRadius = config.cornerRadius
-        sv.backgroundColor = config.contentBackgroundColor
-        return sv
-    }()
-    
+    //MARK: - Border
     private lazy var cotentBottomBorderView:UIView = {
         let view = UIView()
         
@@ -83,17 +98,7 @@ public class JAlertManager: NSObject {
         return view
     }()
     
-    private lazy var buttonStackView:UIStackView = {
-        let sv = UIStackView()
-
-        sv.translatesAutoresizingMaskIntoConstraints = false
-        sv.axis = .horizontal
-        sv.alignment = .fill
-        sv.distribution = .fillEqually
-
-        return sv
-    }()
-    
+    //MARK: - Button
     private var firstButtonView:UIView = {
         let view = UIView()
         
@@ -110,9 +115,7 @@ public class JAlertManager: NSObject {
         return view
     }()
     
-    private var titleTopSpacingView:UIView!
-    private var messageBottomSpacingView:UIView!
-    
+    //MARK: - init
     public override init() {
         super.init()
         setupUI()
@@ -123,6 +126,7 @@ public class JAlertManager: NSObject {
     }
 }
 
+//MARK: - Public Method
 extension JAlertManager {
     public func configuration(config:JConfig) {
         self.config = config
@@ -142,14 +146,15 @@ extension JAlertManager {
         self.completion = completion
         
         updateJConfigProperties()
-        updateTitleAndMessageConfiguration()
         updateButtonConfiguration()
         
-        if let alertView = alertView,
-           let window = UIApplication.shared.windows.first(where: { $0.isKeyWindow}) {
-            
+        showAlertView()
+    }
+    
+    private func showAlertView() {
+        if let window = UIApplication.shared.windows.first(where: { $0.isKeyWindow}) {
             window.addSubview(alertView)
-            
+               
             NSLayoutConstraint.activate([
                 alertView.topAnchor.constraint(equalTo: window.topAnchor),
                 alertView.leadingAnchor.constraint(equalTo: window.leadingAnchor),
@@ -160,7 +165,9 @@ extension JAlertManager {
             alertView.layoutIfNeeded()
         }
     }
-    
+}
+
+extension JAlertManager {
     private func updateJConfigProperties() {
         if title != "" {
             titleLabelStackView.layoutMargins = UIEdgeInsets(top: config.titleTopMargin, left: config.titleLeftMargin, bottom: 0, right: config.titleRightMargin)
@@ -182,20 +189,6 @@ extension JAlertManager {
         secondBorderView.backgroundColor = config.borderColor
     }
     
-    private func updateTitleAndMessageConfiguration() {
-        titleTopSpacingView.removeConstraints()
-        messageBottomSpacingView.removeConstraints()
-        
-        if #available(iOS 11.0, *) {
-            contentStackView.setCustomSpacing(config.betweenTitleAndMessageMargin, after: titleLabel)
-        }
-        
-        NSLayoutConstraint.activate([
-            titleTopSpacingView.heightAnchor.constraint(equalToConstant: config.titleTopMargin),
-            messageBottomSpacingView.heightAnchor.constraint(equalToConstant: config.messageBottomMargin)
-        ])
-    }
-
     private func updateButtonConfiguration() {
         for index in 0..<buttonTitles.count {
             if index == 0 {
@@ -211,10 +204,6 @@ extension JAlertManager {
 
 extension JAlertManager {
     private func createJAlert(){
-        alertView = BaseUIView()
-        titleTopSpacingView = BaseUIView()
-        messageBottomSpacingView = BaseUIView()
-        
         setupDimView()
         setupContentStackView()
         setupBetweenCotentAndButtonBorderView()
@@ -222,7 +211,6 @@ extension JAlertManager {
     }
     
     private func setupDimView() {
-        dimView = BaseUIView()
         dimView.backgroundColor = UIColor.black.withAlphaComponent(config.backgroundWithAlphaComponent)
         
         alertView.addSubview(dimView)
@@ -241,20 +229,11 @@ extension JAlertManager {
     }
     
     private func addTitleAndMessageToContentStackView() {
-//        contentStackView.addArrangedSubview(titleTopSpacingView)
-        
         titleLabelStackView.addArrangedSubview(titleLabel)
         messageLabelStackView.addArrangedSubview(messageLabel)
         
         contentStackView.addArrangedSubview(titleLabelStackView)
-        
-        if #available(iOS 11.0, *) {
-            contentStackView.setCustomSpacing(config.betweenTitleAndMessageMargin, after: titleLabelStackView)
-        }
-        
         contentStackView.addArrangedSubview(messageLabelStackView)
-        
-//        contentStackView.addArrangedSubview(messageBottomSpacingView)
     }
     
     private func setupAlertContentView() {
@@ -294,7 +273,6 @@ extension JAlertManager {
     }
     
     private func setupFirstButtonView() {
-        firstButtonLabel = JPaddingLabel()
         let button = UIButton()
         
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -320,7 +298,6 @@ extension JAlertManager {
     }
     
     private func setupSecondButtonView() {
-        secondButtonLabel = JPaddingLabel()
         let button = UIButton()
         
         button.translatesAutoresizingMaskIntoConstraints = false
