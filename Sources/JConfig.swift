@@ -20,6 +20,8 @@ public class JConfig {
     //MARK: Alert Properties
     public var cornerRadius:CGFloat = 10.0
     public var contentBackgroundColor:UIColor = .white
+    public var contentBorderWidth:CGFloat = 0.0
+    public var contentBorderColor:UIColor = .black
     public var backgroundWithAlphaComponent:CGFloat = 0.4
     public var borderColor:UIColor = .gray
     

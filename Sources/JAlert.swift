@@ -80,6 +80,14 @@ public class JAlertManager: NSObject {
     private var secondButtonLabel:JPaddingLabel = JPaddingLabel()
     
     //MARK: - Border
+    private lazy var boundaryBorderView:UIView = {
+        let view = UIView()
+        
+        view.translatesAutoresizingMaskIntoConstraints = false
+        
+        return view
+    }()
+    
     private lazy var cotentBottomBorderView:UIView = {
         let view = UIView()
         
@@ -185,6 +193,8 @@ extension JAlertManager {
             messageLabelStackView.layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         }
         
+        contentStackView.layer.borderWidth = config.contentBorderWidth
+        contentStackView.layer.borderColor = config.contentBorderColor.cgColor
         cotentBottomBorderView.backgroundColor = config.borderColor
         secondBorderView.backgroundColor = config.borderColor
     }
