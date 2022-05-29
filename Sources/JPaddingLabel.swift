@@ -22,6 +22,10 @@ class JPaddingLabel: UILabel {
     
     private func commonInit() {
         translatesAutoresizingMaskIntoConstraints = false
+        
+        lineBreakMode = .byCharWrapping
+        textAlignment = .center
+        numberOfLines = 0
     }
     
     required init?(coder: NSCoder) {

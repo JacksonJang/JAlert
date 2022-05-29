@@ -18,7 +18,7 @@ class PropertiesViewController: UIViewController {
     var data:[String] = [
         "Change Margin",
         "Change BorderColor",
-        "Change ContentBorder "
+        "Change ContentBorderColor"
     ]
     
     override func viewDidLoad() {

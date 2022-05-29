@@ -56,72 +56,19 @@ public class JAlertManager: NSObject {
     }()
     
     //MARK: - Label
-    private lazy var titleLabel:JPaddingLabel = {
-        let label = JPaddingLabel(left: config.titleLeftMargin, right: config.titleRightMargin)
-        
-        label.lineBreakMode = .byCharWrapping
-        label.textAlignment = .center
-        label.numberOfLines = 0
-        
-        return label
-    }()
-    
-    private lazy var messageLabel:JPaddingLabel = {
-        let label = JPaddingLabel(left: config.titleLeftMargin, right: config.titleRightMargin)
-        
-        label.lineBreakMode = .byCharWrapping
-        label.textAlignment = .center
-        label.numberOfLines = 0
-        
-        return label
-    }()
-    
+    private lazy var titleLabel:JPaddingLabel = JPaddingLabel()
+    private lazy var messageLabel:JPaddingLabel = JPaddingLabel()
     private var firstButtonLabel:JPaddingLabel = JPaddingLabel()
     private var secondButtonLabel:JPaddingLabel = JPaddingLabel()
     
     //MARK: - Border
-    private lazy var boundaryBorderView:UIView = {
-        let view = UIView()
-        
-        view.translatesAutoresizingMaskIntoConstraints = false
-        
-        return view
-    }()
-    
-    private lazy var cotentBottomBorderView:UIView = {
-        let view = UIView()
-        
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = config.borderColor
-        
-        return view
-    }()
-    
-    private lazy var secondBorderView:UIView = {
-        let view = UIView()
-        
-        view.backgroundColor = config.borderColor
-        view.translatesAutoresizingMaskIntoConstraints = false
-        
-        return view
-    }()
+    private lazy var boundaryBorderView:BaseUIView = BaseUIView()
+    private lazy var cotentBottomBorderView:BaseUIView = BaseUIView()
+    private lazy var secondBorderView:BaseUIView = BaseUIView()
     
     //MARK: - Button
-    private var firstButtonView:UIView = {
-        let view = UIView()
-        
-        view.translatesAutoresizingMaskIntoConstraints = false
-        
-        return view
-    }()
-    
-    private var secondButtonView:UIView = {
-        let view = UIView()
-        
-        view.translatesAutoresizingMaskIntoConstraints = false
-        
-        return view
-    }()
+    private var firstButtonView:BaseUIView = BaseUIView()
+    private var secondButtonView:BaseUIView = BaseUIView()
     
     //MARK: - init
     public override init() {
