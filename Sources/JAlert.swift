@@ -19,17 +19,8 @@ public class JAlertManager: NSObject {
     private var dimView:BaseUIView = BaseUIView()
     
     //MARK: - StackView
-    private lazy var titleLabelStackView:UIStackView = {
-        let sv = UIStackView()
-        sv.isLayoutMarginsRelativeArrangement = true
-        return sv
-    }()
-    
-    private lazy var messageLabelStackView:UIStackView = {
-        let sv = UIStackView()
-        sv.isLayoutMarginsRelativeArrangement = true
-        return sv
-    }()
+    private lazy var titleLabelStackView:JLabelStackView = JLabelStackView()
+    private lazy var messageLabelStackView:JLabelStackView = JLabelStackView()
     
     private lazy var contentStackView:UIStackView = {
         let sv = UIStackView()

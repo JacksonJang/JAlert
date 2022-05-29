@@ -21,6 +21,7 @@
 		E24153372830C655001EB989 /* BaseUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24153362830C655001EB989 /* BaseUIView.swift */; };
 		E24625FE283688E800399185 /* JPaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24625FD283688E800399185 /* JPaddingLabel.swift */; };
 		E2874F152838B90C00463530 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2874F142838B90C00463530 /* UIView+Extensions.swift */; };
+		E2874F8A284301F300463530 /* JLabelStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2874F89284301F300463530 /* JLabelStackView.swift */; };
 		E374520901AD70B7045A4DF54F5F0DDA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
 		E60CB03C5F8D32BCFD374BE367E12735 /* Pods-JAlert_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = EAEDF4FF634B9CAA8B2A14FAE6077156 /* Pods-JAlert_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
@@ -76,6 +77,7 @@
 		E24153362830C655001EB989 /* BaseUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUIView.swift; sourceTree = "<group>"; };
 		E24625FD283688E800399185 /* JPaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JPaddingLabel.swift; sourceTree = "<group>"; };
 		E2874F142838B90C00463530 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
+		E2874F89284301F300463530 /* JLabelStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JLabelStackView.swift; sourceTree = "<group>"; };
 		E605433FD475ADBF1D0E115E00A69325 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		EA1904604318621384E2965FF42D9AC0 /* Pods-JAlert_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-JAlert_Example-dummy.m"; sourceTree = "<group>"; };
 		EAEDF4FF634B9CAA8B2A14FAE6077156 /* Pods-JAlert_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-JAlert_Example-umbrella.h"; sourceTree = "<group>"; };
@@ -245,6 +247,7 @@
 				E24153362830C655001EB989 /* BaseUIView.swift */,
 				E24625FD283688E800399185 /* JPaddingLabel.swift */,
 				E2874F142838B90C00463530 /* UIView+Extensions.swift */,
+				E2874F89284301F300463530 /* JLabelStackView.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -394,6 +397,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E21D8BAF27871D1B0041DBCE /* JAlert.swift in Sources */,
+				E2874F8A284301F300463530 /* JLabelStackView.swift in Sources */,
 				E24153332830BF41001EB989 /* JConfig.swift in Sources */,
 				E21D8BAE27871D1B0041DBCE /* Enums.swift in Sources */,
 				E24625FE283688E800399185 /* JPaddingLabel.swift in Sources */,
