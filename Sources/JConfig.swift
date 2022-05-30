@@ -25,6 +25,14 @@ public class JConfig {
     public var backgroundWithAlphaComponent:CGFloat = 0.4
     public var borderColor:UIColor = .gray
     
+    //MARK: UILabel Properties
+    public var titleFont:UIFont = .systemFont(ofSize: 16)
+    public var messageFont:UIFont = .systemFont(ofSize: 16)
+    public var buttonsFont:[UIFont] = [
+        .systemFont(ofSize: 16),
+        .systemFont(ofSize: 16)
+    ]
+    
     public init() {
         
     }

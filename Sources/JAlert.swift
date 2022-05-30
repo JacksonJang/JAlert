@@ -131,8 +131,25 @@ extension JAlertManager {
             messageLabelStackView.layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         }
         
+        //font
+        titleLabel.font = config.titleFont
+        messageLabel.font = config.messageFont
+        
+        var fontIndex = 0
+        for font in config.buttonsFont {
+            if fontIndex == 0 {
+                firstButtonLabel.font = font
+            } else if fontIndex == 1 {
+                secondButtonLabel.font = font
+            }
+            fontIndex += 1
+        }
+        
+        //border
         contentStackView.layer.borderWidth = config.contentBorderWidth
         contentStackView.layer.borderColor = config.contentBorderColor.cgColor
+        
+        //background
         cotentBottomBorderView.backgroundColor = config.borderColor
         secondBorderView.backgroundColor = config.borderColor
     }
