@@ -31,7 +31,7 @@ public class JAlertManager: NSObject {
         sv.alignment = .fill
         sv.distribution = .fill
         sv.layer.cornerRadius = config.cornerRadius
-        sv.backgroundColor = config.contentBackgroundColor
+        sv.backgroundColor = config.backgroundColor
         return sv
     }()
     
@@ -150,6 +150,7 @@ extension JAlertManager {
         contentStackView.layer.borderColor = config.contentBorderColor.cgColor
         
         //background
+        contentStackView.backgroundColor = config.backgroundColor
         cotentBottomBorderView.backgroundColor = config.borderColor
         secondBorderView.backgroundColor = config.borderColor
     }
