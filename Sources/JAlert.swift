@@ -37,12 +37,12 @@ public class JAlertManager: NSObject {
     
     private lazy var buttonStackView:UIStackView = {
         let sv = UIStackView()
-
+        
         sv.translatesAutoresizingMaskIntoConstraints = false
         sv.axis = .horizontal
         sv.alignment = .fill
         sv.distribution = .fillEqually
-
+        
         return sv
     }()
     
@@ -144,6 +144,9 @@ extension JAlertManager {
             }
             fontIndex += 1
         }
+        
+        //cornerRadius
+        contentStackView.layer.cornerRadius = config.contentCornerRadius
         
         //border
         contentStackView.layer.borderWidth = config.contentBorderWidth

@@ -20,7 +20,8 @@ class PropertiesViewController: UIViewController {
         "Change BorderColor",
         "Change ContentBorderColor",
         "Change Font",
-        "Change BackgroundColor"
+        "Change BackgroundColor",
+        "Change ContentCornerRadius"
     ]
     
     override func viewDidLoad() {
@@ -105,6 +106,12 @@ extension PropertiesViewController: UITableViewDelegate, UITableViewDataSource {
         case 4:
             let config = JConfig()
             config.backgroundColor = .blue
+            JAlert.configuration(config: config)
+            JAlert.show(title: "title test title test title test title test title test",
+                        message: "message test", buttonTitles: ["OK", "NO"])
+        case 5:
+            let config = JConfig()
+            config.contentCornerRadius = 0
             JAlert.configuration(config: config)
             JAlert.show(title: "title test title test title test title test title test",
                         message: "message test", buttonTitles: ["OK", "NO"])

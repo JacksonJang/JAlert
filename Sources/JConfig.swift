@@ -18,7 +18,7 @@ public class JConfig {
     public var betweenTitleAndMessageMargin:CGFloat = 10.0
     
     //MARK: Alert Properties
-    public var cornerRadius:CGFloat = 10.0
+    public var contentCornerRadius:CGFloat = 10.0
     public var backgroundColor:UIColor = .white
     public var contentBorderWidth:CGFloat = 0.0
     public var contentBorderColor:UIColor = .black
