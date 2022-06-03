@@ -30,7 +30,7 @@ public class JAlertManager: NSObject {
         sv.axis = .vertical
         sv.alignment = .fill
         sv.distribution = .fill
-        sv.layer.cornerRadius = config.cornerRadius
+        sv.layer.cornerRadius = config.contentCornerRadius
         sv.backgroundColor = config.backgroundColor
         return sv
     }()
