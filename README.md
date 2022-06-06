@@ -24,6 +24,10 @@ it, simply add the following line to your Podfile:
 ```ruby
 pod 'JAlert'
 ```
+OR
+```ruby
+pod 'JAlert', '~> 1.0.0'
+```
 
 ## Swift Package Manager
 
